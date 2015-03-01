@@ -1,5 +1,4 @@
 Import config
-Import vec
 Import player
 Import level
 Import sat.vec2

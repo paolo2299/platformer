@@ -1,11 +1,12 @@
 Import mojo
 Import config
 Import vec
+Import sat.vec2
 
 Class Block
 
 	Field coord:Vec2Di = New Vec2Di()
-	Field position:Vec2D = New Vec2D()
+	Field position:Vec2 = New Vec2()
 	
 	Method New(coordX:Int, coordY:Int)
 		coord.Set(coordX, coordY)

@@ -1,5 +1,4 @@
 Import config
-Import vec
 Import block
 Import collisionmap
 Import sat.vec2

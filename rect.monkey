@@ -1,5 +1,4 @@
 Import mojo
-Import vec
 Import sat.vec2
 
 Class Rect
