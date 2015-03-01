@@ -88,8 +88,7 @@ Class PfGame Extends App
 	End
 	
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
-		Local topLeft:Vec2 = New Vec2(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH)
-		Return New Rect(topLeft, TILE_WIDTH, TILE_HEIGHT)
+		Return New Rect(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH, TILE_WIDTH, TILE_HEIGHT)
 	End
 	
 	Method SurroundingTilesAtPosition:Vec2Di[](position:Vec2)

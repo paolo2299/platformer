@@ -1,21 +1,19 @@
 Import mojo
 Import sat.vec2
+Import sat.rectangle
 
-Class Rect
+Class Rect Extends Rectangle
 	Field topLeft:Vec2
 	Field topRight:Vec2
 	Field botLeft:Vec2
 	Field botRight:Vec2
-	Field width:Float
-	Field height:Float
 	
-	Method New(topLeft:Vec2, width:Float, height:Float)
-		Self.topLeft = topLeft
+	Method New(x:Float = 0.0, y:Float = 0.0, width:Float = 0.0, height:Float = 0.0)
+		Super.New(x, y, width, height)
+		Self.topLeft = New Vec2(x, y)
 		topRight = New Vec2(topLeft.x + width, topLeft.y)
 		botLeft = New Vec2(topLeft.x, topLeft.y + height)
 		botRight = New Vec2(topLeft.x + width, topLeft.y + height)
-		Self.width = width
-		Self.height = height
 	End
 	
 	Method Intersection:Rect(otherRect:Rect)
@@ -25,11 +23,9 @@ Class Rect
 		Local iBotRightY:Float = Min(botRight.y, otherRect.botRight.y)
 		
 		If (iTopLeftX < iBotRightX) And (iTopLeftY < iBotRightY)
-			Local iTopLeft:Vec2 = New Vec2(iTopLeftX, iTopLeftY)
-			Local iBotRight:Vec2 = New Vec2(iBotRightX, iBotRightY)
-	        Local width:Float = iBotRight.x - iTopLeft.x
-	        Local height:Float = iBotRight.y - iTopLeft.y		
-			Return New Rect(iTopLeft, width, height)
+	        Local width:Float = iBotRightX - iTopLeftX
+	        Local height:Float = iBotRightY - iTopLeftY		
+			Return New Rect(iTopLeftX, iTopLeftY, width, height)
 		End
 		Return Null
 	End

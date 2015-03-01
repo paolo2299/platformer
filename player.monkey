@@ -170,12 +170,10 @@ Class Player
     End 
     
     Method CollisionBoundingBox:Rect()
-    	Local topLeft:Vec2 = New Vec2(desiredPosition.x - PLAYER_WIDTH/2, desiredPosition.y - PLAYER_HEIGHT/2)
-    	Return New Rect(topLeft, PLAYER_WIDTH, PLAYER_HEIGHT)
+    	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2, desiredPosition.y - PLAYER_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT)
     End
        
     Method DetectionBox:Rect()
-    	Local topLeft:Vec2 = New Vec2(desiredPosition.x - PLAYER_WIDTH/2 - 3, desiredPosition.y - PLAYER_HEIGHT/2 - 1)
-    	Return New Rect(topLeft, PLAYER_WIDTH + 6, PLAYER_HEIGHT + 2)
+    	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2 - 3, desiredPosition.y - PLAYER_HEIGHT/2 - 1, PLAYER_WIDTH + 6, PLAYER_HEIGHT + 2)
     End
 End
