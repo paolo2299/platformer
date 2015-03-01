@@ -2,11 +2,12 @@ Import config
 Import vec
 Import block
 Import collisionmap
+Import sat.vec2
 
 Class Level
 	Field levelNumber:Int
 
-	Field playerStartingPosition:Vec2D = New Vec2D()
+	Field playerStartingPosition:Vec2 = New Vec2()
 	Field blocks:Stack<Block> = New Stack<Block>()	
 	Field collisionMap:CollisionMap
 	Field mapWidth:Int

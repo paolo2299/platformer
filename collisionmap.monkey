@@ -1,6 +1,7 @@
 Import config
 Import vec
 Import block
+Import sat.vec2
 
 Class CollisionMap
 	Field mapWidth:Int

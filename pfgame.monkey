@@ -1,6 +1,7 @@
 Import mojo
 Import config
 Import vec
+Import sat.vec2
 Import rect
 Import player
 Import block
@@ -66,7 +67,7 @@ Class PfGame Extends App
 	    		DrawText("Press Enter to Play", 320, 400, 0.5)
 	    	Case STATE_GAME
 	    		PushMatrix()
-				Local translation:Vec2D = camera.Translation()
+				Local translation:Vec2 = camera.Translation()
 	    		Translate(translation.x, translation.y)
 	    		player.Draw()
 	    		For Local block := Eachin currentLevel.blocks
@@ -79,7 +80,7 @@ Class PfGame Extends App
 	    End
 	End
 	
-	Method TileCoordFromPoint:Vec2Di(point:Vec2D)
+	Method TileCoordFromPoint:Vec2Di(point:Vec2)
 		Local tileX:Int = point.x / TILE_WIDTH
 		Local tileY:Int = point.y / TILE_WIDTH
 		
@@ -87,11 +88,11 @@ Class PfGame Extends App
 	End
 	
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
-		Local topLeft:Vec2D = New Vec2D(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH)
+		Local topLeft:Vec2 = New Vec2(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH)
 		Return New Rect(topLeft, TILE_WIDTH, TILE_HEIGHT)
 	End
 	
-	Method SurroundingTilesAtPosition:Vec2Di[](position:Vec2D)
+	Method SurroundingTilesAtPosition:Vec2Di[](position:Vec2)
 		Local positionTileCoord:Vec2Di = TileCoordFromPoint(position)
 		Local tileCoordArray:Vec2Di[8]
 		
@@ -123,7 +124,7 @@ Class PfGame Extends App
 		PrintVec("botRight", r.botRight) 
 	End
 	
-	Method PrintVec(desc: String, v:Vec2D)
+	Method PrintVec(desc: String, v:Vec2)
 		Print desc + ": " + v.x + "," + v.y
 	End
 	

@@ -2,13 +2,14 @@ Import mojo
 Import config
 Import vec
 Import rect
+Import sat.vec2
 
 Class Player
 
-	Field position:Vec2D = New Vec2D()
-	Field desiredPosition:Vec2D = New Vec2D()	
-	Field originalPos:Vec2D = New Vec2D()
-	Field velocity:Vec2D = New Vec2D()
+	Field position:Vec2 = New Vec2()
+	Field desiredPosition:Vec2 = New Vec2()	
+	Field originalPos:Vec2 = New Vec2()
+	Field velocity:Vec2 = New Vec2()
 
 	Field gravity:Float = 0.0125 * TILE_HEIGHT
 	Field wallGravity:Float = 0.01 * TILE_HEIGHT
@@ -41,7 +42,7 @@ Class Player
 	    Set(x, y)
     End
     
-    Method New(pos:Vec2D)
+    Method New(pos:Vec2)
     	Set(pos)
     End
     
@@ -51,7 +52,7 @@ Class Player
 	    UpdateDesiredPosition(x, y)
     End
     
-    Method Set(pos:Vec2D)
+    Method Set(pos:Vec2)
     	Set(pos.x, pos.y)
     End
     
@@ -169,12 +170,12 @@ Class Player
     End 
     
     Method CollisionBoundingBox:Rect()
-    	Local topLeft:Vec2D = New Vec2D(desiredPosition.x - PLAYER_WIDTH/2, desiredPosition.y - PLAYER_HEIGHT/2)
+    	Local topLeft:Vec2 = New Vec2(desiredPosition.x - PLAYER_WIDTH/2, desiredPosition.y - PLAYER_HEIGHT/2)
     	Return New Rect(topLeft, PLAYER_WIDTH, PLAYER_HEIGHT)
     End
        
     Method DetectionBox:Rect()
-    	Local topLeft:Vec2D = New Vec2D(desiredPosition.x - PLAYER_WIDTH/2 - 3, desiredPosition.y - PLAYER_HEIGHT/2 - 1)
+    	Local topLeft:Vec2 = New Vec2(desiredPosition.x - PLAYER_WIDTH/2 - 3, desiredPosition.y - PLAYER_HEIGHT/2 - 1)
     	Return New Rect(topLeft, PLAYER_WIDTH + 6, PLAYER_HEIGHT + 2)
     End
 End
