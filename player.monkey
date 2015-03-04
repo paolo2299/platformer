@@ -3,6 +3,7 @@ Import config
 Import vec
 Import rect
 Import sat.vec2
+Import grapple
 
 Class Player
 
@@ -37,6 +38,8 @@ Class Player
 	Field huggingRight:Bool = False
 	
 	Field lastUpdate:Int = Millisecs()
+	
+	Field grapple:Grapple = New Grapple()
 
 	Method New(x:Float=0, y:Float=0)
 	    Set(x, y)
@@ -152,6 +155,11 @@ Class Player
 		'update!
 		UpdateDesiredPositionX(position.x + velocity.x)
 		UpdateDesiredPositionY(position.y + velocity.y)
+		
+		'update grapple
+		If KeyHit(KEY_F)
+			grapple.Deploy()
+		End
 		
 		lastUpdate = Millisecs()
     End

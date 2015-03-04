@@ -72,6 +72,7 @@ Class PfGame Extends App
 				Local translation:Vec2 = camera.Translation()
 	    		Translate(translation.x, translation.y)
 	    		player.Draw()
+	    		player.grapple.Draw()
 	    		For Local block := Eachin currentLevel.blocks
 	    			block.Draw()
 	    		End
@@ -115,6 +116,14 @@ Class PfGame Extends App
 		player.Update()
 		
 		CheckForAndResolveCollisions(player)
+		
+		UpdateGrapple(player)
+	End
+	
+	Method UpdateGrapple(player:Player)
+		player.grapple.Update(player.position, player.velocity)
+		
+		CheckForAndResolveGrappleCollisions(player.grapple)
 	End
 	
 	Method PrintRect(desc:String, r:Rect)
@@ -127,6 +136,10 @@ Class PfGame Extends App
 	
 	Method PrintVec(desc: String, v:Vec2)
 		Print desc + ": " + v.x + "," + v.y
+	End
+	
+	Method CheckForAndResolveGrappleCollisions(grapple: Grapple)
+		grapple.hookPos.Set(grapple.desiredHookPos.x, grapple.desiredHookPos.y)
 	End
 	
 	Method CheckForAndResolveCollisions(p: Player)

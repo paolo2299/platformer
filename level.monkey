@@ -37,6 +37,9 @@ Class Level
 		For Local i = 1 To (mapWidth - 2)
 			blocks.Push(New Block(i, 0))
 		End
+		For Local i = (mapWidth / 2) - 15 To (mapWidth / 2) + 15
+			blocks.Push(New Block(i, ((mapHeight + 9) / 2) - 14))
+		End
 		For Local i = (mapWidth / 2) - 3 To (mapWidth / 2) + 3
 			For Local j = ((mapHeight + 9) / 2) - 1 To ((mapHeight + 9) / 2) + 5
 				blocks.Push(New Block(i, j))
