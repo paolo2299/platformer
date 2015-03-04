@@ -19,7 +19,7 @@ Class Player
 	Field accelerationWalking:Float = 0.010975 * TILE_WIDTH
 	Field oppositeDirectionAccelerationBoost:Float = 1.5
 	Field maxVelocityXWalking:Float = 0.2345 * TILE_WIDTH
-	Field maxVelocityY:Float = 0.49 * TILE_HEIGHT
+	Field maxVelocityY:Float = 0.48 * TILE_HEIGHT
 	
 	Field jumpForce:Float = 0.3825 * TILE_HEIGHT
 	Field jumpCutoff:Float = 0.10 * TILE_HEIGHT
@@ -174,6 +174,6 @@ Class Player
     End
        
     Method DetectionBox:Rect()
-    	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2 - 3, desiredPosition.y - PLAYER_HEIGHT/2 - 1, PLAYER_WIDTH + 6, PLAYER_HEIGHT + 2)
+    	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2 - 1, desiredPosition.y - PLAYER_HEIGHT/2 - 1, PLAYER_WIDTH + 2, PLAYER_HEIGHT + 2)
     End
 End

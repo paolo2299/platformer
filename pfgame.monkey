@@ -1,7 +1,7 @@
 Import mojo
 Import config
+Import sat
 Import vec
-Import sat.vec2
 Import rect
 Import player
 Import block
@@ -21,6 +21,8 @@ Class PfGame Extends App
 	Field gameState:Int = STATE_MENU
 	Field currentLevel:Level
 	Field camera:Camera = New Camera()
+	Field collisionResponse:Response = New Response()
+	Field detectionResponse:Response = New Response()
 
 	Method OnCreate()
     	SetUpdateRate 60
@@ -63,8 +65,8 @@ Class PfGame Extends App
 	    
 	    Select gameState
 	    	Case STATE_MENU
-	    		DrawText("Platform Game!", 320, 100, 0.5)
-	    		DrawText("Press Enter to Play", 320, 400, 0.5)
+	    		DrawText("Platform Game!", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 2, 0.5)
+	    		DrawText("Press Enter to Play", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 1.8, 0.5)
 	    	Case STATE_GAME
 	    		PushMatrix()
 				Local translation:Vec2 = camera.Translation()
@@ -140,59 +142,28 @@ Class PfGame Extends App
 				Local pRect:Rect = p.CollisionBoundingBox()
 				Local dRect:Rect = p.DetectionBox()
 				Local tileRect:Rect = TileRectFromTileCoord(tileCoord)
-				Local intersection:Rect = pRect.Intersection(tileRect)
-				Local detectIntersection:Rect = dRect.Intersection(tileRect)
-				If intersection <> Null
-					If tileIndex = 0
-						'Tile is directly below player
-						p.desiredPosition.Set(p.desiredPosition.x, p.desiredPosition.y - intersection.height)
-						p.velocity.y = 0
-						p.onGround = True						
-					Elseif tileIndex = 1
-						'Tile is directly above player
-						p.desiredPosition.Set(p.desiredPosition.x, p.desiredPosition.y + intersection.height)
-						p.velocity.y = 0
-					Elseif tileIndex = 2
-						'Tile is left of player
-						p.desiredPosition.Set(p.desiredPosition.x + intersection.width, p.desiredPosition.y)
+				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), pRect.ToPolygon(), collisionResponse)
+					p.desiredPosition.Add(collisionResponse.overlapV)
+					If Abs(collisionResponse.overlapV.x) > 0
 						p.velocity.x = 0
-					Elseif tileIndex = 3
-          				'tile is right of player
-          				p.desiredPosition.Set(p.desiredPosition.x - intersection.width, p.desiredPosition.y)
-          				p.velocity.x = 0
-          			Else
-          				If intersection.width > intersection.height
-            				'tile is diagonal, but resolving collision vertically
-            				p.velocity.y = 0
-            				Local resolutionHeight:Float = intersection.height
-            				If (tileIndex > 5)
-            					'Tile is below
-              					resolutionHeight = -intersection.height
-              					p.onGround = True
-              				End
-            				p.desiredPosition.Set(p.desiredPosition.x, p.desiredPosition.y + resolutionHeight)
-          				Else
-          					'tile is diagonal, but resolving horizontally
-            				Local resolutionWidth:Float = -intersection.width
-            				If tileIndex = 6 Or tileIndex = 4
-            					'Tile is to the left
-              					resolutionWidth = intersection.width
-              				End
-            				p.desiredPosition.Set(p.desiredPosition.x + resolutionWidth, p.desiredPosition.y)
-            				p.velocity.x = 0
-            			End
+					End
+					If Abs(collisionResponse.overlapV.y) > 0
+						p.velocity.y = 0
+					End
+					If collisionResponse.overlapV.y < 0
+						p.onGround = True
 					End
 				End
-				If detectIntersection <> Null
-					If tileIndex = 2
-						'Tile is left of player
+				SAT.TestPolygonPolygon(tileRect.ToPolygon(), dRect.ToPolygon(), detectionResponse)
+				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), dRect.ToPolygon(), detectionResponse)
+					If detectionResponse.overlapV.x > 0
 						p.huggingLeft = True
-					Elseif tileIndex = 3
-          				'tile is right of player
+					Elseif detectionResponse.overlapV.x < 0
           		 		p.huggingRight = True
 					End
-					'TODO(?) make able to jump sidewards from diagonal-below tiles?
 				End
+				collisionResponse.Clear()
+				detectionResponse.Clear()
 			End
 			tileIndex += 1
 		Next
