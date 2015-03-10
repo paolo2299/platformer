@@ -6,13 +6,15 @@ Class Grapple
 
  Field handlePos:Vec2 = New Vec2()
  Field hookPos:Vec2 = New Vec2()
- Field extendSpeed:Float = 0.9 * TILE_WIDTH
- Field desiredHookPos:Vec2 = New Vec2()
+ Field extendSpeed:Float = 2.5 * TILE_WIDTH
  
- Field grappleSize:Float = 40.0
+ Field grappleSize:Float = PLAYER_WIDTH * 1.1
+ Field maxSize:Float = PLAYER_WIDTH * 10
  
  Field flying:Bool = False
  Field engaged:Bool = False
+ 
+ Field engagedLength:Float = 0.0
  
  Method Vector:Vec2()
  	Return hookPos.Clone().Sub(handlePos)
@@ -30,25 +32,43 @@ Class Grapple
  	flying = True
  End
  
+ Method Undeploy()
+ 	flying = False
+ 	engaged = False
+ End
+ 
+ Method Engage(engagePoint:Vec2)
+ 	hookPos = engagePoint
+ 	engagedLength = Length()
+ 	flying = False
+ 	engaged = True
+ End
+ 
+ Method Undeployed:Bool()
+ 	Return Not flying And Not engaged
+ End
+ 
+ Method Length:Float()
+ 	Return Vector().Length()
+ End
+ 
  Method Update(playerPosition:Vec2, playerVelocity:Vec2)
  	handlePos.Set(playerPosition.x, playerPosition.y)
- 	If flying
- 		desiredHookPos.Set(hookPos.x, hookPos.y)
- 		desiredHookPos.Add(Direction().Scale(extendSpeed))
- 	Elseif engaged
- 		desiredHookPos.Set(hookPos.x, hookPos.y)
+ 	If Not flying And Not engaged
+ 		PositionHookByPlayersSide(playerPosition, playerVelocity)
+ 	End
+ End
+ 
+ Method PositionHookByPlayersSide(playerPosition:Vec2, playerVelocity:Vec2)
+ 	If playerVelocity.x > 0
+ 		hookPos.Set(handlePos.x, handlePos.y)
+ 		hookPos.Add(New Vec2(grappleSize, -grappleSize))
+ 	Elseif playerVelocity.x < 0
+ 		hookPos.Set(handlePos.x, handlePos.y)
+ 		hookPos.Add(New Vec2(-grappleSize, -grappleSize))
  	Else
- 		'hook is by players side
- 		If playerVelocity.x > 0
- 			desiredHookPos.Set(handlePos.x, handlePos.y)
- 			desiredHookPos.Add(New Vec2(grappleSize, -grappleSize))
- 		Elseif playerVelocity.x < 0
- 			desiredHookPos.Set(handlePos.x, handlePos.y)
- 			desiredHookPos.Add(New Vec2(-grappleSize, -grappleSize))
- 		Else
- 			desiredHookPos.Set(handlePos.x, handlePos.y)
- 			desiredHookPos.Add(New Vec2(0.0, -grappleSize * 1.4))
- 		End
+ 		hookPos.Set(handlePos.x, handlePos.y)
+ 		hookPos.Add(New Vec2(0.0, -grappleSize * 1.4))
  	End
  End
  

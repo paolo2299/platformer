@@ -16,6 +16,10 @@ Class Rect Extends Rectangle
 		botRight = New Vec2(topLeft.x + width, topLeft.y + height)
 	End
 	
+	Method BottomMiddle:Vec2()
+		Return botLeft.Clone().Add(New Vec2(width / 2, 0.0))
+	End
+	
 	Method Intersection:Rect(otherRect:Rect)
 		Local iTopLeftX:Float = Max(topLeft.x, otherRect.topLeft.x)
 		Local iTopLeftY:Float = Max(topLeft.y, otherRect.topLeft.y)

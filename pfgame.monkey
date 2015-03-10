@@ -41,7 +41,7 @@ Class PfGame Extends App
 					player.Reset()
 				End
 	        	UpdatePlayer(player)
-	        	camera.Update(player, currentLevel)
+	        	camera.Update(player, currentLevel)	       	
 	        Case STATE_LEVEL_COMPLETE
 	        	IncrementLevel()
 	        	player.Set(currentLevel.playerStartingPosition)
@@ -73,6 +73,12 @@ Class PfGame Extends App
 	    		Translate(translation.x, translation.y)
 	    		player.Draw()
 	    		player.grapple.Draw()
+	    		If player.grapple.engaged
+	    			SetColor(255, 0, 0)
+	    			DrawVec(player.position, player.grapplePerp)
+	    			SetColor(255, 255, 0)
+	    			DrawVec(player.position, player.velConstrained.Scale(5))
+	    		End
 	    		For Local block := Eachin currentLevel.blocks
 	    			block.Draw()
 	    		End
@@ -81,6 +87,10 @@ Class PfGame Extends App
 	    	 	DrawText("Game Over!", 320, 100, 0.5)
 	    		DrawText("Press Enter to Play Again", 320, 400, 0.5)
 	    End
+	End
+	
+	Method DrawVec(origin:Vec2, vec:Vec2)
+		DrawLine(origin.x, origin.y, origin.x + vec.x, origin.y + vec.y)
 	End
 	
 	Method TileCoordFromPoint:Vec2Di(point:Vec2)
@@ -121,9 +131,21 @@ Class PfGame Extends App
 	End
 	
 	Method UpdateGrapple(player:Player)
-		player.grapple.Update(player.position, player.velocity)
-		
-		CheckForAndResolveGrappleCollisions(player.grapple)
+	    Local grapple:Grapple = player.grapple
+		grapple.Update(player.position, player.velocity)
+		If grapple.flying
+			Local tileHitCoord:Vec2Di = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
+			If tileHitCoord <> Null
+				Local tileHitRect:Rect = TileRectFromTileCoord(tileHitCoord)
+				Local grappleEngagePoint:Vec2 = tileHitRect.BottomMiddle()
+				grapple.Engage(grappleEngagePoint)
+			End
+			grapple.flying = False
+		Elseif grapple.engaged
+			If grapple.Length() > grapple.maxSize
+				grapple.engaged = False
+			End
+		End
 	End
 	
 	Method PrintRect(desc:String, r:Rect)
@@ -136,10 +158,6 @@ Class PfGame Extends App
 	
 	Method PrintVec(desc: String, v:Vec2)
 		Print desc + ": " + v.x + "," + v.y
-	End
-	
-	Method CheckForAndResolveGrappleCollisions(grapple: Grapple)
-		grapple.hookPos.Set(grapple.desiredHookPos.x, grapple.desiredHookPos.y)
 	End
 	
 	Method CheckForAndResolveCollisions(p: Player)

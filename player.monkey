@@ -40,6 +40,10 @@ Class Player
 	Field lastUpdate:Int = Millisecs()
 	
 	Field grapple:Grapple = New Grapple()
+	
+	
+	Field grapplePerp:Vec2 = New Vec2()
+	Field velConstrained:Vec2 = New Vec2()
 
 	Method New(x:Float=0, y:Float=0)
 	    Set(x, y)
@@ -52,7 +56,7 @@ Class Player
     Method Set(x:Float, y:Float)
 		position.Set(x, y)
 	    originalPos.Set(x, y)
-	    UpdateDesiredPosition(x, y)
+	    desiredPosition.Set(x, y)
     End
     
     Method Set(pos:Vec2)
@@ -70,112 +74,137 @@ Class Player
     End
     
     Method Update()
-    
-    	'running vs walking
-    	Local acceleration:Float = accelerationWalking
-    	Local maxVelocityX:Float = maxVelocityXWalking
-    	Local wallJumpXForce:Float = wallJumpXForceWalking
-    	If KeyDown(KEY_SHIFT)
-    		acceleration = accelerationRunning
-    		maxVelocityX = maxVelocityXRunning
-    		wallJumpXForce = wallJumpXForceRunning
-    	End
-    	
-        'gravity
+    	'gravity
         If huggingLeft Or huggingRight
         	velocity.y += wallGravity
         Else
     		velocity.y += gravity
     	End
     	
-    	'bookkeeping
-    	If KeyDown(KEY_RIGHT)
-    		millisecsRightHeld += (Millisecs() - lastUpdate)
-    	Else
-    		millisecsRightHeld = 0
-    	End
-    	
-    	If KeyDown(KEY_LEFT)
-    		millisecsLeftHeld += (Millisecs() - lastUpdate)
-    	Else
-    		millisecsLeftHeld = 0
-    	End
-    	
-    	'jumping
-    	If KeyHit(KEY_SPACE)
-    		If onGround
+    	If grapple.engaged
+    		'constrain the velocity to be perpendicular to the grapple direction
+			Local perp:Vec2 = grapple.Direction().Perp()
+			grapplePerp = perp.Clone()
+			velConstrained = velocity.Clone().Project(perp)
+			velocity.Project(perp)
+			
+			'jumping
+    		If KeyHit(KEY_SPACE)
+    			grapple.Undeploy()
     			velocity.y = -jumpForce
-    		Elseif huggingLeft
-    			velocity.y = -wallJumpYForce
-    			velocity.x = wallJumpXForce
-    		Elseif huggingRight
-    			velocity.y = -wallJumpYForce
-    			velocity.x = -wallJumpXForce
     		End
-    	End
+			
+			'moving left/right    			
+    		If KeyDown(KEY_RIGHT)
+    			If velocity.x > 0
+    				velocity.x += accelerationWalking
+    			End
+			Elseif KeyDown(KEY_LEFT)
+    			If velocity.x < 0
+    				velocity.x -= accelerationWalking
+    			End
+    		End
+		Else
+			'running vs walking
+    		Local acceleration:Float = accelerationWalking
+    		Local maxVelocityX:Float = maxVelocityXWalking
+    		Local wallJumpXForce:Float = wallJumpXForceWalking
+    		If KeyDown(KEY_SHIFT)
+    			acceleration = accelerationRunning
+    			maxVelocityX = maxVelocityXRunning
+    			wallJumpXForce = wallJumpXForceRunning
+    		End
+    		
+    		'bookkeeping
+    		If KeyDown(KEY_RIGHT)
+    			millisecsRightHeld += (Millisecs() - lastUpdate)
+    		Else
+    			millisecsRightHeld = 0
+    		End
     	
-    	If Not KeyDown(KEY_SPACE) And (velocity.y < -jumpCutoff)
-    		velocity.y = -jumpCutoff
-    	End
-
-		'moving left/right    			
-    	If KeyDown(KEY_RIGHT)
-    		If velocity.x < 0
-    			acceleration *= oppositeDirectionAccelerationBoost
+    		If KeyDown(KEY_LEFT)
+    			millisecsLeftHeld += (Millisecs() - lastUpdate)
+    		Else
+    			millisecsLeftHeld = 0
     		End
-    		If (huggingLeft And Not onGround)
-    			If millisecsRightHeld > wallStickMillisecs
+    	
+    		'jumping
+    		If KeyHit(KEY_SPACE)
+    			If onGround
+    				velocity.y = -jumpForce
+    			Elseif huggingLeft
+    				velocity.y = -wallJumpYForce
+    				velocity.x = wallJumpXForce
+    			Elseif huggingRight
+    				velocity.y = -wallJumpYForce
+    				velocity.x = -wallJumpXForce
+    			End
+    		End
+    		
+    		    	
+    		If Not KeyDown(KEY_SPACE) And (velocity.y < -jumpCutoff)
+    			velocity.y = -jumpCutoff
+    		End
+    		
+			'moving left/right    			
+    		If KeyDown(KEY_RIGHT)
+    			If velocity.x < 0
+    				acceleration *= oppositeDirectionAccelerationBoost
+    			End
+    			If (huggingLeft And Not onGround)
+    				If millisecsRightHeld > wallStickMillisecs
+						velocity.x += acceleration
+					End
+				Else
 					velocity.x += acceleration
 				End
-			Else
-				velocity.x += acceleration
-			End
-		Elseif KeyDown(KEY_LEFT)
-			If velocity.x > 0
-    			acceleration *= oppositeDirectionAccelerationBoost
-    		End
-			If (huggingRight And Not onGround)
-    			If millisecsLeftHeld > wallStickMillisecs
+			Elseif KeyDown(KEY_LEFT)
+				If velocity.x > 0
+    				acceleration *= oppositeDirectionAccelerationBoost
+    			End
+				If (huggingRight And Not onGround)
+    				If millisecsLeftHeld > wallStickMillisecs
+						velocity.x -= acceleration
+					End
+				Else
 					velocity.x -= acceleration
 				End
-			Else
-				velocity.x -= acceleration
+			Elseif onGround
+				velocity.x = 0
 			End
-		Elseif onGround
-			velocity.x = 0
+			
+			'clamp x velocity
+			velocity.x = Clamp(velocity.x, -maxVelocityX, maxVelocityX)
+    	End
+		
+		'update grapple interaction
+		If KeyHit(KEY_UP) And grapple.Undeployed()
+			grapple.Deploy()
 		End
 		
 		'clamp velocities
-		velocity.x = Clamp(velocity.x, -maxVelocityX, maxVelocityX)
+		velocity.x = Clamp(velocity.x, -maxVelocityXRunning, maxVelocityXRunning)
 		velocity.y = Clamp(velocity.y, -maxVelocityY, maxVelocityY)
 		If Abs(velocity.x) < minVelocityX
 			velocity.x = 0
 		End
 		
 		'update!
-		UpdateDesiredPositionX(position.x + velocity.x)
-		UpdateDesiredPositionY(position.y + velocity.y)
+		desiredPosition.x = position.x + velocity.x
+		desiredPosition.y = position.y + velocity.y
 		
-		'update grapple
-		If KeyHit(KEY_F)
-			grapple.Deploy()
+		'finally constrain by grapple again
+		If grapple.engaged
+			Local stretched:Float = desiredPosition.Clone().Sub(grapple.hookPos).Length() - grapple.engagedLength
+			If stretched > 0
+				Print "grapple.engagedLength: " + grapple.engagedLength
+				Print "desiredPosition.Clone().Sub(grapple.hookPos).Length(): " + desiredPosition.Clone().Sub(grapple.hookPos).Length()
+				desiredPosition.Add(grapple.Direction().Scale(stretched))
+			End
 		End
 		
 		lastUpdate = Millisecs()
     End
-
-    Method UpdateDesiredPositionX(x:Float)
-    	UpdateDesiredPosition(x, position.y)
-    End
-    
-    Method UpdateDesiredPositionY(y:Float)
-    	UpdateDesiredPosition(position.x, y)
-    End
-    
-    Method UpdateDesiredPosition(x:Float, y:Float)
-    	desiredPosition.x = x
-    	desiredPosition.y = y
-    End 
     
     Method CollisionBoundingBox:Rect()
     	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2, desiredPosition.y - PLAYER_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT)

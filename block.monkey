@@ -17,5 +17,10 @@ Class Block
 		SetColor(0, 0, 255)
     	DrawRect(position.x - TILE_WIDTH/2, position.y - TILE_HEIGHT/2, TILE_WIDTH, TILE_HEIGHT)
 	End
+	
+	Method DrawRed()
+	    SetColor(255, 0, 0)
+	    DrawRect(position.x - TILE_WIDTH/2, position.y - TILE_HEIGHT/2, TILE_WIDTH, TILE_HEIGHT)
+	End
 
 End
