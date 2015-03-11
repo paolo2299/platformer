@@ -10,6 +10,7 @@ Class Grapple
  
  Field grappleSize:Float = PLAYER_WIDTH * 1.1
  Field maxSize:Float = PLAYER_WIDTH * 10
+ Field minSize:Float = PLAYER_WIDTH * 2
  
  Field flying:Bool = False
  Field engaged:Bool = False
@@ -40,8 +41,23 @@ Class Grapple
  Method Engage(engagePoint:Vec2)
  	hookPos = engagePoint
  	engagedLength = Length()
+ 	ClampLength()
  	flying = False
  	engaged = True
+ End
+ 
+ Method Extend(amount:Float)
+ 	engagedLength = engagedLength + amount
+ 	ClampLength()
+ End
+ 
+ Method Retract(amount:Float)
+ 	engagedLength = engagedLength - amount
+ 	ClampLength()
+ End
+ 
+ Method ClampLength()
+ 	engagedLength = Clamp(engagedLength, minSize, maxSize)
  End
  
  Method Undeployed:Bool()
@@ -52,18 +68,21 @@ Class Grapple
  	Return Vector().Length()
  End
  
- Method Update(playerPosition:Vec2, playerVelocity:Vec2)
+ Method Update(playerPosition:Vec2)
  	handlePos.Set(playerPosition.x, playerPosition.y)
+ 	If engaged
+ 		engagedLength = Length()
+ 	End
  	If Not flying And Not engaged
- 		PositionHookByPlayersSide(playerPosition, playerVelocity)
+ 		PositionHookByPlayersSide(playerPosition)
  	End
  End
  
- Method PositionHookByPlayersSide(playerPosition:Vec2, playerVelocity:Vec2)
- 	If playerVelocity.x > 0
+ Method PositionHookByPlayersSide(playerPosition:Vec2)
+ 	If KeyDown(KEY_RIGHT)
  		hookPos.Set(handlePos.x, handlePos.y)
  		hookPos.Add(New Vec2(grappleSize, -grappleSize))
- 	Elseif playerVelocity.x < 0
+ 	Elseif KeyDown(KEY_LEFT)
  		hookPos.Set(handlePos.x, handlePos.y)
  		hookPos.Add(New Vec2(-grappleSize, -grappleSize))
  	Else

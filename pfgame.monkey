@@ -132,7 +132,7 @@ Class PfGame Extends App
 	
 	Method UpdateGrapple(player:Player)
 	    Local grapple:Grapple = player.grapple
-		grapple.Update(player.position, player.velocity)
+		grapple.Update(player.position)
 		If grapple.flying
 			Local tileHitCoord:Vec2Di = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
 			If tileHitCoord <> Null
@@ -141,10 +141,6 @@ Class PfGame Extends App
 				grapple.Engage(grappleEngagePoint)
 			End
 			grapple.flying = False
-		Elseif grapple.engaged
-			If grapple.Length() > grapple.maxSize
-				grapple.engaged = False
-			End
 		End
 	End
 	

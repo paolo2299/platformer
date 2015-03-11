@@ -40,6 +40,7 @@ Class Player
 	Field lastUpdate:Int = Millisecs()
 	
 	Field grapple:Grapple = New Grapple()
+	Field grappleExtendSpeed:Float = TILE_WIDTH / 8.0
 	
 	
 	Field grapplePerp:Vec2 = New Vec2()
@@ -96,13 +97,20 @@ Class Player
 			
 			'moving left/right    			
     		If KeyDown(KEY_RIGHT)
-    			If velocity.x > 0
+    			If velocity.x > 0 Or huggingLeft
     				velocity.x += accelerationWalking
     			End
 			Elseif KeyDown(KEY_LEFT)
-    			If velocity.x < 0
+    			If velocity.x < 0 Or huggingRight
     				velocity.x -= accelerationWalking
     			End
+    		End
+    		
+    		'extend/shorten the grapple
+    		If KeyDown(KEY_UP)
+    			grapple.Retract(grappleExtendSpeed)
+    		Elseif KeyDown(KEY_DOWN)
+    			grapple.Extend(grappleExtendSpeed)
     		End
 		Else
 			'running vs walking
@@ -196,7 +204,7 @@ Class Player
 		'finally constrain by grapple again
 		If grapple.engaged
 			Local stretched:Float = desiredPosition.Clone().Sub(grapple.hookPos).Length() - grapple.engagedLength
-			If stretched > 0
+			If stretched <> 0
 				Print "grapple.engagedLength: " + grapple.engagedLength
 				Print "desiredPosition.Clone().Sub(grapple.hookPos).Length(): " + desiredPosition.Clone().Sub(grapple.hookPos).Length()
 				desiredPosition.Add(grapple.Direction().Scale(stretched))
