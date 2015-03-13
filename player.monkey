@@ -41,10 +41,6 @@ Class Player
 	
 	Field grapple:Grapple = New Grapple()
 	Field grappleExtendSpeed:Float = TILE_WIDTH / 8.0
-	
-	
-	Field grapplePerp:Vec2 = New Vec2()
-	Field velConstrained:Vec2 = New Vec2()
 
 	Method New(x:Float=0, y:Float=0)
 	    Set(x, y)
@@ -85,8 +81,6 @@ Class Player
     	If grapple.engaged
     		'constrain the velocity to be perpendicular to the grapple direction
 			Local perp:Vec2 = grapple.Direction().Perp()
-			grapplePerp = perp.Clone()
-			velConstrained = velocity.Clone().Project(perp)
 			velocity.Project(perp)
 			
 			'jumping
@@ -205,8 +199,6 @@ Class Player
 		If grapple.engaged
 			Local stretched:Float = desiredPosition.Clone().Sub(grapple.hookPos).Length() - grapple.engagedLength
 			If stretched <> 0
-				Print "grapple.engagedLength: " + grapple.engagedLength
-				Print "desiredPosition.Clone().Sub(grapple.hookPos).Length(): " + desiredPosition.Clone().Sub(grapple.hookPos).Length()
 				desiredPosition.Add(grapple.Direction().Scale(stretched))
 			End
 		End

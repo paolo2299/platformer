@@ -20,6 +20,7 @@ Class PfGame Extends App
 	Field player:Player = New Player()
 	Field gameState:Int = STATE_MENU
 	Field currentLevel:Level
+
 	Field camera:Camera = New Camera()
 	Field collisionResponse:Response = New Response()
 	Field detectionResponse:Response = New Response()
@@ -52,6 +53,7 @@ Class PfGame Extends App
 		End
 	End
 	
+	
 	Method FirstLevel:Level()
 		Return New Level(0)
 	End
@@ -73,12 +75,6 @@ Class PfGame Extends App
 	    		Translate(translation.x, translation.y)
 	    		player.Draw()
 	    		player.grapple.Draw()
-	    		If player.grapple.engaged
-	    			SetColor(255, 0, 0)
-	    			DrawVec(player.position, player.grapplePerp)
-	    			SetColor(255, 255, 0)
-	    			DrawVec(player.position, player.velConstrained.Scale(5))
-	    		End
 	    		For Local block := Eachin currentLevel.blocks
 	    			block.Draw()
 	    		End
@@ -134,11 +130,11 @@ Class PfGame Extends App
 	    Local grapple:Grapple = player.grapple
 		grapple.Update(player.position)
 		If grapple.flying
-			Local tileHitCoord:Vec2Di = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
-			If tileHitCoord <> Null
-				Local tileHitRect:Rect = TileRectFromTileCoord(tileHitCoord)
-				Local grappleEngagePoint:Vec2 = tileHitRect.BottomMiddle()
-				grapple.Engage(grappleEngagePoint)
+			Local hitPosition:Vec2 = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
+			If hitPosition <> Null
+				'Local tileHitRect:Rect = TileRectFromTileCoord(tileHitCoord)
+				'Local grappleEngagePoint:Vec2 = tileHitRect.BottomMiddle()
+				grapple.Engage(hitPosition)
 			End
 			grapple.flying = False
 		End

@@ -8,7 +8,7 @@ Class Grapple
  Field hookPos:Vec2 = New Vec2()
  Field extendSpeed:Float = 2.5 * TILE_WIDTH
  
- Field grappleSize:Float = PLAYER_WIDTH * 1.1
+ Field grappleSize:Float = PLAYER_WIDTH * 0.8
  Field maxSize:Float = PLAYER_WIDTH * 10
  Field minSize:Float = PLAYER_WIDTH * 2
  

@@ -10,10 +10,10 @@ Class Rect Extends Rectangle
 	
 	Method New(x:Float = 0.0, y:Float = 0.0, width:Float = 0.0, height:Float = 0.0)
 		Super.New(x, y, width, height)
-		Self.topLeft = New Vec2(x, y)
+		topLeft = New Vec2(x, y)
 		topRight = New Vec2(topLeft.x + width, topLeft.y)
 		botLeft = New Vec2(topLeft.x, topLeft.y + height)
-		botRight = New Vec2(topLeft.x + width, topLeft.y + height)
+		botRight = New Vec2(topLeft.x + width, botLeft.y)
 	End
 	
 	Method BottomMiddle:Vec2()
