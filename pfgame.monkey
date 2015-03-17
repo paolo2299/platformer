@@ -15,6 +15,7 @@ Const STATE_GAME:Int = 2
 Const STATE_LEVEL_COMPLETE = 3
 Const STATE_DEATH:Int = 4
 
+
 Class PfGame Extends App
 	
 	Field player:Player = New Player()
@@ -55,7 +56,7 @@ Class PfGame Extends App
 	
 	
 	Method FirstLevel:Level()
-		Return New Level(0)
+		Return New Level(1)
 	End
 	
 	Method IncrementLevel()

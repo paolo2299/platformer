@@ -7,6 +7,7 @@ Class Rect Extends Rectangle
 	Field topRight:Vec2
 	Field botLeft:Vec2
 	Field botRight:Vec2
+	Field centre:Vec2
 	
 	Method New(x:Float = 0.0, y:Float = 0.0, width:Float = 0.0, height:Float = 0.0)
 		Super.New(x, y, width, height)
@@ -14,6 +15,7 @@ Class Rect Extends Rectangle
 		topRight = New Vec2(topLeft.x + width, topLeft.y)
 		botLeft = New Vec2(topLeft.x, topLeft.y + height)
 		botRight = New Vec2(topLeft.x + width, botLeft.y)
+		centre = New Vec2(topLeft.x + width/2, topLeft.y + height/2)
 	End
 	
 	Method BottomMiddle:Vec2()
