@@ -162,7 +162,7 @@ Class PfGame Extends App
 		 		
 		Local tileIndex:Int = 0
 		For Local tileCoord := Eachin tileCoords
-			If currentLevel.collisionMap.DetectCollision(tileCoord)
+			If currentLevel.collisionMap.DetectCollisionBlock(tileCoord) <> Null
 				Local pRect:Rect = p.CollisionBoundingBox()
 				Local dRect:Rect = p.DetectionBox()
 				Local tileRect:Rect = TileRectFromTileCoord(tileCoord)

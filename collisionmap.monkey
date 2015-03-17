@@ -7,20 +7,16 @@ Import rect
 Class CollisionMap
 	Field mapWidth:Int
 	Field mapHeight:Int
-	Field collisionArray:Int[]
+	Field blockArray:Block[]
 	
 	Method New(mapWidth, mapHeight)
 		Self.mapWidth = mapWidth
 		Self.mapHeight = mapHeight
- 		Self.collisionArray = New Int[mapWidth * mapHeight]
+ 		Self.blockArray = New Block[mapWidth * mapHeight]
  	End
 	
-	Method AddCollision(coord:Vec2Di)
-		collisionArray[mapWidth * coord.y + coord.x] = 1
-	End
-	
-	Method DetectCollision:Bool(coord:Vec2Di)
-		Return DetectCollision(coord.x, coord.y)
+	Method AddBlock(block:Block)
+		blockArray[mapWidth * block.coord.y + block.coord.x] = block
 	End
 	
 	Method TileCoordFromPoint:Vec2Di(point:Vec2)
@@ -34,21 +30,22 @@ Class CollisionMap
 		Return New Rect(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH, TILE_WIDTH, TILE_HEIGHT)
 	End
 	
-	Method DetectCollision:Bool(coordX:Int, coordY:Int)
-		Local collision:Bool = False
+	Method DetectCollisionBlock:Block(coordX:Int, coordY:Int)
+		Local collisionBlock:Block = Null
 		
 		If (coordX > mapWidth - 1) Or (coordY > mapHeight - 1)
-			Return False
+			Return Null
 		End
 		
 		If (coordY < 0) Or (coordY < 0)
-			Return False
+			Return Null
 		End
 		
-		If collisionArray[mapWidth * coordY + coordX] = 1
-			collision = True
-		End
-		Return collision
+		Return blockArray[mapWidth * coordY + coordX]
+	End
+	
+	Method DetectCollisionBlock:Block(coord: Vec2Di)		
+		Return DetectCollisionBlock(coord.x, coord.y)
 	End
 	
 	Method RayCastCollision:Vec2(origin:Vec2, direction:Vec2, maxLength:Float)
@@ -75,7 +72,7 @@ Class CollisionMap
 		'2) Avoid iterating over tiles that are outside the map
 		While i <> destCoord.x + stepX
 			While j <> destCoord.y + stepY 
-				If DetectCollision(i, j)
+				If DetectCollisionBlock(i, j) <> Null
 					Local tileRect:Rect = TileRectFromTileCoord(New Vec2Di(i, j))
 					Local response:Response = New Response()
 					If SAT.TestPolygonPolygon(ray, tileRect.ToPolygon(), response)
@@ -133,9 +130,5 @@ Class CollisionMap
 		End
 			
 		Return Null
-	End
-	
-	Method AddBlock(block:Block)
-		AddCollision(block.coord)
 	End
 End
