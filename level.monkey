@@ -20,7 +20,7 @@ Class Level
 	End
 	
 	Method FileString:String()
-		Local filePath:String = "monkey://data/level" + levelNumber + ".txt"
+		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/layout.txt"
 		Return mojo.LoadString(filePath)
 	End
 	
