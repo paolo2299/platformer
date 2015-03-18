@@ -1,5 +1,6 @@
 Import config
-Import block
+Import block.groundblock
+Import block.hazardblock
 Import collisionmap
 Import sat.vec2
 
@@ -15,41 +16,7 @@ Class Level
 	Method New(number:Int)
 		Self.levelNumber = number
 		'GetLayout()
-		GetLayoutFromFile()
-	End
-	
-	Method GetLayout()
-		'ignore level num for now, only one level
-		mapWidth = 60
-		mapHeight = 35
-		
-		collisionMap = New CollisionMap(mapWidth, mapHeight)
-		
-		playerStartingPosition.Set(300, 300)
-		
-		
-		For Local i = 0 To (mapHeight - 1)
-			blocks.Push(New Block(0, i))
-			blocks.Push(New Block(mapWidth - 1, i))
-		End
-		For Local i = 1 To (mapWidth - 2)
-			blocks.Push(New Block(i, mapHeight - 1))
-		End
-		For Local i = 1 To (mapWidth - 2)
-			blocks.Push(New Block(i, 0))
-		End
-		For Local i = (mapWidth / 2) - 15 To (mapWidth / 2) + 15
-			blocks.Push(New Block(i, ((mapHeight + 9) / 2) - 14))
-		End
-		For Local i = (mapWidth / 2) - 3 To (mapWidth / 2) + 3
-			For Local j = ((mapHeight + 9) / 2) - 1 To ((mapHeight + 9) / 2) + 5
-				blocks.Push(New Block(i, j))
-			End
-		End
-		
-		For Local block := Eachin blocks
-        	collisionMap.AddBlock(block)
-        End	
+		GetLayout()
 	End
 	
 	Method FileString:String()
@@ -57,7 +24,7 @@ Class Level
 		Return mojo.LoadString(filePath)
 	End
 	
-	Method GetLayoutFromFile()
+	Method GetLayout()
 		SetMapWidthAndMapHeight()
 		collisionMap = New CollisionMap(mapWidth, mapHeight)
 		
@@ -68,7 +35,9 @@ Class Level
 			Local tiles:String[] = row.Split(",")
 			For Local tile:String = Eachin tiles
 				If tile = "b"
-					blocks.Push(New Block(colNum, rowNum))
+					blocks.Push(New GroundBlock(colNum, rowNum))
+				Elseif tile = "h"
+					blocks.Push(New HazardBlock(colNum, rowNum))
 				Elseif tile = "p"
 					Local tileRect:Rect = TileRectFromTileCoord(New Vec2Di(colNum, rowNum))
 					playerStartingPosition.Set(tileRect.centre.x, tileRect.centre.y)

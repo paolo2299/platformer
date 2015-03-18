@@ -49,8 +49,11 @@ Class PfGame Extends App
 	        	player.Set(currentLevel.playerStartingPosition)
 	        	camera.Update(player, currentLevel)
 			Case STATE_DEATH
-				player.Reset()
-				camera.Update(player, currentLevel)
+				If KeyHit(KEY_ENTER)
+					player.Reset()
+					camera.Update(player, currentLevel)
+					gameState = STATE_GAME
+				End
 		End
 	End
 	
@@ -162,11 +165,16 @@ Class PfGame Extends App
 		 		
 		Local tileIndex:Int = 0
 		For Local tileCoord := Eachin tileCoords
-			If currentLevel.collisionMap.DetectCollisionBlock(tileCoord) <> Null
+			Local collisionBlock:Block = currentLevel.collisionMap.DetectCollisionBlock(tileCoord)
+			If collisionBlock <> Null
 				Local pRect:Rect = p.CollisionBoundingBox()
 				Local dRect:Rect = p.DetectionBox()
 				Local tileRect:Rect = TileRectFromTileCoord(tileCoord)
 				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), pRect.ToPolygon(), collisionResponse)
+					If collisionBlock.IsHazard()
+						gameState = STATE_DEATH
+						Exit
+					End
 					p.desiredPosition.Add(collisionResponse.overlapV)
 					If Abs(collisionResponse.overlapV.x) > 0
 						p.velocity.x = 0
@@ -178,7 +186,6 @@ Class PfGame Extends App
 						p.onGround = True
 					End
 				End
-				SAT.TestPolygonPolygon(tileRect.ToPolygon(), dRect.ToPolygon(), detectionResponse)
 				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), dRect.ToPolygon(), detectionResponse)
 					If detectionResponse.overlapV.x > 0
 						p.huggingLeft = True
