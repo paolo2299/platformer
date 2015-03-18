@@ -27,7 +27,7 @@ Class PfGame Extends App
 	Field detectionResponse:Response = New Response()
 
 	Method OnCreate()
-    	SetUpdateRate 60
+    		SetUpdateRate 60
 	End
 	
 	Method OnUpdate()
@@ -48,6 +48,7 @@ Class PfGame Extends App
 	        			IncrementLevel()
 	        			player.Set(currentLevel.playerStartingPosition)
 	        			camera.Update(player, currentLevel)
+	        			gameState = STATE_GAME
 			Case STATE_DEATH
 				player.Reset()
 				camera.Update(player, currentLevel)
@@ -61,7 +62,7 @@ Class PfGame Extends App
 	End
 	
 	Method IncrementLevel()
-		'TODO
+		currentLevel = New Level(currentLevel.levelNumber + 1)
 	End
 	
 	Method OnRender()
@@ -168,6 +169,10 @@ Class PfGame Extends App
 				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), pRect.ToPolygon(), collisionResponse)
 					If collisionBlock.IsHazard()
 						gameState = STATE_DEATH
+						Exit
+					End
+					If collisionBlock.IsGoal()
+						gameState = STATE_LEVEL_COMPLETE
 						Exit
 					End
 					p.desiredPosition.Add(collisionResponse.overlapV)

@@ -17,6 +17,10 @@ Class Block
 		Return False
 	End
 	
+	Method IsGoal:Bool()
+		Return False
+	End
+	
 	Method SetColor()
 		mojo.SetColor(0.0, 0.0, 255.0)
 	End

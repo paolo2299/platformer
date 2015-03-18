@@ -1,6 +1,7 @@
 Import config
 Import block.groundblock
 Import block.hazardblock
+Import block.goalblock
 Import collisionmap
 Import sat.vec2
 
@@ -38,6 +39,8 @@ Class Level
 					blocks.Push(New GroundBlock(colNum, rowNum))
 				Elseif tile = "h"
 					blocks.Push(New HazardBlock(colNum, rowNum))
+				Elseif tile = "g"
+					blocks.Push(New GoalBlock(colNum, rowNum))
 				Elseif tile = "p"
 					Local tileRect:Rect = TileRectFromTileCoord(New Vec2Di(colNum, rowNum))
 					playerStartingPosition.Set(tileRect.centre.x, tileRect.centre.y)
