@@ -16,20 +16,25 @@ Class Level
 	
 	Method New(number:Int)
 		Self.levelNumber = number
-		'GetLayout()
 		GetLayout()
+		GetConfig()
 	End
 	
-	Method FileString:String()
+	Method LayoutFileString:String()
 		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/layout.txt"
 		Return mojo.LoadString(filePath)
+	End
+	
+	Method GetConfig()
+		Local filePath:String = "monkey://data/levels/defaults.txt"
+		Print mojo.LoadString(filePath)
 	End
 	
 	Method GetLayout()
 		SetMapWidthAndMapHeight()
 		collisionMap = New CollisionMap(mapWidth, mapHeight)
 		
-		Local rows:String[] = FileString().Split("~n")
+		Local rows:String[] = LayoutFileString().Split("~n")
 		Local rowNum:Int = 0
 		Local colNum:Int = 0
 		For Local row:String = Eachin rows
@@ -57,7 +62,7 @@ Class Level
 	End
 	
 	Method SetMapWidthAndMapHeight()
-		Local rows:String[] = FileString().Split("~n")
+		Local rows:String[] = LayoutFileString().Split("~n")
 		mapHeight = rows.Length()
 		mapWidth = rows[0].Split(",").Length()
 	End
