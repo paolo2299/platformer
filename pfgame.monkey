@@ -42,18 +42,16 @@ Class PfGame Extends App
 				If KeyHit(KEY_R)
 					player.Reset()
 				End
-	        	UpdatePlayer(player)
-	        	camera.Update(player, currentLevel)	       	
-	        Case STATE_LEVEL_COMPLETE
-	        	IncrementLevel()
-	        	player.Set(currentLevel.playerStartingPosition)
-	        	camera.Update(player, currentLevel)
+	        			UpdatePlayer(player)
+	        			camera.Update(player, currentLevel)	       	
+	        		Case STATE_LEVEL_COMPLETE
+	        			IncrementLevel()
+	        			player.Set(currentLevel.playerStartingPosition)
+	        			camera.Update(player, currentLevel)
 			Case STATE_DEATH
-				If KeyHit(KEY_ENTER)
-					player.Reset()
-					camera.Update(player, currentLevel)
-					gameState = STATE_GAME
-				End
+				player.Reset()
+				camera.Update(player, currentLevel)
+				gameState = STATE_GAME
 		End
 	End
 	
@@ -83,9 +81,6 @@ Class PfGame Extends App
 	    			block.Draw()
 	    		End
 	    		PopMatrix()
-	    	Case STATE_DEATH
-	    	 	DrawText("Game Over!", 320, 100, 0.5)
-	    		DrawText("Press Enter to Play Again", 320, 400, 0.5)
 	    End
 	End
 	
