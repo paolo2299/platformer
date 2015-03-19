@@ -1,21 +1,40 @@
 Import config
+Import level
 Import sat.vec2
 
 
 Class Grapple
 
+ Field level:Level
+
  Field handlePos:Vec2 = New Vec2()
  Field hookPos:Vec2 = New Vec2()
- Field extendSpeed:Float = 2.5 * TILE_WIDTH
  
- Field grappleSize:Float = PLAYER_WIDTH * 0.8
- Field maxSize:Float = PLAYER_WIDTH * 10
- Field minSize:Float = PLAYER_WIDTH * 2
+ Field extendSpeed:Float
+ Field grappleSize:Float
+ Field maxSize:Float
+ Field minSize:Float
+ Field extendSpeedFactor:Float = 2.5
+ Field grappleSizeFactor:Float = 0.8
+ Field maxSizeFactor:Float = 10
+ Field minSizeFactor:Float = 2
  
  Field flying:Bool = False
  Field engaged:Bool = False
  
  Field engagedLength:Float = 0.0
+
+ Method New(level:Level)
+ 	Self.level = level
+ 	SetGrappleConstants()
+ End
+ 
+ Method SetGrappleConstants()
+ 	extendSpeed = extendSpeedFactor * level.tileWidth
+ 	grappleSize = grappleSizeFactor * level.tileWidth
+ 	maxSize = maxSizeFactor * level.tileWidth
+ 	minSize = minSizeFactor * level.tileWidth
+ End
  
  Method Vector:Vec2()
  	Return hookPos.Clone().Sub(handlePos)

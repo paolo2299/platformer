@@ -18,7 +18,7 @@ Const STATE_DEATH:Int = 4
 
 Class PfGame Extends App
 	
-	Field player:Player = New Player()
+	Field player:Player
 	Field gameState:Int = STATE_MENU
 	Field currentLevel:Level
 
@@ -35,7 +35,7 @@ Class PfGame Extends App
 			Case STATE_MENU
 				If KeyHit(KEY_ENTER)
 					currentLevel = FirstLevel()
-					player.Set(currentLevel.playerStartingPosition)
+					player = New Player(currentLevel)
 					gameState = STATE_GAME
 				End
 			Case STATE_GAME
@@ -46,7 +46,7 @@ Class PfGame Extends App
 	        			camera.Update(player, currentLevel)	       	
 	        		Case STATE_LEVEL_COMPLETE
 	        			IncrementLevel()
-	        			player.Set(currentLevel.playerStartingPosition)
+	        			player = New Player(currentLevel)
 	        			camera.Update(player, currentLevel)
 	        			gameState = STATE_GAME
 			Case STATE_DEATH
@@ -90,14 +90,14 @@ Class PfGame Extends App
 	End
 	
 	Method TileCoordFromPoint:Vec2Di(point:Vec2)
-		Local tileX:Int = point.x / TILE_WIDTH
-		Local tileY:Int = point.y / TILE_WIDTH
+		Local tileX:Int = point.x / currentLevel.tileWidth
+		Local tileY:Int = point.y / currentLevel.tileHeight
 		
 		Return New Vec2Di(tileX, tileY)
 	End
 	
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
-		Return New Rect(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH, TILE_WIDTH, TILE_HEIGHT)
+		Return New Rect(coord.x * currentLevel.tileWidth, coord.y * currentLevel.tileHeight, currentLevel.tileWidth, currentLevel.tileHeight)
 	End
 	
 	Method SurroundingTilesAtPosition:Vec2Di[](position:Vec2)

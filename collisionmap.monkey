@@ -1,39 +1,40 @@
 Import config
 Import vec
+Import level
 Import block
 Import sat
 Import rect
 
 Class CollisionMap
+	Field level:Level
 	Field mapWidth:Int
 	Field mapHeight:Int
 	Field blockArray:Block[]
 	
-	Method New(mapWidth, mapHeight)
-		Self.mapWidth = mapWidth
-		Self.mapHeight = mapHeight
- 		Self.blockArray = New Block[mapWidth * mapHeight]
+	Method New(level:Level)
+		Self.level = level
+ 		Self.blockArray = New Block[level.mapWidth * level.mapHeight]
  	End
 	
 	Method AddBlock(block:Block)
-		blockArray[mapWidth * block.coord.y + block.coord.x] = block
+		blockArray[level.mapWidth * block.coord.y + block.coord.x] = block
 	End
 	
 	Method TileCoordFromPoint:Vec2Di(point:Vec2)
-		Local tileX:Int = point.x / TILE_WIDTH
-		Local tileY:Int = point.y / TILE_WIDTH
+		Local tileX:Int = point.x / level.tileWidth
+		Local tileY:Int = point.y / level.tileWidth
 		
 		Return New Vec2Di(tileX, tileY)
 	End
 
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
-		Return New Rect(coord.x * TILE_WIDTH, coord.y * TILE_WIDTH, TILE_WIDTH, TILE_HEIGHT)
+		Return New Rect(coord.x * level.tileWidth, coord.y * level.tileHeight, level.tileWidth, level.tileHeight)
 	End
 	
 	Method DetectCollisionBlock:Block(coordX:Int, coordY:Int)
 		Local collisionBlock:Block = Null
 		
-		If (coordX > mapWidth - 1) Or (coordY > mapHeight - 1)
+		If (coordX > level.mapWidth - 1) Or (coordY > level.mapHeight - 1)
 			Return Null
 		End
 		
@@ -41,7 +42,7 @@ Class CollisionMap
 			Return Null
 		End
 		
-		Return blockArray[mapWidth * coordY + coordX]
+		Return blockArray[level.mapWidth * coordY + coordX]
 	End
 	
 	Method DetectCollisionBlock:Block(coord: Vec2Di)		
@@ -119,7 +120,6 @@ Class CollisionMap
 								Return New Vec2(crossPosition, horizontalY)
 							End 
 						End
-						'Return New Vec2Di(i, j)
 						Return Null
 					End
 				End

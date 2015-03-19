@@ -2,8 +2,8 @@ Import block
 
 Class GoalBlock Extends Block
 
-	Method New(coordX:Int, coordY:Int)
-		Super.New(coordX, coordY)
+	Method New(coordX:Int, coordY:Int, width:Int, height:Int)
+		Super.New(coordX, coordY, width, height)
 	End
 	
 	Method SetColor()

@@ -3,30 +3,49 @@ Import config
 Import vec
 Import rect
 Import sat.vec2
+Import level
 Import grapple
 
 Class Player
+	Field level:Level
+
+	Field width:Float
+	Field height:Float
+	Field widthFactor:Float = 1.0
+	Field heightFactor:Float = 1.0
 
 	Field position:Vec2 = New Vec2()
 	Field desiredPosition:Vec2 = New Vec2()	
 	Field originalPos:Vec2 = New Vec2()
 	Field velocity:Vec2 = New Vec2()
 
-	Field gravity:Float = 0.0125 * TILE_HEIGHT
-	Field wallGravity:Float = 0.01 * TILE_HEIGHT
+	Field gravity:Float
+	Field wallGravity:Float
+	Field gravityFactor:Float = 0.0125
+	Field wallGravityFactor:Float = 0.01
 	
-    Field accelerationRunning:Float = 0.021875 * TILE_WIDTH
-	Field maxVelocityXRunning:Float = 0.46875 * TILE_WIDTH
-	Field accelerationWalking:Float = 0.010975 * TILE_WIDTH
+	Field accelerationRunningFactor:Float = 0.021875
+	Field maxVelocityXRunningFactor:Float = 0.46875
+	Field accelerationWalkingFactor:Float = 0.010975
+	Field maxVelocityXWalkingFactor:Float = 0.2345
+	Field maxVelocityYFactor:Float = 0.48
+	Field accelerationRunning:Float
+	Field maxVelocityXRunning:Float
+	Field accelerationWalking:Float
+	Field maxVelocityXWalking:Float
+	Field maxVelocityY:Float
 	Field oppositeDirectionAccelerationBoost:Float = 1.5
-	Field maxVelocityXWalking:Float = 0.2345 * TILE_WIDTH
-	Field maxVelocityY:Float = 0.48 * TILE_HEIGHT
 	
-	Field jumpForce:Float = 0.3825 * TILE_HEIGHT
-	Field jumpCutoff:Float = 0.10 * TILE_HEIGHT
-	Field wallJumpXForceWalking:Float = 0.3 * TILE_WIDTH
-	Field wallJumpXForceRunning:Float = 0.3125 * TILE_WIDTH
-	Field wallJumpYForce:Float = 0.42625 * TILE_HEIGHT
+	Field jumpForceFactor:Float = 0.3825
+	Field jumpCutoffFactor:Float = 0.10
+	Field wallJumpXForceWalkingFactor:Float = 0.3
+	Field wallJumpXForceRunningFactor:Float = 0.3125
+	Field wallJumpYForceFactor:Float = 0.42625
+	Field jumpForce:Float
+	Field jumpCutoff:Float
+	Field wallJumpXForceWalking:Float
+	Field wallJumpXForceRunning:Float
+	Field wallJumpYForce:Float
 	
 	Field wallStickMillisecs:Int = 250
 	Field millisecsRightHeld:Int = 0
@@ -39,66 +58,79 @@ Class Player
 	
 	Field lastUpdate:Int = Millisecs()
 	
-	Field grapple:Grapple = New Grapple()
-	Field grappleExtendSpeed:Float = TILE_WIDTH / 8.0
+	Field grapple:Grapple
+	Field grappleExtendSpeedFactor:Float = 1.0 / 8.0
+	Field grappleExtendSpeed:Float
 
-	Method New(x:Float=0, y:Float=0)
-	    Set(x, y)
-    End
+	Method New(level:Level)
+		Self.level = level
+		SetPlayerConstants()
+		originalPos = level.playerStartingPosition
+		position.Set(originalPos.x, originalPos.y)
+		desiredPosition.Set(originalPos.x, originalPos.y)
+		grapple = New Grapple(level)
+	End
+	
+	Method SetPlayerConstants()
+		Local tileWidth:Float = level.tileWidth
+		Local tileHeight:Float = level.tileHeight
+		width = widthFactor * tileWidth
+		height = heightFactor * tileHeight
+		gravity = gravityFactor * tileHeight
+		wallGravity = wallGravityFactor * tileHeight
+		accelerationRunning = accelerationRunningFactor * tileWidth
+		maxVelocityXRunning = maxVelocityXRunningFactor * tileWidth
+		accelerationWalking = accelerationWalkingFactor * tileWidth
+		maxVelocityXWalking = maxVelocityXWalkingFactor * tileWidth
+		maxVelocityY = maxVelocityYFactor * tileHeight
+		jumpForce = jumpForceFactor * tileHeight
+		jumpCutoff = jumpCutoffFactor * tileHeight
+		wallJumpXForceWalking = wallJumpXForceWalkingFactor * tileWidth
+		wallJumpXForceRunning = wallJumpXForceRunningFactor * tileWidth
+		wallJumpYForce = wallJumpYForceFactor * tileHeight
+		grappleExtendSpeed = grappleExtendSpeedFactor * tileWidth
+	End
+
+	Method Reset()
+		position.Set(originalPos.x, originalPos.y)
+		desiredPosition.Set(originalPos.x, originalPos.y)
+		velocity.Set(0, 0)
+	End
     
-    Method New(pos:Vec2)
-    	Set(pos)
-    End
+	Method Draw()
+		SetColor(0, 255, 0)
+		DrawRect(position.x - width/2, position.y - height/2, width, height)
+	End
     
-    Method Set(x:Float, y:Float)
-		position.Set(x, y)
-	    originalPos.Set(x, y)
-	    desiredPosition.Set(x, y)
-    End
-    
-    Method Set(pos:Vec2)
-    	Set(pos.x, pos.y)
-    End
-    
-    Method Reset()
-    	position.Set(originalPos.x, originalPos.y)
-    	velocity.Set(0, 0)
-    End
-    
-    Method Draw()
-    	SetColor(0, 255, 0)
-    	DrawRect(position.x - PLAYER_WIDTH/2, position.y - PLAYER_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT)
-    End
-    
-    Method Update()
-    	'gravity
-        If huggingLeft Or huggingRight
-        	velocity.y += wallGravity
-        Else
-    		velocity.y += gravity
-    	End
+	Method Update()
+		'gravity
+		If huggingLeft Or huggingRight
+			velocity.y += wallGravity
+		Else
+			velocity.y += gravity
+		End
     	
-    	If grapple.engaged
-    		'constrain the velocity to be perpendicular to the grapple direction
+		If grapple.engaged
+			'constrain the velocity to be perpendicular to the grapple direction
 			Local perp:Vec2 = grapple.Direction().Perp()
 			velocity.Project(perp)
 			
 			'jumping
-    		If KeyHit(KEY_SPACE)
-    			grapple.Undeploy()
-    			velocity.y = -jumpForce
-    		End
+			If KeyHit(KEY_SPACE)
+				grapple.Undeploy()
+				velocity.y = -jumpForce
+			End
 			
 			'moving left/right    			
-    		If KeyDown(KEY_RIGHT)
-    			If velocity.x > 0 Or huggingLeft
-    				velocity.x += accelerationWalking
-    			End
+			If KeyDown(KEY_RIGHT)
+				If velocity.x > 0 Or huggingLeft
+					velocity.x += accelerationWalking
+				End
 			Elseif KeyDown(KEY_LEFT)
-    			If velocity.x < 0 Or huggingRight
-    				velocity.x -= accelerationWalking
-    			End
-    		End
+				If velocity.x < 0 Or huggingRight
+					velocity.x -= accelerationWalking
+				End
+			End
     		
     		'extend/shorten the grapple
     		If KeyDown(KEY_UP)
@@ -207,10 +239,10 @@ Class Player
     End
     
     Method CollisionBoundingBox:Rect()
-    	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2, desiredPosition.y - PLAYER_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT)
+    	Return New Rect(desiredPosition.x - width/2, desiredPosition.y - height/2, width, height)
     End
        
     Method DetectionBox:Rect()
-    	Return New Rect(desiredPosition.x - PLAYER_WIDTH/2 - 1, desiredPosition.y - PLAYER_HEIGHT/2 - 1, PLAYER_WIDTH + 2, PLAYER_HEIGHT + 2)
+    	Return New Rect(desiredPosition.x - width/2 - 1, desiredPosition.y - height/2 - 1, width + 2, height + 2)
     End
 End

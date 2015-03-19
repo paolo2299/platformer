@@ -7,10 +7,15 @@ Class Block
 
 	Field coord:Vec2Di = New Vec2Di()
 	Field position:Vec2 = New Vec2()
+	Field width:Int
+	Field height:Int
 	
-	Method New(coordX:Int, coordY:Int)
+	Method New(coordX:Int, coordY:Int, width:Int, height:Int)
 		coord.Set(coordX, coordY)
-		position.Set(TILE_WIDTH*coordX + TILE_WIDTH/2, TILE_HEIGHT*coordY + TILE_HEIGHT/2)
+		Self.width = width
+		Self.height = height
+		position.Set(width*coordX + width/2, height*coordY + height/2)
+		
 	End
 	
 	Method IsHazard:Bool()
@@ -27,6 +32,6 @@ Class Block
 	
 	Method Draw()
 		Self.SetColor()
-    	DrawRect(position.x - TILE_WIDTH/2, position.y - TILE_HEIGHT/2, TILE_WIDTH, TILE_HEIGHT)
+    	DrawRect(position.x - width/2, position.y - height/2, width, height)
 	End
 End
