@@ -14,31 +14,44 @@ Class Level
 	Field mapWidth:Int
 	Field mapHeight:Int
 	
+	Field defaultTileWidth:Int = 28
+	Field defaultTileHeight:Int = 28
 	Field tileWidth:Int
 	Field tileHeight:Int
 	
 	Method New(number:Int)
 		Self.levelNumber = number
-		'TEMP: this will be set in config
-		tileWidth = 28
-		tileHeight = 28
-		GetLayout()
 		GetConfig()
+		GetLayout()
 	End
 	
-	Method FileString:String()
+	Method LayoutFileString:String()
 		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/layout.txt"
 		Return mojo.LoadString(filePath)
 	End
 	
 	Method GetConfig()
+		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/config.txt"
+		
+		tileWidth = defaultTileWidth
+		tileHeight = defaultTileHeight
+		
+		Local rows:String[] = mojo.LoadString(filePath).Split("~n")
+		For Local row:String = Eachin rows
+			Local data:String[] = row.Split(",")
+			If data[0] = "tileWidth"
+				tileWidth = Int(data[1].Trim())
+			Elseif data[0] = "tileHeight"
+				tileHeight = Int(data[1].Trim())
+			End
+		End
 	End
 	
 	Method GetLayout()
 		SetMapWidthAndMapHeight()
 		collisionMap = New CollisionMap(Self)
 		
-		Local rows:String[] = FileString().Split("~n")
+		Local rows:String[] = LayoutFileString().Split("~n")
 		Local rowNum:Int = 0
 		Local colNum:Int = 0
 		For Local row:String = Eachin rows
@@ -66,7 +79,7 @@ Class Level
 	End
 	
 	Method SetMapWidthAndMapHeight()
-		Local rows:String[] = FileString().Split("~n")
+		Local rows:String[] = LayoutFileString().Split("~n")
 		mapHeight = rows.Length()
 		mapWidth = rows[0].Split(",").Length()
 	End

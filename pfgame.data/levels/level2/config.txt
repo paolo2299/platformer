@@ -1,0 +1,2 @@
+tileWidth,22
+tileHeight,22
