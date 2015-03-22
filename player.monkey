@@ -92,6 +92,7 @@ Class Player
 	End
 
 	Method Reset()
+		grapple.Undeploy()
 		position.Set(originalPos.x, originalPos.y)
 		desiredPosition.Set(originalPos.x, originalPos.y)
 		velocity.Set(0, 0)

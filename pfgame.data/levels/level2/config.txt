@@ -1,2 +1,2 @@
-tileWidth,22
-tileHeight,22
+tileWidth,30
+tileHeight,30
