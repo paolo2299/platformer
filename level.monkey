@@ -57,12 +57,21 @@ Class Level
 		For Local row:String = Eachin rows
 			Local tiles:String[] = row.Split(",")
 			For Local tile:String = Eachin tiles
+				Local coordX:Float = colNum * tileWidth
+				Local coordY:Float = rowNum * tileHeight
+				Local rect:Rect = New Rect(coordX, coordY, tileWidth, tileHeight)
 				If tile = "b"
-					blocks.Push(New GroundBlock(colNum, rowNum, tileWidth, tileHeight))
+					Local block:Block = New GroundBlock(rect)
+					blocks.Push(block)
+					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "h"
-					blocks.Push(New HazardBlock(colNum, rowNum, tileWidth, tileHeight))
+					Local block:Block = New HazardBlock(rect)
+					blocks.Push(block)
+					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "g"
-					blocks.Push(New GoalBlock(colNum, rowNum, tileWidth, tileHeight))
+					Local block:Block = New GoalBlock(rect)
+					blocks.Push(block)
+					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "p"
 					Local tileRect:Rect = TileRectFromTileCoord(New Vec2Di(colNum, rowNum))
 					playerStartingPosition.Set(tileRect.centre.x, tileRect.centre.y)
@@ -71,10 +80,6 @@ Class Level
 			End
 			rowNum += 1
 			colNum = 0
-		End
-		
-		For Local block := Eachin blocks
-			collisionMap.AddBlock(block)
 		End
 	End
 	

@@ -2,20 +2,14 @@ Import mojo
 Import config
 Import vec
 Import sat.vec2
+Import rect
 
 Class Block
 
-	Field coord:Vec2Di = New Vec2Di()
-	Field position:Vec2 = New Vec2()
-	Field width:Int
-	Field height:Int
+	Field rect:Rect
 	
-	Method New(coordX:Int, coordY:Int, width:Int, height:Int)
-		coord.Set(coordX, coordY)
-		Self.width = width
-		Self.height = height
-		position.Set(width*coordX + width/2, height*coordY + height/2)
-		
+	Method New(rect:Rect)
+		Self.rect = rect
 	End
 	
 	Method IsHazard:Bool()
@@ -32,6 +26,6 @@ Class Block
 	
 	Method Draw()
 		Self.SetColor()
-    	DrawRect(position.x - width/2, position.y - height/2, width, height)
+    	DrawRect(rect.topLeft.x, rect.topLeft.y, rect.width, rect.height)
 	End
 End

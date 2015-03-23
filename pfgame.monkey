@@ -6,6 +6,7 @@ Import rect
 Import player
 Import block
 Import collisionmap
+Import collision
 Import camera
 Import level
 
@@ -130,11 +131,9 @@ Class PfGame Extends App
 	    Local grapple:Grapple = player.grapple
 		grapple.Update(player.position)
 		If grapple.flying
-			Local hitPosition:Vec2 = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
-			If hitPosition <> Null
-				'Local tileHitRect:Rect = TileRectFromTileCoord(tileHitCoord)
-				'Local grappleEngagePoint:Vec2 = tileHitRect.BottomMiddle()
-				grapple.Engage(hitPosition)
+			Local collision:Collision = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
+			If collision <> Null
+				grapple.Engage(collision.ray.destination)
 			End
 			grapple.flying = False
 		End
