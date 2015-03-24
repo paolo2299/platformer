@@ -123,6 +123,7 @@ Class PfGame Extends App
 		player.Update()
 		
 		CheckForAndResolveCollisions(player)
+		DetectNearbySurfaces(player)
 		
 		UpdateGrapple(player)
 	End
@@ -151,53 +152,126 @@ Class PfGame Extends App
 		Print desc + ": " + v.x + "," + v.y
 	End
 	
-	Method CheckForAndResolveCollisions(p: Player)
-		Local tileCoords:Vec2Di[] = SurroundingTilesAtPosition(p.position)
-
+	Method GetClosestCollision:Collision(p: Player, movementVec: Vec2)
+		Local pRect:Rect = p.BoundingBox()
+		Local rays:Stack<Ray> = New Stack<Ray>()
+		
+		If movementVec.x > 0
+			rays.Push(RayFromOffset(pRect.rightCentre, movementVec))
+			rays.Push(RayFromOffset(pRect.botRight, movementVec))
+			rays.Push(RayFromOffset(pRect.topRight, movementVec))
+		End
+		If movementVec.x < 0
+			rays.Push(RayFromOffset(pRect.leftCentre, movementVec))
+			rays.Push(RayFromOffset(pRect.botLeft, movementVec))
+			rays.Push(RayFromOffset(pRect.topLeft, movementVec))
+		End
+		If movementVec.y > 0
+			rays.Push(RayFromOffset(pRect.botCentre, movementVec))
+			If movementVec.x <= 0
+				rays.Push(RayFromOffset(pRect.botRight, movementVec))
+			End
+			If movementVec.x >= 0
+				rays.Push(RayFromOffset(pRect.botLeft, movementVec))
+			End
+		End
+		If movementVec.y < 0
+			rays.Push(RayFromOffset(pRect.topCentre, movementVec))
+			If movementVec.x <= 0
+				rays.Push(RayFromOffset(pRect.topRight, movementVec))
+			End
+			If movementVec.x >= 0
+				rays.Push(RayFromOffset(pRect.topLeft, movementVec))
+			End
+		End
+		
+		Local closestCollision:Collision = Null
+		For Local ray := Eachin rays
+			Local collision:Collision = currentLevel.collisionMap.RayCastCollision(ray)
+			If collision <> Null
+				If closestCollision = Null
+					closestCollision = collision
+				Elseif closestCollision.ray.Length() > collision.ray.Length()
+					closestCollision = collision
+				End
+			End
+		End
+		Return closestCollision
+	End
+	
+	Method CheckForAndResolveCollisions(p: Player)		
+		Local movementVec:Vec2 = p.MovementVector()
+		
+		Local closestCollision:Collision = GetClosestCollision(p, movementVec)
+		If closestCollision = Null
+			'no collision
+			p.position.Add(movementVec)
+			Return
+		End
+		
+		'there was a collision
+		Local stateChanged:Bool = UpdateGameStateForCollision(closestCollision)
+		If stateChanged
+			Return
+		End
+		
+		p.position.Add(closestCollision.ray.offset)
+		
+		'see if we can maintain momentum
+		If closestCollision.TopOrBottomOfBlock()
+			movementVec.y = 0
+			p.velocity.y = 0
+		Else
+			movementVec.x = 0
+			p.velocity.x = 0
+		End
+		
+		closestCollision = GetClosestCollision(p, movementVec)
+		If closestCollision = Null
+			p.position.Add(movementVec)
+		Else
+			Local stateChanged:Bool = UpdateGameStateForCollision(closestCollision)
+			If stateChanged
+				Return
+			End
+			p.position.Add(closestCollision.ray.offset)
+		End
+	End
+	
+	Method UpdateGameStateForCollision:Bool(collision:Collision)
+		If collision.block.IsHazard()
+			gameState = STATE_DEATH
+			Return True
+		End
+		If collision.block.IsGoal()
+			gameState = STATE_LEVEL_COMPLETE
+			Return True
+		End
+		Return False
+	End
+	
+	Method DetectNearbySurfaces(p: Player)
 		p.onGround = False
 		p.huggingLeft = False
 		p.huggingRight = False
-		 		
-		Local tileIndex:Int = 0
-		For Local tileCoord := Eachin tileCoords
-			Local collisionBlock:Block = currentLevel.collisionMap.DetectCollisionBlock(tileCoord)
-			If collisionBlock <> Null
-				Local pRect:Rect = p.CollisionBoundingBox()
-				Local dRect:Rect = p.DetectionBox()
-				Local tileRect:Rect = TileRectFromTileCoord(tileCoord)
-				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), pRect.ToPolygon(), collisionResponse)
-					If collisionBlock.IsHazard()
-						gameState = STATE_DEATH
-						Exit
-					End
-					If collisionBlock.IsGoal()
-						gameState = STATE_LEVEL_COMPLETE
-						Exit
-					End
-					p.desiredPosition.Add(collisionResponse.overlapV)
-					If Abs(collisionResponse.overlapV.x) > 0
-						p.velocity.x = 0
-					End
-					If Abs(collisionResponse.overlapV.y) > 0
-						p.velocity.y = 0
-					End
-					If collisionResponse.overlapV.y < 0
-						p.onGround = True
-					End
-				End
-				If SAT.TestPolygonPolygon(tileRect.ToPolygon(), dRect.ToPolygon(), detectionResponse)
-					If detectionResponse.overlapV.x > 0
-						p.huggingLeft = True
-					Elseif detectionResponse.overlapV.x < 0
-          		 		p.huggingRight = True
-					End
-				End
-				collisionResponse.Clear()
-				detectionResponse.Clear()
-			End
-			tileIndex += 1
-		Next
-		p.position = p.desiredPosition	
+	
+		Local downVec:Vec2 = New Vec2(0.0, 0.5)
+		Local collision:Collision = GetClosestCollision(p, downVec)
+		If collision <> Null
+			p.onGround = True
+		End
+		
+		Local rightVec:Vec2 = New Vec2(0.5, 0.0)
+		collision = GetClosestCollision(p, rightVec)
+		If collision <> Null
+			p.huggingRight = True
+		End
+		
+		Local leftVec:Vec2 = New Vec2(-0.5, 0.0)
+		collision = GetClosestCollision(p, leftVec)
+		If collision <> Null
+			p.huggingLeft = True
+		End
 	End
 End
 

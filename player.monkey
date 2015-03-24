@@ -28,7 +28,7 @@ Class Player
 	Field maxVelocityXRunningFactor:Float = 0.46875
 	Field accelerationWalkingFactor:Float = 0.010975
 	Field maxVelocityXWalkingFactor:Float = 0.2345
-	Field maxVelocityYFactor:Float = 0.48
+	Field maxVelocityYFactor:Float = 0.78
 	Field accelerationRunning:Float
 	Field maxVelocityXRunning:Float
 	Field accelerationWalking:Float
@@ -239,8 +239,16 @@ Class Player
 		lastUpdate = Millisecs()
     End
     
-    Method CollisionBoundingBox:Rect()
+    Method BoundingBox:Rect()
+    	Return New Rect(position.x - width/2, position.y - height/2, width, height)
+    End
+    
+    Method DesiredBoundingBox:Rect()
     	Return New Rect(desiredPosition.x - width/2, desiredPosition.y - height/2, width, height)
+    End
+    
+    Method MovementVector:Vec2()
+    	Return desiredPosition.Clone().Sub(position)
     End
        
     Method DetectionBox:Rect()

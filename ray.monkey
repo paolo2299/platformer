@@ -12,8 +12,17 @@ Class Ray
 		offset = destination.Clone().Sub(origin)
 	End
 	
+	Method Length()
+		offset.Length()
+	End
+	
 	Method ToPolygon:Polygon()
 		Return New Polygon(origin.x, origin.y, New VecStack([
 			New Vec2(), New Vec2(offset.x, offset.y)]))
 	End
+End
+
+Function RayFromOffset:Ray(origin:Vec2, offset:Vec2)
+	Local destination:Vec2 = origin.Clone().Add(offset)
+	Return New Ray(origin, destination)
 End

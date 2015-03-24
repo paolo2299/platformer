@@ -10,4 +10,12 @@ Class Collision
 		Self.block = block
 		Self.ray = ray
 	End
+	
+	Method TopOrBottomOfBlock:Bool()
+		Local dest:Vec2 = ray.destination
+		If (dest.y = block.rect.topLeft.y) Or (dest.y = block.rect.botLeft.y)
+			Return True
+		End
+		Return False
+	End
 End
