@@ -8,8 +8,7 @@ b,b,b,b,b,b,b,b, , , , , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,
 b,b,b,b,b,b,b,b, , , , , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b, , , , , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,p, , , , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
-b,b,b,b,b,b,b,b, , , , , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
-b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,b,b, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
+b,b,b,b,b,b,b,b, , , , , , , , , , , , , ,b,b, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,b,b, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
@@ -17,6 +16,7 @@ b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,b,b, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,b,b, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
+b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b
 b,b,b,b,b,b,b,b,b,b,b,h,h,h,h,h,h,h,h, , ,h,h, , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b

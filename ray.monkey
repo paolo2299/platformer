@@ -12,8 +12,8 @@ Class Ray
 		offset = destination.Clone().Sub(origin)
 	End
 	
-	Method Length()
-		offset.Length()
+	Method Length:Float()
+		Return offset.Length()
 	End
 	
 	Method ToPolygon:Polygon()
@@ -24,5 +24,12 @@ End
 
 Function RayFromOffset:Ray(origin:Vec2, offset:Vec2)
 	Local destination:Vec2 = origin.Clone().Add(offset)
+	Return New Ray(origin, destination)
+End
+
+Function RayFromOriginDirectionSize:Ray(origin:Vec2, direction:Vec2, size:Float)
+	Local offset:Vec2 = direction.Clone().Scale(size)
+	Local destination:Vec2 = origin.Clone().Add(offset)		 
+		
 	Return New Ray(origin, destination)
 End

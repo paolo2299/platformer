@@ -1,6 +1,7 @@
 Import config
 Import level
 Import sat.vec2
+Import ray
 
 
 Class Grapple
@@ -18,6 +19,11 @@ Class Grapple
  Field grappleSizeFactor:Float = 0.8
  Field maxSizeFactor:Float = 10
  Field minSizeFactor:Float = 2
+ 
+ Field millisecsShownFlying:Float
+ Field showFlying:Bool = False
+ Field flyingRay:Ray
+ Field lastUpdate:Float
  
  Field flying:Bool = False
  Field engaged:Bool = False
@@ -50,6 +56,9 @@ Class Grapple
  
  Method Deploy()
  	flying = True
+ 	showFlying = True
+ 	flyingRay = FlyingRay()
+ 	millisecsShownFlying = 0.0
  End
  
  Method Undeploy()
@@ -87,6 +96,10 @@ Class Grapple
  	Return Vector().Length()
  End
  
+ Method FlyingRay:Ray()
+ 	Return RayFromOriginDirectionSize(handlePos, Direction(), maxSize)
+ End
+ 
  Method Update(playerPosition:Vec2)
  	handlePos.Set(playerPosition.x, playerPosition.y)
  	If engaged
@@ -95,22 +108,35 @@ Class Grapple
  	If Not flying And Not engaged
  		PositionHookByPlayersSide(playerPosition)
  	End
+ 	
+ 	If showFlying And Not engaged And millisecsShownFlying < 100
+    		millisecsShownFlying += (Millisecs() - lastUpdate)
+    	Else
+    		showFlying = False
+    	End
+    	
+    	lastUpdate = Millisecs()
  End
  
  Method PositionHookByPlayersSide(playerPosition:Vec2)
  	If KeyDown(KEY_RIGHT)
  		hookPos.Set(handlePos.x, handlePos.y)
- 		hookPos.Add(New Vec2(grappleSize, -grappleSize))
+ 		hookPos.Add(New Vec2(grappleSize * 1.5, -grappleSize))
  	Elseif KeyDown(KEY_LEFT)
  		hookPos.Set(handlePos.x, handlePos.y)
- 		hookPos.Add(New Vec2(-grappleSize, -grappleSize))
+ 		hookPos.Add(New Vec2(-grappleSize * 1.5, -grappleSize))
  	Else
  		hookPos.Set(handlePos.x, handlePos.y)
- 		hookPos.Add(New Vec2(0.0, -grappleSize * 1.4))
+ 		hookPos.Add(New Vec2(0.0, -grappleSize * 1.6))
  	End
  End
  
  Method Draw()
+ 	If showFlying And Not engaged
+ 		SetColor(255, 0, 0)
+ 		DrawLine(flyingRay.origin.x, flyingRay.origin.y, flyingRay.destination.x, flyingRay.destination.y)
+ 	End
+ 	SetColor(0, 255, 0)
  	DrawLine(handlePos.x, handlePos.y, hookPos.x, hookPos.y)
  End
 	

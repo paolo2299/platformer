@@ -132,7 +132,7 @@ Class PfGame Extends App
 	    Local grapple:Grapple = player.grapple
 		grapple.Update(player.position)
 		If grapple.flying
-			Local collision:Collision = currentLevel.collisionMap.RayCastCollision(player.position, grapple.Direction(), grapple.maxSize)
+			Local collision:Collision = currentLevel.collisionMap.RayCastCollision(grapple.FlyingRay())
 			If collision <> Null
 				grapple.Engage(collision.ray.destination)
 			End
@@ -189,9 +189,12 @@ Class PfGame Extends App
 		For Local ray := Eachin rays
 			Local collision:Collision = currentLevel.collisionMap.RayCastCollision(ray)
 			If collision <> Null
+				'PrintVec("potential ray origin", collision.ray.origin)
+				'PrintVec("potential ray destination", collision.ray.destination)
 				If closestCollision = Null
 					closestCollision = collision
 				Elseif closestCollision.ray.Length() > collision.ray.Length()
+				'	Print "shortest!"
 					closestCollision = collision
 				End
 			End
@@ -215,27 +218,43 @@ Class PfGame Extends App
 			Return
 		End
 		
+		'Print("collision!")
+		'PrintVec("player position before first offset", p.position)
+		
 		p.position.Add(closestCollision.ray.offset)
+		
+		'PrintVec("player position after first offset", p.position)
 		
 		'see if we can maintain momentum
 		If closestCollision.TopOrBottomOfBlock()
+		'	PrintVec("movement vec before", movementVec)
+		'	PrintVec("ray origin", closestCollision.ray.origin)
+		'	PrintVec("ray destination", closestCollision.ray.destination)
+		'	PrintVec("ray offset", closestCollision.ray.offset)
 			movementVec.y = 0
+			movementVec.x -= closestCollision.ray.offset.x
+		'	PrintVec("movement vec after", movementVec)
 			p.velocity.y = 0
 		Else
 			movementVec.x = 0
+			movementVec.y -= closestCollision.ray.offset.y
 			p.velocity.x = 0
 		End
 		
 		closestCollision = GetClosestCollision(p, movementVec)
 		If closestCollision = Null
+		'	Print("no second collision")
 			p.position.Add(movementVec)
 		Else
 			Local stateChanged:Bool = UpdateGameStateForCollision(closestCollision)
 			If stateChanged
 				Return
 			End
+		'	Print("second collision!")
+		'	PrintVec("ray offset", closestCollision.ray.offset)
 			p.position.Add(closestCollision.ray.offset)
 		End
+		'PrintVec("final player position", p.position)
 	End
 	
 	Method UpdateGameStateForCollision:Bool(collision:Collision)

@@ -27,11 +27,13 @@ Class Player
 	Field accelerationRunningFactor:Float = 0.021875
 	Field maxVelocityXRunningFactor:Float = 0.46875
 	Field accelerationWalkingFactor:Float = 0.010975
+	Field accelerationGrapplingFactor:Float = 0.005975
 	Field maxVelocityXWalkingFactor:Float = 0.2345
 	Field maxVelocityYFactor:Float = 0.78
 	Field accelerationRunning:Float
 	Field maxVelocityXRunning:Float
 	Field accelerationWalking:Float
+	Field accelerationGrappling:Float
 	Field maxVelocityXWalking:Float
 	Field maxVelocityY:Float
 	Field oppositeDirectionAccelerationBoost:Float = 1.5
@@ -81,6 +83,7 @@ Class Player
 		accelerationRunning = accelerationRunningFactor * tileWidth
 		maxVelocityXRunning = maxVelocityXRunningFactor * tileWidth
 		accelerationWalking = accelerationWalkingFactor * tileWidth
+		accelerationGrappling = accelerationGrapplingFactor * tileWidth
 		maxVelocityXWalking = maxVelocityXWalkingFactor * tileWidth
 		maxVelocityY = maxVelocityYFactor * tileHeight
 		jumpForce = jumpForceFactor * tileHeight
@@ -124,13 +127,13 @@ Class Player
 			
 			'moving left/right    			
 			If KeyDown(KEY_RIGHT)
-				If velocity.x > 0 Or huggingLeft
-					velocity.x += accelerationWalking
-				End
+				'If velocity.x > 0 Or huggingLeft
+					velocity.x += accelerationGrappling
+				'End
 			Elseif KeyDown(KEY_LEFT)
-				If velocity.x < 0 Or huggingRight
-					velocity.x -= accelerationWalking
-				End
+				'If velocity.x < 0 Or huggingRight
+					velocity.x -= accelerationGrappling
+				'End
 			End
     		
     		'extend/shorten the grapple
