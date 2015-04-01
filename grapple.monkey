@@ -27,6 +27,7 @@ Class Grapple
  
  Field flying:Bool = False
  Field engaged:Bool = False
+ Field engagedWith:Collidable = Null
  
  Field engagedLength:Float = 0.0
 
@@ -63,15 +64,21 @@ Class Grapple
  
  Method Undeploy()
  	flying = False
- 	engaged = False
+ 	Unengage()
  End
  
- Method Engage(engagePoint:Vec2)
- 	hookPos = engagePoint
+ Method Unengage()
+ 	engaged = False
+ 	engagedWith = Null
+ End
+ 
+ Method Engage(collision:Collision)
+ 	hookPos = collision.ray.destination
  	engagedLength = Length()
  	ClampLength()
  	flying = False
  	engaged = True
+ 	engagedWith = collision.collidable
  End
  
  Method Extend(amount:Float)

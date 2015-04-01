@@ -3,13 +3,15 @@ Import block.groundblock
 Import block.hazardblock
 Import block.goalblock
 Import collisionmap
+Import movingplatform
 Import sat.vec2
 
 Class Level
 	Field levelNumber:Int
 
 	Field playerStartingPosition:Vec2 = New Vec2()
-	Field blocks:Stack<Block> = New Stack<Block>()	
+	Field blocks:Stack<Block> = New Stack<Block>()
+	Field movingPlatforms:Stack<MovingPlatform> = New Stack<MovingPlatform>()	
 	Field collisionMap:CollisionMap
 	Field mapWidth:Int
 	Field mapHeight:Int
@@ -81,6 +83,10 @@ Class Level
 			rowNum += 1
 			colNum = 0
 		End
+		
+		'TODO
+		Local movingPlatform:MovingPlatform = New MovingPlatform(4.5*tileWidth, tileHeight, New Vec2(500.0, 820.0), New Vec2(850.0, 820.0), tileWidth/10.0)
+		movingPlatforms.Push(movingPlatform)
 	End
 	
 	Method SetMapWidthAndMapHeight()

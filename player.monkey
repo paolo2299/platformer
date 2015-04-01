@@ -55,6 +55,7 @@ Class Player
 	Field minVelocityX:Float = 0.1
 	
 	Field onGround:Bool = False
+	Field onMovingPlatform:MovingPlatform = Null
 	Field huggingLeft:Bool = False
 	Field huggingRight:Bool = False
 	
@@ -228,8 +229,18 @@ Class Player
 		End
 		
 		'update!
-		desiredPosition.x = position.x + velocity.x
-		desiredPosition.y = position.y + velocity.y
+		Local movingPlatformOffset:Vec2
+		If onMovingPlatform <> Null
+			'TODO refoactor
+			movingPlatformOffset = onMovingPlatform.offset
+		Else
+			movingPlatformOffset = New Vec2(0.0, 0.0)
+		End
+		
+		'Print "movingPlatformOffset: " + movingPlatformOffset.x + "," + movingPlatformOffset.y
+		
+		desiredPosition.x = position.x + velocity.x '+ movingPlatformOffset.x
+		desiredPosition.y = position.y + velocity.y '+ movingPlatformOffset.y
 		
 		'finally constrain by grapple again
 		If grapple.engaged
@@ -240,6 +251,18 @@ Class Player
 		End
 		
 		lastUpdate = Millisecs()
+    End
+    
+    Method UpdateForMovingPlatforms()
+    	Local movingPlatformOffset:Vec2
+	If onMovingPlatform <> Null
+		'TODO refoactor
+		movingPlatformOffset = onMovingPlatform.offset
+	Else
+		movingPlatformOffset = New Vec2(0.0, 0.0)
+	End
+	desiredPosition.x = position.x + movingPlatformOffset.x
+	desiredPosition.y = position.y + movingPlatformOffset.y
     End
     
     Method BoundingBox:Rect()
@@ -255,6 +278,6 @@ Class Player
     End
        
     Method DetectionBox:Rect()
-    	Return New Rect(desiredPosition.x - width/2 - 1, desiredPosition.y - height/2 - 1, width + 2, height + 2)
+    	Return New Rect(position.x - width/2 - 1, position.y - height/2 - 1, width + 2, height + 2)
     End
 End
