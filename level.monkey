@@ -32,6 +32,11 @@ Class Level
 		Return mojo.LoadString(filePath)
 	End
 	
+	Method MovingPlatformsFileString:String()
+		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/movingplatforms.txt"
+		Return mojo.LoadString(filePath)
+	End
+	
 	Method GetConfig()
 		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/config.txt"
 		
@@ -85,8 +90,22 @@ Class Level
 		End
 		
 		'TODO
-		Local movingPlatform:MovingPlatform = New MovingPlatform(4.5*tileWidth, tileHeight, New Vec2(500.0, 820.0), New Vec2(850.0, 820.0), tileWidth/10.0)
-		movingPlatforms.Push(movingPlatform)
+		rows = MovingPlatformsFileString().Split("~n")
+		For Local row:String = Eachin rows
+			If row = ""
+				Exit
+			End
+			Local data:String[] = row.Split(",")
+			Local originTopLeftX:Float = Float(data[0].Trim()) * tileWidth
+			Local originTopLeftY:Float = Float(data[1].Trim()) * tileHeight
+			Local destinationTopLeftX:Float = Float(data[2].Trim()) * tileWidth
+			Local destinationTopLeftY:Float = Float(data[3].Trim()) * tileHeight
+			Local width:Float = Float(data[4].Trim()) * tileWidth
+			Local height:Float = Float(data[5].Trim()) * tileHeight
+			Local speed:Float = Float(data[6].Trim()) * tileWidth
+			Local movingPlatform:MovingPlatform = New MovingPlatform(New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), width, height, speed)
+			movingPlatforms.Push(movingPlatform)
+		End
 	End
 	
 	Method SetMapWidthAndMapHeight()
