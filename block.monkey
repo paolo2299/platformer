@@ -37,6 +37,10 @@ Class Block Implements Collidable
 		Return False
 	End
 	
+	Method IsGrappleable:Bool()
+		Return False
+	End
+	
 	Method LastMovement:Vec2()
 		Return Null
 	End

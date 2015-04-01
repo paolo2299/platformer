@@ -147,7 +147,9 @@ Class PfGame Extends App
 		If grapple.flying
 			Local collision:Collision = GetClosestCollision(grapple.FlyingRay())
 			If collision <> Null
-				grapple.Engage(collision)
+				If collision.collidable.IsGrappleable()
+					grapple.Engage(collision)
+				End
 			End
 			grapple.flying = False
 		Elseif grapple.engaged

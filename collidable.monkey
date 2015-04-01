@@ -11,5 +11,7 @@ Interface Collidable
 	
 	Method IsMoving:Bool()
 	
+	Method IsGrappleable:Bool()
+	
 	Method LastMovement:Vec2()
 End

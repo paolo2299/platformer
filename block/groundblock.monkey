@@ -6,4 +6,8 @@ Class GroundBlock Extends Block
 		Super.New(rect)
 	End
 	
+	Method IsGrappleable:Bool()
+		Return True
+	End
+	
 End

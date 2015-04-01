@@ -15,7 +15,7 @@ Class MovingPlatform Implements Collidable
 	Field offset:Vec2
 	Field maxDistance:Float
 
-	Method New(width:Float, height:Float, originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, speed:Float)
+	Method New(originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, width:Float, height:Float, speed:Float)
 		Self.width = width
 		Self.height = height
 		Self.speed = speed
@@ -41,6 +41,10 @@ Class MovingPlatform Implements Collidable
 	
 	Method IsGoal:Bool()
 		Return False
+	End
+	
+	Method IsGrappleable:Bool()
+		Return True
 	End
 	
 	Method Update()
