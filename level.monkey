@@ -117,4 +117,10 @@ Class Level
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
 		Return New Rect(coord.x * tileWidth, coord.y * tileHeight, tileWidth, tileHeight)
 	End
+	
+	Method Reset()
+		For Local movingPlatform := Eachin movingPlatforms
+			movingPlatform.Reset()
+		End
+	End
 End

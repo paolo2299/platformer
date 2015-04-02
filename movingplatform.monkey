@@ -7,24 +7,33 @@ Class MovingPlatform Implements Collidable
 	Field width:Float
 	Field height:Float
 	Field speed:Float
+	Field originalTopLeftPos:Vec2
 	Field topLeftPos:Vec2
-	Field originTopLeftPos:Vec2
 	Field prevTopLeftPos:Vec2
+	Field midpointTopLeftPos:Vec2
 	
+	Field originalDirection:Vec2
 	Field direction:Vec2
 	Field offset:Vec2
 	Field maxDistance:Float
 
 	Method New(originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, width:Float, height:Float, speed:Float)
+		originalTopLeftPos = originTopLeftPos
 		Self.width = width
 		Self.height = height
 		Self.speed = speed
 		topLeftPos = originTopLeftPos.Clone()
-		Self.originTopLeftPos = originTopLeftPos
 		prevTopLeftPos = originTopLeftPos.Clone()
 		Local movementVec:Vec2 = destinationTopLeftPos.Clone().Sub(originTopLeftPos)
 		direction = movementVec.Clone().Normalize()
-		maxDistance = movementVec.Length()
+		originalDirection = direction.Clone()
+		Local midpointVec:Vec2 = movementVec.Clone().Scale(0.5)
+		maxDistance = midpointVec.Length()
+		midpointTopLeftPos = originTopLeftPos.Clone().Add(midpointVec)
+		PrintVec("originTopLeftPos", originTopLeftPos)
+		PrintVec("destinationTopLeftPos", destinationTopLeftPos)
+		PrintVec("midpointTopLeftPos", midpointTopLeftPos)
+		Print "maxDistance" + maxDistance
 	End
 	
 	Method IsMoving:Bool()
@@ -47,10 +56,17 @@ Class MovingPlatform Implements Collidable
 		Return True
 	End
 	
+	Method Reset()
+		topLeftPos = originalTopLeftPos.Clone()
+		prevTopLeftPos = originalTopLeftPos.Clone()
+		direction = originalDirection.Clone()
+		offset = New Vec2(0.0, 0.0)
+	End
+	
 	Method Update()
 		prevTopLeftPos = topLeftPos.Clone()
-		Local distanceFromOrigin:Vec2  = topLeftPos.Clone().Sub(originTopLeftPos)
-		If distanceFromOrigin.Length() >= maxDistance
+		Local distanceFromMidpoint:Vec2  = topLeftPos.Clone().Sub(midpointTopLeftPos)
+		If distanceFromMidpoint.Length() > maxDistance
 			'go in the opposite direction
 			direction.Scale(-1)
 		End
@@ -74,5 +90,9 @@ Class MovingPlatform Implements Collidable
 
 	Method SetColor()
 		mojo.SetColor(0.0, 0.0, 255.0)
+	End
+	
+	Method PrintVec(desc: String, v:Vec2)
+		Print desc + ": " + v.x + "," + v.y
 	End
 End

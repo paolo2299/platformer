@@ -42,6 +42,7 @@ Class PfGame Extends App
 			Case STATE_GAME
 				If KeyHit(KEY_R)
 					player.Reset()
+					currentLevel.Reset()
 				End
 				UpdateMovingPlatforms()
 	        			UpdatePlayer(player)
@@ -53,6 +54,7 @@ Class PfGame Extends App
 	        			gameState = STATE_GAME
 			Case STATE_DEATH
 				player.Reset()
+				currentLevel.Reset()
 				camera.Update(player, currentLevel)
 				gameState = STATE_GAME
 		End
