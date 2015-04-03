@@ -9,6 +9,7 @@ Import collisionmap
 Import collision
 Import camera
 Import level
+Import fontmachine
 
 Const STATE_MENU:Int = 0
 Const STATE_LEVEL_CHOICE = 1
@@ -26,9 +27,21 @@ Class PfGame Extends App
 	Field camera:Camera = New Camera()
 	Field collisionResponse:Response = New Response()
 	Field detectionResponse:Response = New Response()
-
+	
+	Field font:BitmapFont
+	
 	Method OnCreate()
     		SetUpdateRate 60
+    		
+    		Local stateString:String = LoadState()
+    		If stateString = ""
+    			Print "No state found"
+    		Else
+    			Print "State found"
+    			Print stateString
+    		End
+    		
+    		font = New BitmapFont("fonts/CleanWhite/CleanWhite.txt", False)
 	End
 	
 	Method OnUpdate()
@@ -45,13 +58,13 @@ Class PfGame Extends App
 					currentLevel.Reset()
 				End
 				UpdateMovingPlatforms()
-	        			UpdatePlayer(player)
-	        			camera.Update(player, currentLevel)	       	
-	        		Case STATE_LEVEL_COMPLETE
-	        			IncrementLevel()
-	        			player = New Player(currentLevel)
-	        			camera.Update(player, currentLevel)
-	        			gameState = STATE_GAME
+				UpdatePlayer(player)
+				camera.Update(player, currentLevel)	       	
+			Case STATE_LEVEL_COMPLETE
+				IncrementLevel()
+				player = New Player(currentLevel)
+				camera.Update(player, currentLevel)
+				gameState = STATE_GAME
 			Case STATE_DEATH
 				player.Reset()
 				currentLevel.Reset()
@@ -86,9 +99,11 @@ Class PfGame Extends App
 	    			block.Draw()
 	    		End
 	    		For Local movingPlatform := Eachin currentLevel.movingPlatforms
-				movingPlatform.Draw()
-			End
-	    		PopMatrix()
+					movingPlatform.Draw()
+				End
+				PopMatrix()
+				SetColor(255, 255, 255)
+				font.DrawText("" + currentLevel.stopWatch.ElapsedString(), VIRTUAL_WINDOW_WIDTH - 50, 20, eDrawAlign.RIGHT)
 	    End
 	End
 	

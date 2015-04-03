@@ -4,6 +4,7 @@ Import block.hazardblock
 Import block.goalblock
 Import collisionmap
 Import movingplatform
+Import stopwatch
 Import sat.vec2
 
 Class Level
@@ -15,6 +16,7 @@ Class Level
 	Field collisionMap:CollisionMap
 	Field mapWidth:Int
 	Field mapHeight:Int
+	Field stopWatch:StopWatch = New StopWatch()
 	
 	Field defaultTileWidth:Int = 28
 	Field defaultTileHeight:Int = 28
@@ -122,5 +124,6 @@ Class Level
 		For Local movingPlatform := Eachin movingPlatforms
 			movingPlatform.Reset()
 		End
+		stopWatch.Reset()
 	End
 End
