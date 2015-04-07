@@ -15,7 +15,9 @@ Class StopWatch
 	End
 	
 	Method Stop()
-		stopped = Millisecs()
+		If stopped = -1
+			stopped = Millisecs()
+		End
 	End
 	
 	Method Elapsed:Int()

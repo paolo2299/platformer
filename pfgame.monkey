@@ -10,6 +10,8 @@ Import collision
 Import camera
 Import level
 Import fontmachine
+Import playerrecorder
+Import savedstate
 
 Const STATE_MENU:Int = 0
 Const STATE_LEVEL_CHOICE = 1
@@ -29,19 +31,17 @@ Class PfGame Extends App
 	Field detectionResponse:Response = New Response()
 	
 	Field font:BitmapFont
+	Field playerRecorder:PlayerRecorder = Null
+	Field bestPlayerRecorder:PlayerRecorder = Null
+	
+	Field savedState:SavedState
 	
 	Method OnCreate()
     		SetUpdateRate 60
     		
-    		Local stateString:String = LoadState()
-    		If stateString = ""
-    			Print "No state found"
-    		Else
-    			Print "State found"
-    			Print stateString
-    		End
-    		
     		font = New BitmapFont("fonts/CleanWhite/CleanWhite.txt", False)
+    		savedState = LoadSavedState()
+    		'savedState.Clear()
 	End
 	
 	Method OnUpdate()
@@ -49,37 +49,49 @@ Class PfGame Extends App
 			Case STATE_MENU
 				If KeyHit(KEY_ENTER)
 					currentLevel = FirstLevel()
-					player = New Player(currentLevel)
-					gameState = STATE_GAME
+					StartLevel()
+					playerRecorder.Record(player)
 				End
 			Case STATE_GAME
 				If KeyHit(KEY_R)
-					player.Reset()
-					currentLevel.Reset()
-				End
-				UpdateMovingPlatforms()
-				UpdatePlayer(player)
-				camera.Update(player, currentLevel)	       	
+					ResetLevel()
+					playerRecorder.Record(player)
+				Else
+					UpdateMovingPlatforms()
+					UpdatePlayer(player)
+					playerRecorder.Record(player)
+					camera.Update(player, currentLevel)	
+					If bestPlayerRecorder <> Null
+						bestPlayerRecorder.UpdateForPlayback()
+					End
+				End	
 			Case STATE_LEVEL_COMPLETE
-				IncrementLevel()
-				player = New Player(currentLevel)
-				camera.Update(player, currentLevel)
-				gameState = STATE_GAME
+				currentLevel.stopWatch.Stop()
+				If (savedState.GetLevelTime(currentLevel) = -1) Or (currentLevel.stopWatch.Elapsed() < savedState.GetLevelTime(currentLevel))
+					savedState.SetLevelTime(currentLevel, currentLevel.stopWatch.Elapsed())
+				End
+			
+				If KeyHit(KEY_ENTER)
+					IncrementLevel()
+					StartLevel()
+				End
+				
+				If KeyHit(KEY_R)
+					If bestPlayerRecorder = Null
+						bestPlayerRecorder = playerRecorder
+					Else
+						If bestPlayerRecorder.totalRecordings > playerRecorder.totalRecordings
+							bestPlayerRecorder = playerRecorder
+						End
+					End
+					ResetLevel()
+					gameState = STATE_GAME
+					playerRecorder.Record(player)
+				End
 			Case STATE_DEATH
-				player.Reset()
-				currentLevel.Reset()
-				camera.Update(player, currentLevel)
+				ResetLevel()
 				gameState = STATE_GAME
 		End
-	End
-	
-	
-	Method FirstLevel:Level()
-		Return New Level(1)
-	End
-	
-	Method IncrementLevel()
-		currentLevel = New Level(currentLevel.levelNumber + 1)
 	End
 	
 	Method OnRender()
@@ -90,21 +102,54 @@ Class PfGame Extends App
 	    		DrawText("Platform Game!", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 2, 0.5)
 	    		DrawText("Press Enter to Play", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 1.8, 0.5)
 	    	Case STATE_GAME
-	    		PushMatrix()
-				Local translation:Vec2 = camera.Translation()
-	    		Translate(translation.x, translation.y)
-	    		player.Draw()
-	    		player.grapple.Draw()
-	    		For Local block := Eachin currentLevel.blocks
-	    			block.Draw()
-	    		End
-	    		For Local movingPlatform := Eachin currentLevel.movingPlatforms
-					movingPlatform.Draw()
-				End
-				PopMatrix()
-				SetColor(255, 255, 255)
-				font.DrawText("" + currentLevel.stopWatch.ElapsedString(), VIRTUAL_WINDOW_WIDTH - 50, 20, eDrawAlign.RIGHT)
-	    End
+			PushMatrix()
+			Local translation:Vec2 = camera.Translation()
+			Translate(translation.x, translation.y)
+			player.Draw()
+			player.grapple.Draw()
+			For Local block := Eachin currentLevel.blocks
+				block.Draw()
+			End
+			For Local movingPlatform := Eachin currentLevel.movingPlatforms
+				movingPlatform.Draw()
+			End
+				
+			If bestPlayerRecorder <> Null
+				bestPlayerRecorder.PlayBack()
+			End
+			PopMatrix()
+			SetColor(255, 255, 255)
+			font.DrawText("" + currentLevel.stopWatch.ElapsedString(), VIRTUAL_WINDOW_WIDTH - 50, 20, eDrawAlign.RIGHT)
+			Case STATE_LEVEL_COMPLETE
+				font.DrawText("Press Enter to go to the next level", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2 - 40, eDrawAlign.CENTER)
+				font.DrawText("Press R to retry the level and try to get a faster time!", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2, eDrawAlign.CENTER)
+		End
+	End
+	
+	Method ResetLevel()
+		currentLevel.Reset()
+		player.Reset()
+		playerRecorder = New PlayerRecorder(player)
+		If bestPlayerRecorder <> Null
+			bestPlayerRecorder.ResetPlayback()
+		End
+		camera.Update(player, currentLevel)
+	End
+	
+	Method StartLevel()
+		player = New Player(currentLevel)
+		camera.Update(player, currentLevel)
+		playerRecorder = New PlayerRecorder(player)
+		bestPlayerRecorder = Null
+		gameState = STATE_GAME
+	End
+	
+	Method FirstLevel:Level()
+		Return New Level(1)
+	End
+	
+	Method IncrementLevel()
+		currentLevel = New Level(currentLevel.levelNumber + 1)
 	End
 	
 	Method DrawVec(origin:Vec2, vec:Vec2)
