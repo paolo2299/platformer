@@ -25,7 +25,7 @@ Class Block Implements Collidable
 	End
 	
 	Method SetColor()
-		mojo.SetColor(0.0, 0.0, 255.0)
+		mojo.SetColor(255.0, 255.0, 255.0)
 	End
 	
 	Method Draw()
