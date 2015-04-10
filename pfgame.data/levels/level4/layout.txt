@@ -1,41 +1,41 @@
-b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,b
-b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,b
-b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b
-b,b, , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,b
-b,b, , , , , , , , , , ,h, , , , ,h, , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , ,b
-b,b, , , , , , ,h, , , , , , , , ,h, , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , ,b
-b,b, , , , , , , , , , , , , , , ,h, , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b
-b,b, , , , , , ,h, , , , ,h, , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , ,b
-b,b, , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , ,b
-b,b, , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , ,b
-b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,b
-b,b, , , , , , , ,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,b
-b,b,g, , , , , , , , , , ,h, , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,b
-b,b,b,b, , , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,b
-b,b,b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,b,b,b
-b,b,b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h,h, , , , , , , , , , , , , , , , , , , , , , , , , ,b, , , , , , , , , , , , , , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h,h, , , , , , , , , , , , , , , , , , , , , , , , , ,b, , , , , , , , , , , , , , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , ,b, , , , , , , , , , , , , , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , ,b, , , , , , , , , , , , , , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , , , , , , , , , , , , , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , , , , , , , , , , , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , ,h,h,h,h,h,h,h,h,h,h, , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , , , , , , ,h,h, , , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , ,h,h, , ,h,h, , ,h,h, , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , , , , , ,h,h,h,h, , , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , ,h,h, , ,h,h, , ,h,h, , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , , , , ,h,h,h,h,h,h, , , , , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , ,h,h,h,h,h,h,h,h,h,h, , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , ,h,h,h,h,h,h,h,h,h,h,h,h, , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , ,h,h,h,h,h, ,h,h,h,h, , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , ,b,b,h,h,h,h,h,h,h,h,b,b, , , , ,b, , , ,b,b,b
-b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b, , , , ,b,b,b, , , ,h,h,h,h, ,h,h,h,h, , ,b,b,b,h,h,h,h, , , , , , , , , , , , ,b, , , , ,b,b,h,h,h,h,h,h,h,h,b,b, , , , ,b, , , ,b,b,b
-b,b,b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , , ,b,b,b, , , ,h,h,h,h,h,h,h,h, , , ,b,b,b,h,h,h,h, , , , , , , , , , , , ,b, , , , ,b,b,h,h,h,h,h,h,h,h,b,b, , , , ,b, , , ,b,b,b
-b,b,b,b, , , , , , , , , , , , , , , , , , , , ,b,b,b, , , , ,h,h, , ,h,h, , , , ,b,b,b,h,h,h,h, , , , , , , , , , , , ,b, , , , ,b,b,h,h,h,h,h,h,h,h,b,b, , , , ,b, , , ,b,b,b
-b,b,b,b, ,p, , , , , , , , , , , , , , , , , , ,b,b,b, , , , ,h,h, , ,h,h, , , , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , ,b,b,h,h,h,h,h,h,h,h,b,b, , , , ,b, , , ,b,b,b
-b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , ,b,b,b, , , , ,h,h, , ,h,h, , , , ,b,b,b, , , , , , , , , , , , , , , , ,b, , , , ,b,b,b,b,b,b,b,b,b,b,b,b, , , , ,b, , , ,b,b,b
-b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , ,b,b,b, , , , , ,h,h,h,h, , , , , ,b,b,b, , , , , , , , , , , , , , , , , , , , , ,b,b,b,b,b,b,b,b,b,b,b,b, , , , , , , , ,b,b,b
-b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b,b,b
-b,b,b,b,b,b,b,b,b,b, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,b,b,b
-b,b,b,b,b,b,b,b,b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h
-b,b,b,b,b,b,b,b,b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h
-b,b,b,b,b,b,b,b,b,b,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h
+bcul,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,bcul
+bcll,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,bcll
+bcul,bwll, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bwur
+bcll,bwul, , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,bwlr
+bcul,bwll, , , , , , , , , , ,h, , , , ,h, , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , ,bwur
+bcll,bwul, , , , , , ,h, , , , , , , , ,h, , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , ,bwlr
+bcul,bwll, , , , , , , , , , , , , , , ,h, , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bwur
+bcll,bwul, , , , , , ,h, , , , ,h, , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , ,bwlr
+bcul,bwll, , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , ,bwur
+bcll,bwul, , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , ,bwlr
+bcul,bwll, , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,bwur
+bcll,bwul, , , , , , , ,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,bwlr
+bcul,bwll,g, , , , , , , , , , ,h, , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,bwur
+bcll,bill,bmur,beur, , , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , , , , , , , , , , , ,h,h, , , , , , , , , , , , , , , ,h,h, , , , , , , ,h,h, , , , , , , , , ,bwlr
+bcll,bclr,bcll,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,beul,bmul,bilr
+bcul,bcur,bcul,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h,h, , , , , , , , , , , , , , , , , , , , , , , , , ,bcur, , , , , , , , , , , , , , , , , , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , , , , , , , , , ,h,h,h, , , , , , , , , , , , , , , , , , , , , , , , , ,bclr, , , , , , , , , , , , , , , , , , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , ,beul,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bcur,bcul,bcur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,beur, , , , , , , , , , , , , , , , ,bcur, , , , , , , , , , , , , , , , , , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , ,bwur,bcll,biul,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,biur,bcul,bwll, , , , , , , , , , , , , , , , ,bclr, , , , , , , , , , , , , , , , , , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , ,bwlr,bcul,bwll, , , , , , , , , , , , , , ,bwur,bcll,bwul, , , , , , , , , , , , , , , , ,bcur, , , , , , , , , , , , , , , , , , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , ,bwur,bcll,bwul, , ,h,h,h,h,h,h,h,h,h,h, , ,bwlr,bcul,bwll, , , , , , , , , , , , , , , , ,bclr, , , , , , , , , ,h,h, , , , , , , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , ,bwlr,bcul,bwll, , ,h,h, , ,h,h, , ,h,h, , ,bwur,bcll,bwul, , , , , , , , , , , , , , , , ,bcur, , , , , , , , ,h,h,h,h, , , , , , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , ,bwur,bcll,bwul, , ,h,h, , ,h,h, , ,h,h, , ,bwlr,bcul,bwll, , , , , , , , , , , , , , , , ,bclr, , , , , , , ,h,h,h,h,h,h, , , , , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwul, , , , , , , , , , , , , , , , , , , , ,bwlr,bcul,bwll, , ,h,h,h,h,h,h,h,h,h,h, , ,bwur,bcll,bwul, , , , , , , , , , , , , , , , ,bcur, , , , ,h,h,h,h,h,h,h,h,h,h,h,h, , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwll, , , , , , , , , , , , , , , , , , , , ,bwur,bcll,bwul, , ,h,h,h,h,h, ,h,h,h,h, , ,bwlr,bcul,bwll, , , , , , , , , , , , , , , , ,bclr, , , , ,bwur,bcul,h,h,h,h,h,h,h,h,bcur,bwul, , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bill,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,beur, , , , ,bwlr,bcul,bwll, , , ,h,h,h,h, ,h,h,h,h, , ,bwur,bcll,bclr,h,h,h,h, , , , , , , , , , , , ,bcur, , , , ,bwlr,bcll,h,h,h,h,h,h,h,h,bclr,bwll, , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bcul,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h, , , , ,bwur,bcll,bwul, , , ,h,h,h,h,h,h,h,h, , , ,bwlr,bcul,bcur,h,h,h,h, , , , , , , , , , , , ,bclr, , , , ,bwur,bcul,h,h,h,h,h,h,h,h,bcur,bwul, , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bwur, , , , , , , , , , , , , , , , , , , , ,bwlr,bcul,bwll, , , , ,h,h, , ,h,h, , , , ,bwur,bcll,bclr,h,h,h,h, , , , , , , , , , , , ,bcur, , , , ,bwlr,bcll,h,h,h,h,h,h,h,h,bclr,bwll, , , , ,bcll, , , ,bwlr,bcul,bcur
+bcul,bcur,bcul,bwlr, ,p, , , , , , , , , , , , , , , , , , ,bwur,bcll,bwul, , , , ,h,h, , ,h,h, , , , ,bwlr,bcul,bwul, , , , , , , , , , , , , , , , ,bclr, , , , ,bwur,bcul,h,h,h,h,h,h,h,h,bcur,bwul, , , , ,bcul, , , ,bwur,bcll,bclr
+bcll,bclr,bcll,bill,bmur,bmul,bmur,bmul,bmur,beur, , , , , , , , , , , , , , ,bwlr,bcul,bwll, , , , ,h,h, , ,h,h, , , , ,bwur,bcll,bwll, , , , , , , , , , , , , , , , ,bcur, , , , ,bwlr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bwll, , , , ,bcll, , , ,bwlr,bcul,bcur
+biul,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,belr, , , , , , , , , , , , , , ,bell,bmll,belr, , , , , ,h,h,h,h, , , , , ,bell,bmll,belr, , , , , , , , , , , , , , , , , , , , , ,bell,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,belr, , , , , , , , ,bwur,bcll,bclr
+bwll, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bwlr,bcul,bcur
+bill,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,beur, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,bwur,bcll,bclr
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h

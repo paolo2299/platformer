@@ -44,6 +44,11 @@ Class Level
 	Field tileImageBCLL:Image
 	Field tileImageBCLR:Image
 	
+	Field platformImageOL:Image
+	Field platformImageIL:Image
+	Field platformImageOR:Image
+	Field platformImageIR:Image
+	
 	
 	Method New(number:Int)
 		Self.levelNumber = number
@@ -67,6 +72,20 @@ Class Level
 		tileImageBIUL = LoadImage("images/mysteryforest/Walls/wall_5_se.png")
 		tileImageBILL = LoadImage("images/mysteryforest/Walls/wall_5_ne.png")
 		tileImageBILR = LoadImage("images/mysteryforest/Walls/wall_5_nw.png")
+		
+		Print "HERE"
+		platformImageOL = LoadImage("images/mysteryforest/Walkways/walkway_outer_left.png")
+		Print "OL: " + platformImageOL.Width()
+		platformImageIL = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png") 'TODO rescue image
+		Print "IL: " + platformImageIL.Width()
+
+		platformImageOR = LoadImage("images/mysteryforest/Walkways/walkway_outer_right.png")
+		Print "OR: " + platformImageOR.Width()
+
+		platformImageIR = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png")
+		Print "IR: " + platformImageIR.Width()
+
+		
 		GetConfig()
 		GetLayout()
 	End
@@ -224,10 +243,10 @@ Class Level
 			Local originTopLeftY:Float = Float(data[1].Trim()) * tileHeight
 			Local destinationTopLeftX:Float = Float(data[2].Trim()) * tileWidth
 			Local destinationTopLeftY:Float = Float(data[3].Trim()) * tileHeight
-			Local width:Float = Float(data[4].Trim()) * tileWidth
-			Local height:Float = Float(data[5].Trim()) * tileHeight
+			Local width:Float = Float(data[4].Trim()) * tileWidth  'TODO implement rather than hard code
+			Local height:Float = Float(data[5].Trim()) * tileHeight 'TODO remove
 			Local speed:Float = Float(data[6].Trim()) * tileWidth
-			Local movingPlatform:MovingPlatform = New MovingPlatform(New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), width, height, speed)
+			Local movingPlatform:MovingPlatform = New MovingPlatform(platformImageOL, platformImageIL, platformImageIR, platformImageOR, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
 			movingPlatforms.Push(movingPlatform)
 		End
 	End

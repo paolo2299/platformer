@@ -4,23 +4,39 @@ Import rect
 
 Class MovingPlatform Implements Collidable
 	
-	Field width:Float
-	Field height:Float
+	Field platformWidthTiles:Float
+	Field tileWidth:Float
+	Field tileHeight:Float
 	Field speed:Float
 	Field originalTopLeftPos:Vec2
 	Field topLeftPos:Vec2
 	Field prevTopLeftPos:Vec2
 	Field midpointTopLeftPos:Vec2
 	
+	Field imageOL:Image
+	Field imageIL:Image
+	Field imageIR:Image
+	Field imageOR:Image
+	
+	Field imageScaleX:Float
+	Field imageScaleY:Float
+	
 	Field originalDirection:Vec2
 	Field direction:Vec2
 	Field offset:Vec2
 	Field maxDistance:Float
 
-	Method New(originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, width:Float, height:Float, speed:Float)
+	Method New(imageOL:Image, imageIL:Image, imageIR:Image, imageOR:Image, originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, platformWidthTiles:Float, tileWidth:Float, tileHeight:Float, speed:Float)
+		Self.imageOL = imageOL
+		Self.imageIL = imageIL
+		Self.imageIR = imageIR
+		Self.imageOR = imageOR
+
+		Self.platformWidthTiles = platformWidthTiles
+		Self.tileWidth = tileWidth
+		Self.tileHeight = tileHeight
+
 		originalTopLeftPos = originTopLeftPos
-		Self.width = width
-		Self.height = height
 		Self.speed = speed
 		topLeftPos = originTopLeftPos.Clone()
 		prevTopLeftPos = originTopLeftPos.Clone()
@@ -34,6 +50,9 @@ Class MovingPlatform Implements Collidable
 		PrintVec("destinationTopLeftPos", destinationTopLeftPos)
 		PrintVec("midpointTopLeftPos", midpointTopLeftPos)
 		Print "maxDistance" + maxDistance
+		
+		imageScaleX = tileWidth / imageIL.Width()
+		imageScaleY = tileHeight / imageIL.Height()
 	End
 	
 	Method IsMoving:Bool()
@@ -80,16 +99,33 @@ Class MovingPlatform Implements Collidable
 	End
 	
 	Method CollisionRect:Rect()
-		Return New Rect(topLeftPos.x, topLeftPos.y, width, height)
+		Return New Rect(topLeftPos.x, topLeftPos.y, platformWidthTiles * tileWidth, tileHeight)
 	End
 	
 	Method Draw()
 		SetColor()
-		DrawRect(topLeftPos.x, topLeftPos.y, width, height)
+		Local tileCount:Int = 0
+		Local drawPos:Vec2 = topLeftPos.Clone()
+		While tileCount < platformWidthTiles
+			If tileCount = 0
+				DrawImage(imageOL, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+			Elseif tileCount = (platformWidthTiles - 1)
+				DrawImage(imageOR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+			Else
+				Local parity:Int = tileCount Mod 2
+				If parity = 0
+					DrawImage(imageIR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+				Else
+					DrawImage(imageOR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+				End
+			End
+			drawPos.Add(New Vec2(tileWidth, 0.0))
+			tileCount += 1
+		End
 	End
 
 	Method SetColor()
-		mojo.SetColor(0.0, 0.0, 255.0)
+		mojo.SetColor(255.0, 255.0, 255.0)
 	End
 	
 	Method PrintVec(desc: String, v:Vec2)
