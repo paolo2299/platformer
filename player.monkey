@@ -108,6 +108,8 @@ Class Player
 	End
     
 	Method Update()
+		'Print "in player update"
+		desiredPosition.Set(position.x, position.y)
 		'gravity
 		If huggingLeft Or huggingRight
 			velocity.y += wallGravity
@@ -136,62 +138,61 @@ Class Player
 					velocity.x -= accelerationGrappling
 				'End
 			End
-    		
-    		'extend/shorten the grapple
-    		If KeyDown(KEY_UP)
-    			grapple.Retract(grappleExtendSpeed)
-    		Elseif KeyDown(KEY_DOWN)
-    			grapple.Extend(grappleExtendSpeed)
-    		End
+		
+			'extend/shorten the grapple
+			If KeyDown(KEY_UP)
+				grapple.Retract(grappleExtendSpeed)
+			Elseif KeyDown(KEY_DOWN)
+				grapple.Extend(grappleExtendSpeed)
+			End
 		Else
 			'running vs walking
-    		Local acceleration:Float = accelerationWalking
-    		Local maxVelocityX:Float = maxVelocityXWalking
-    		Local wallJumpXForce:Float = wallJumpXForceWalking
-    		If KeyDown(KEY_SHIFT)
-    			acceleration = accelerationRunning
-    			maxVelocityX = maxVelocityXRunning
-    			wallJumpXForce = wallJumpXForceRunning
-    		End
+			Local acceleration:Float = accelerationWalking
+			Local maxVelocityX:Float = maxVelocityXWalking
+			Local wallJumpXForce:Float = wallJumpXForceWalking
+			If KeyDown(KEY_SHIFT)
+				acceleration = accelerationRunning
+				maxVelocityX = maxVelocityXRunning
+				wallJumpXForce = wallJumpXForceRunning
+			End
     		
-    		'bookkeeping
-    		If KeyDown(KEY_RIGHT)
-    			millisecsRightHeld += (Millisecs() - lastUpdate)
-    		Else
-    			millisecsRightHeld = 0
-    		End
+			'bookkeeping
+			If KeyDown(KEY_RIGHT)
+				millisecsRightHeld += (Millisecs() - lastUpdate)
+			Else
+				millisecsRightHeld = 0
+			End
     	
-    		If KeyDown(KEY_LEFT)
-    			millisecsLeftHeld += (Millisecs() - lastUpdate)
-    		Else
-    			millisecsLeftHeld = 0
-    		End
-    	
-    		'jumping
-    		If KeyHit(KEY_SPACE)
-    			If onGround
-    				velocity.y = -jumpForce
-    			Elseif huggingLeft
-    				velocity.y = -wallJumpYForce
-    				velocity.x = wallJumpXForce
-    			Elseif huggingRight
-    				velocity.y = -wallJumpYForce
-    				velocity.x = -wallJumpXForce
-    			End
-    		End
-    		
-    		    	
-    		If Not KeyDown(KEY_SPACE) And (velocity.y < -jumpCutoff)
-    			velocity.y = -jumpCutoff
-    		End
-    		
+			If KeyDown(KEY_LEFT)
+				millisecsLeftHeld += (Millisecs() - lastUpdate)
+			Else
+				millisecsLeftHeld = 0
+			End
+
+			'jumping
+			If KeyHit(KEY_SPACE)
+				If onGround
+					velocity.y = -jumpForce
+				Elseif huggingLeft
+					velocity.y = -wallJumpYForce
+					velocity.x = wallJumpXForce
+				Elseif huggingRight
+					velocity.y = -wallJumpYForce
+					velocity.x = -wallJumpXForce
+				End
+			End
+			
+			If Not KeyDown(KEY_SPACE) And (velocity.y < -jumpCutoff)
+				velocity.y = -jumpCutoff
+			End
+
 			'moving left/right    			
-    		If KeyDown(KEY_RIGHT)
-    			If velocity.x < 0
-    				acceleration *= oppositeDirectionAccelerationBoost
-    			End
-    			If (huggingLeft And Not onGround)
-    				If millisecsRightHeld > wallStickMillisecs
+			If KeyDown(KEY_RIGHT)
+				If velocity.x < 0
+					acceleration *= oppositeDirectionAccelerationBoost
+				End
+				If (huggingLeft And Not onGround)
+					If millisecsRightHeld > wallStickMillisecs
 						velocity.x += acceleration
 					End
 				Else
@@ -199,10 +200,10 @@ Class Player
 				End
 			Elseif KeyDown(KEY_LEFT)
 				If velocity.x > 0
-    				acceleration *= oppositeDirectionAccelerationBoost
-    			End
+					acceleration *= oppositeDirectionAccelerationBoost
+				End
 				If (huggingRight And Not onGround)
-    				If millisecsLeftHeld > wallStickMillisecs
+					If millisecsLeftHeld > wallStickMillisecs
 						velocity.x -= acceleration
 					End
 				Else
@@ -214,7 +215,7 @@ Class Player
 			
 			'clamp x velocity
 			velocity.x = Clamp(velocity.x, -maxVelocityX, maxVelocityX)
-    	End
+		End
 		
 		'update grapple interaction
 		If KeyHit(KEY_UP) And grapple.Undeployed()
@@ -250,34 +251,37 @@ Class Player
 			End
 		End
 		
+		'Print "position: " + position.x + "," + position.y
+		'Print "desiredPosition: " + desiredPosition.x + "," + desiredPosition.y
+		
 		lastUpdate = Millisecs()
-    End
-    
-    Method UpdateForMovingPlatforms()
-    	Local movingPlatformOffset:Vec2
-	If onMovingPlatform <> Null
-		'TODO refoactor
-		movingPlatformOffset = onMovingPlatform.offset
-	Else
-		movingPlatformOffset = New Vec2(0.0, 0.0)
 	End
-	desiredPosition.x = position.x + movingPlatformOffset.x
-	desiredPosition.y = position.y + movingPlatformOffset.y
-    End
+	
+	Method UpdateForMovingPlatforms()
+		Local movingPlatformOffset:Vec2
+		If onMovingPlatform <> Null
+			'TODO refoactor
+			movingPlatformOffset = onMovingPlatform.offset
+		Else
+			movingPlatformOffset = New Vec2(0.0, 0.0)
+		End
+		desiredPosition.x = position.x + movingPlatformOffset.x
+		desiredPosition.y = position.y + movingPlatformOffset.y
+	End
+	
+	Method BoundingBox:Rect()
+		Return New Rect(position.x - width/2, position.y - height/2, width, height)
+	End
     
-    Method BoundingBox:Rect()
-    	Return New Rect(position.x - width/2, position.y - height/2, width, height)
-    End
-    
-    Method DesiredBoundingBox:Rect()
-    	Return New Rect(desiredPosition.x - width/2, desiredPosition.y - height/2, width, height)
-    End
-    
-    Method MovementVector:Vec2()
-    	Return desiredPosition.Clone().Sub(position)
-    End
-       
-    Method DetectionBox:Rect()
-    	Return New Rect(position.x - width/2 - 1, position.y - height/2 - 1, width + 2, height + 2)
-    End
+    	Method DesiredBoundingBox:Rect()
+    		Return New Rect(desiredPosition.x - width/2, desiredPosition.y - height/2, width, height)
+    	End
+    	
+    	Method MovementVector:Vec2()
+    		Return desiredPosition.Clone().Sub(position)
+    	End
+    	
+    	Method DetectionBox:Rect()
+    		Return New Rect(position.x - width/2 - 1, position.y - height/2 - 1, width + 2, height + 2)
+    	End
 End

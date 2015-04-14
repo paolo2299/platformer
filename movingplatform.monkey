@@ -46,10 +46,10 @@ Class MovingPlatform Implements Collidable
 		Local midpointVec:Vec2 = movementVec.Clone().Scale(0.5)
 		maxDistance = midpointVec.Length()
 		midpointTopLeftPos = originTopLeftPos.Clone().Add(midpointVec)
-		PrintVec("originTopLeftPos", originTopLeftPos)
-		PrintVec("destinationTopLeftPos", destinationTopLeftPos)
-		PrintVec("midpointTopLeftPos", midpointTopLeftPos)
-		Print "maxDistance" + maxDistance
+		'PrintVec("originTopLeftPos", originTopLeftPos)
+		'PrintVec("destinationTopLeftPos", destinationTopLeftPos)
+		'PrintVec("midpointTopLeftPos", midpointTopLeftPos)
+		'Print "maxDistance" + maxDistance
 		
 		imageScaleX = tileWidth / imageIL.Width()
 		imageScaleY = tileHeight / imageIL.Height()
@@ -116,7 +116,7 @@ Class MovingPlatform Implements Collidable
 				If parity = 0
 					DrawImage(imageIR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
 				Else
-					DrawImage(imageOR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+					DrawImage(imageIL, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
 				End
 			End
 			drawPos.Add(New Vec2(tileWidth, 0.0))

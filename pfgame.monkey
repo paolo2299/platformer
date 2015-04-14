@@ -105,6 +105,32 @@ Class PfGame Extends App
 			PushMatrix()
 			Local translation:Vec2 = camera.Translation()
 			Translate(translation.x, translation.y)
+			PushMatrix()
+				Local revTranslation:Vec2 = translation.Clone().Scale(-0.15)
+				Translate(revTranslation.x, revTranslation.y)
+				Local bgc1:Int = 0
+				Local bgc2:Int = 0
+				While bgc1 < 15
+					While bgc2 < 15
+						DrawImage(currentLevel.farBackgroundImage, bgc1 * 256.0, bgc2 * 256.0, 0.0, 1.0, 1.0)
+						bgc2 += 1
+					End
+					bgc2 = 0
+					bgc1 += 1
+				End
+			PopMatrix()
+			bgc1 = 0
+			bgc2 = 0
+			SetColor(150.0,150.0,150.0) 'TODO darken the image instead
+			While bgc1 < 15
+				While bgc2 < 15
+					DrawImage(currentLevel.nearBackgroundImage, bgc1 * 256.0, bgc2 * 256.0, 0.0, 0.5, 0.5)
+					bgc2 += 1
+				End
+				bgc2 = 0
+				bgc1 += 1
+			End
+			SetColor(255.0,255.0,255.0)
 			player.Draw()
 			player.grapple.Draw()
 			For Local block := Eachin currentLevel.blocks
@@ -145,7 +171,7 @@ Class PfGame Extends App
 	End
 	
 	Method FirstLevel:Level()
-		Return New Level(5)
+		Return New Level(1)
 	End
 	
 	Method IncrementLevel()
@@ -271,18 +297,28 @@ Class PfGame Extends App
 	End
 	
 	Method GetClosestCollision:Collision(rays: Stack<Ray>)
+		'Print "In get closest"
+		'PrintVec("playerPosition", player.position)
 		Local closestCollision:Collision = Null
 		'First check collisions with static blocks
 		For Local ray := Eachin rays
 			Local collision:Collision = currentLevel.collisionMap.RayCastCollision(ray)
 			If collision <> Null
-				'PrintVec("potential ray origin", collision.ray.origin)
-				'PrintVec("potential ray destination", collision.ray.destination)
+				'PrintRect("collisionRect", collision.collidable.CollisionRect())
+				'PrintVec("ray oriign", ray.origin)
+				'PrintVec("ray destination", ray.destination)
+				'PrintVec("collision ray origin", collision.ray.origin)
+				'PrintVec("collisionl ray destination", collision.ray.destination)
 				If closestCollision = Null
 					closestCollision = collision
-				Elseif closestCollision.ray.Length() > collision.ray.Length()
-				'	Print "shortest!"
+					'Print "shortest by default!"
+				Elseif collision.ray.Length() < closestCollision.ray.Length()
+					'Print "shortest!"
 					closestCollision = collision
+				Elseif collision.ray.Length() = closestCollision.ray.Length()
+					If Not collision.CornerOfBlock()
+						closestCollision = collision
+					End
 				End
 			End
 		End
@@ -292,7 +328,11 @@ Class PfGame Extends App
 			For Local movingPlatform := Eachin currentLevel.movingPlatforms
 				Local collision:Collision = DetectCollision(ray, movingPlatform)
 				If (collision <> Null) 
-					If (closestCollision = Null) Or (collision.ray.Length() < closestCollision.ray.Length())
+					If (closestCollision = Null)
+						closestCollision = collision
+					Elseif collision.ray.Length() < closestCollision.ray.Length()
+						closestCollision = collision
+					Elseif collision.ray.Length() = closestCollision.ray.Length()
 						closestCollision = collision
 					End
 				End
@@ -329,7 +369,7 @@ Class PfGame Extends App
 		
 		p.position.Add(closestCollision.ray.offset)
 		
-		'rintVec("player position after first offset", p.position)
+		'PrintVec("player position after first offset", p.position)
 		
 		'see if we can maintain momentum
 		If closestCollision.TopOrBottomOfBlock()

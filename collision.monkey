@@ -6,32 +6,49 @@ Import ray
 Class Collision
 	Field collidable:Collidable
 	Field ray:Ray
+	Field rect: Rect
 	
 	Method New(collidable: Collidable, ray:Ray)
 		Self.collidable = collidable
 		Self.ray = ray
+		rect = collidable.CollisionRect()
 	End
 	
 	Method TopOrBottomOfBlock:Bool()
-		Local dest:Vec2 = ray.destination
-		Local rect:Rect = collidable.CollisionRect()
-		If (dest.y = rect.topLeft.y) Or (dest.y = rect.botLeft.y)
+		If (ray.destination.y = rect.topLeft.y) Or (ray.destination.y = rect.botLeft.y)
 			Return True
 		End
 		Return False
 	End
+	
+	Method LeftOrRightOfBlock:Bool()
+		If (ray.destination.x = rect.topLeft.x) Or (ray.destination.x = rect.topRight.x)
+			Return True
+		End
+		Return False
+	End
+	
+	Method CornerOfBlock:Bool()
+		Return TopOrBottomOfBlock() And LeftOrRightOfBlock()
+	End
 End
 
 Function DetectCollision:Collision(ray: Ray, collidable:Collidable)
-	'TODO move this to Collision class?
+	If ray.Length() = 0
+		Return Null
+	End
+
 	Local collisionRect:Rect = collidable.CollisionRect()
 	Local response:Response = New Response()
 	Local origin:Vec2 = ray.origin
 	Local destination:Vec2 = ray.destination
 	Local rayPoly:Polygon = ray.ToPolygon()
 	If SAT.TestPolygonPolygon(rayPoly, collisionRect.ToPolygon(), response)
-		'Find point of intersection with left/right of tile
 		If destination.x = origin.x
+			'If tangential then it doesn't count
+			If (destination.x = collisionRect.topLeft.x Or destination.x = collisionRect.topRight.x) 
+				Return Null
+			End
 			If destination.y > origin.y
 				Local collisionPoint:Vec2 = New Vec2(origin.x, collisionRect.topLeft.y)
 				Return  New Collision(collidable, New Ray(origin, collisionPoint))
@@ -40,6 +57,10 @@ Function DetectCollision:Collision(ray: Ray, collidable:Collidable)
 				Return  New Collision(collidable, New Ray(origin, collisionPoint))
 			End
 		Elseif destination.y = origin.y
+			'If tangential then it doesn't count
+			If (destination.y = collisionRect.topLeft.y Or destination.y = collisionRect.botLeft.y) 
+				Return Null
+			End
 			If destination.x > origin.x
 				Local collisionPoint:Vec2 = New Vec2(collisionRect.topLeft.x, origin.y)
 				Return  New Collision(collidable, New Ray(origin, collisionPoint))

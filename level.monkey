@@ -49,6 +49,9 @@ Class Level
 	Field platformImageOR:Image
 	Field platformImageIR:Image
 	
+	Field farBackgroundImage:Image
+	Field nearBackgroundImage:Image
+	
 	
 	Method New(number:Int)
 		Self.levelNumber = number
@@ -73,18 +76,13 @@ Class Level
 		tileImageBILL = LoadImage("images/mysteryforest/Walls/wall_5_ne.png")
 		tileImageBILR = LoadImage("images/mysteryforest/Walls/wall_5_nw.png")
 		
-		Print "HERE"
 		platformImageOL = LoadImage("images/mysteryforest/Walkways/walkway_outer_left.png")
-		Print "OL: " + platformImageOL.Width()
-		platformImageIL = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png") 'TODO rescue image
-		Print "IL: " + platformImageIL.Width()
-
+		platformImageIL = LoadImage("images/mysteryforest/Walkways/walkway_inner_left.png")
 		platformImageOR = LoadImage("images/mysteryforest/Walkways/walkway_outer_right.png")
-		Print "OR: " + platformImageOR.Width()
-
 		platformImageIR = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png")
-		Print "IR: " + platformImageIR.Width()
 
+		farBackgroundImage = LoadImage("images/mysteryforest/Other/far_background.png")
+		nearBackgroundImage = LoadImage("images/mysteryforest/Other/near_background.png")
 		
 		GetConfig()
 		GetLayout()
