@@ -6,6 +6,7 @@ Import collisionmap
 Import movingplatform
 Import stopwatch
 Import sat.vec2
+Import mysteryforesttheme
 
 Class Level
 	Field levelNumber:Int
@@ -23,66 +24,11 @@ Class Level
 	Field tileWidth:Int
 	Field tileHeight:Int
 	
-	Field tileImageBMLL:Image
-	Field tileImageBMLR:Image
-	Field tileImageBMUL:Image
-	Field tileImageBMUR:Image
-	Field tileImageBEUL:Image
-	Field tileImageBEUR:Image
-	Field tileImageBELL:Image
-	Field tileImageBELR:Image
-	Field tileImageBIUL:Image
-	Field tileImageBIUR:Image
-	Field tileImageBILL:Image
-	Field tileImageBILR:Image
-	Field tileImageBWUR:Image
-	Field tileImageBWLR:Image
-	Field tileImageBWUL:Image
-	Field tileImageBWLL:Image
-	Field tileImageBCUL:Image
-	Field tileImageBCUR:Image
-	Field tileImageBCLL:Image
-	Field tileImageBCLR:Image
-	
-	Field platformImageOL:Image
-	Field platformImageIL:Image
-	Field platformImageOR:Image
-	Field platformImageIR:Image
-	
-	Field farBackgroundImage:Image
-	Field nearBackgroundImage:Image
-	
+	Field theme:MysteryForestTheme 'TODO make generic
 	
 	Method New(number:Int)
 		Self.levelNumber = number
-		tileImageBEUL = LoadImage("images/mysteryforest/Walls/wall_1_nw.png")
-		tileImageBEUR = LoadImage("images/mysteryforest/Walls/wall_1_ne.png")
-		tileImageBELR = LoadImage("images/mysteryforest/Walls/wall_1_se.png")
-		tileImageBELL = LoadImage("images/mysteryforest/Walls/wall_1_sw.png")
-		tileImageBMLL = LoadImage("images/mysteryforest/Walls/wall_2_sw.png")
-		tileImageBMLR = LoadImage("images/mysteryforest/Walls/wall_2_se.png")
-		tileImageBMUR = LoadImage("images/mysteryforest/Walls/wall_2_ne.png")
-		tileImageBMUL = LoadImage("images/mysteryforest/Walls/wall_2_nw.png")
-		tileImageBWUL = LoadImage("images/mysteryforest/Walls/wall_3_ne.png")
-		tileImageBWUR = LoadImage("images/mysteryforest/Walls/wall_3_nw.png")
-		tileImageBWLL = LoadImage("images/mysteryforest/Walls/wall_3_se.png")
-		tileImageBWLR = LoadImage("images/mysteryforest/Walls/wall_3_sw.png")
-		tileImageBCUR = LoadImage("images/mysteryforest/Walls/wall_4_ne.png")
-		tileImageBCUL = LoadImage("images/mysteryforest/Walls/wall_4_nw.png")
-		tileImageBCLL = LoadImage("images/mysteryforest/Walls/wall_4_sw.png")
-		tileImageBCLR = LoadImage("images/mysteryforest/Walls/wall_4_se.png")
-		tileImageBIUR = LoadImage("images/mysteryforest/Walls/wall_5_sw.png")
-		tileImageBIUL = LoadImage("images/mysteryforest/Walls/wall_5_se.png")
-		tileImageBILL = LoadImage("images/mysteryforest/Walls/wall_5_ne.png")
-		tileImageBILR = LoadImage("images/mysteryforest/Walls/wall_5_nw.png")
-		
-		platformImageOL = LoadImage("images/mysteryforest/Walkways/walkway_outer_left.png")
-		platformImageIL = LoadImage("images/mysteryforest/Walkways/walkway_inner_left.png")
-		platformImageOR = LoadImage("images/mysteryforest/Walkways/walkway_outer_right.png")
-		platformImageIR = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png")
-
-		farBackgroundImage = LoadImage("images/mysteryforest/Other/far_background.png")
-		nearBackgroundImage = LoadImage("images/mysteryforest/Other/near_background.png")
+		Self.theme = New MysteryForestTheme()
 		
 		GetConfig()
 		GetLayout()
@@ -132,84 +78,8 @@ Class Level
 				Local imageOffsetX:Float = -0.11
 				Local imageOffsetY:Float = -0.09
 				
-				If tile = "bmll"
-					Local block:Block = New GroundBlock(rect, tileImageBMLL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bmlr"
-					Local block:Block = New GroundBlock(rect, tileImageBMLR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bmul"
-					Local block:Block = New GroundBlock(rect, tileImageBMUL, 0.0, tileHeight * imageOffsetY)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bmur"
-					Local block:Block = New GroundBlock(rect, tileImageBMUR, 0.0, tileHeight * imageOffsetY)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "beul"
-					Local block:Block = New GroundBlock(rect, tileImageBEUL, tileWidth * imageOffsetX, tileHeight * imageOffsetY)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "beur"
-					Local block:Block = New GroundBlock(rect, tileImageBEUR, 0.0, tileHeight * imageOffsetY)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bell"
-					Local block:Block = New GroundBlock(rect, tileImageBELL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "belr"
-					Local block:Block = New GroundBlock(rect, tileImageBELR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "biul"
-					Local block:Block = New GroundBlock(rect, tileImageBIUL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "biur"
-					Local block:Block = New GroundBlock(rect, tileImageBIUR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bill"
-					Local block:Block = New GroundBlock(rect, tileImageBILL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bilr"
-					Local block:Block = New GroundBlock(rect, tileImageBILR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bwur"
-					Local block:Block = New GroundBlock(rect, tileImageBWUR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bwlr"
-					Local block:Block = New GroundBlock(rect, tileImageBWLR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bwul"
-					Local block:Block = New GroundBlock(rect, tileImageBWUL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bwll"
-					Local block:Block = New GroundBlock(rect, tileImageBWLL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bcul"
-					Local block:Block = New GroundBlock(rect, tileImageBCUL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bcur"
-					Local block:Block = New GroundBlock(rect, tileImageBCUR)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bcll"
-					Local block:Block = New GroundBlock(rect, tileImageBCLL)
-					blocks.Push(block)
-					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "bclr"
-					Local block:Block = New GroundBlock(rect, tileImageBCLR)
+				If tile[..1] = "b"
+					Local block:Block = New GroundBlock(rect, theme.ImageForTileCode(tile))
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "h"
@@ -244,7 +114,7 @@ Class Level
 			Local width:Float = Float(data[4].Trim()) * tileWidth  'TODO implement rather than hard code
 			Local height:Float = Float(data[5].Trim()) * tileHeight 'TODO remove
 			Local speed:Float = Float(data[6].Trim()) * tileWidth
-			Local movingPlatform:MovingPlatform = New MovingPlatform(platformImageOL, platformImageIL, platformImageIR, platformImageOR, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
+			Local movingPlatform:MovingPlatform = New MovingPlatform(theme.platformImageOL, theme.platformImageIL, theme.platformImageIR, theme.platformImageOR, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
 			movingPlatforms.Push(movingPlatform)
 		End
 	End

@@ -103,52 +103,48 @@ Class PfGame Extends App
 	    		DrawText("Press Enter to Play", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 1.8, 0.5)
 	    	Case STATE_GAME
 			PushMatrix()
-			Local translation:Vec2 = camera.Translation()
-			Translate(translation.x, translation.y)
-			PushMatrix()
-				Local revTranslation:Vec2 = translation.Clone().Scale(-0.15)
-				Translate(revTranslation.x, revTranslation.y)
-				Local bgc1:Int = 0
-				Local bgc2:Int = 0
-				While bgc1 < 15
-					While bgc2 < 15
-						DrawImage(currentLevel.farBackgroundImage, bgc1 * 256.0, bgc2 * 256.0, 0.0, 1.0, 1.0)
-						bgc2 += 1
-					End
-					bgc2 = 0
-					bgc1 += 1
+				Local translation:Vec2 = camera.Translation()
+				Translate(translation.x, translation.y)
+				RenderBackground(translation)
+				player.Draw()
+				player.grapple.Draw()
+				For Local block := Eachin currentLevel.blocks
+					block.Draw()
 				End
-			PopMatrix()
-			bgc1 = 0
-			bgc2 = 0
-			SetColor(150.0,150.0,150.0) 'TODO darken the image instead
-			While bgc1 < 15
-				While bgc2 < 15
-					DrawImage(currentLevel.nearBackgroundImage, bgc1 * 256.0, bgc2 * 256.0, 0.0, 0.5, 0.5)
-					bgc2 += 1
+				For Local movingPlatform := Eachin currentLevel.movingPlatforms
+					movingPlatform.Draw()
 				End
-				bgc2 = 0
-				bgc1 += 1
-			End
-			SetColor(255.0,255.0,255.0)
-			player.Draw()
-			player.grapple.Draw()
-			For Local block := Eachin currentLevel.blocks
-				block.Draw()
-			End
-			For Local movingPlatform := Eachin currentLevel.movingPlatforms
-				movingPlatform.Draw()
-			End
 				
-			If bestPlayerRecorder <> Null
-				bestPlayerRecorder.PlayBack()
-			End
+				If bestPlayerRecorder <> Null
+					bestPlayerRecorder.PlayBack()
+				End
 			PopMatrix()
 			SetColor(255, 255, 255)
 			font.DrawText("" + currentLevel.stopWatch.ElapsedString(), VIRTUAL_WINDOW_WIDTH - 50, 20, eDrawAlign.RIGHT)
 			Case STATE_LEVEL_COMPLETE
 				font.DrawText("Press Enter to go to the next level", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2 - 40, eDrawAlign.CENTER)
 				font.DrawText("Press R to retry the level and try to get a faster time!", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2, eDrawAlign.CENTER)
+		End
+	End
+	
+	Method RenderBackground(cameraTranslation:Vec2)
+		For Local backgroundLayer := Eachin currentLevel.theme.backgroundLayers
+			PushMatrix()
+				Local revTranslation:Vec2 = cameraTranslation.Clone().Scale(-1* backgroundLayer.parallaxFactor)
+				Translate(revTranslation.x, revTranslation.y)
+				Local countX:Int = 0
+				Local countY:Int = 0
+				Local tilesX:Int = ((currentLevel.mapWidth * currentLevel.tileWidth) / backgroundLayer.imageWidth) + 1
+				Local tilesY:Int = ((currentLevel.mapHeight * currentLevel.tileHeight) / backgroundLayer.imageHeight) + 1
+				While countX < tilesX
+					While countY < tilesY
+						DrawImage(backgroundLayer.image, countX * backgroundLayer.imageWidth, countY * backgroundLayer.imageHeight, 0.0,  backgroundLayer.imageScaleX,  backgroundLayer.imageScaleY)
+						countY += 1
+					End
+					countY = 0
+					countX += 1
+				End
+			PopMatrix()
 		End
 	End
 	
