@@ -1,7 +1,8 @@
 Import mojo
 Import backgroundlayer
+Import theme
 
-Class MysteryForestTheme
+Class MysteryForestTheme Implements Theme
 	
 	Field tileImageBMLL:Image
 	Field tileImageBMLR:Image
@@ -67,6 +68,10 @@ Class MysteryForestTheme
 		backgroundLayers.Push(New BackgroundLayer(nearBackgroundImage))
 	End
 	
+	Method BackgroundLayers:Stack<BackgroundLayer>()
+		Return backgroundLayers
+	End
+	
 	Method ImageForTileCode:Image(tileCode:String)
 		If tileCode = "bmll"
 			Return tileImageBMLL
@@ -108,6 +113,25 @@ Class MysteryForestTheme
 			Return tileImageBCLL
 		Elseif tileCode = "bclr"
 			Return tileImageBCLR
+		Elseif tileCode = "platform_outer_left"
+			Return platformImageOL
+		Elseif tileCode = "platform_inner_left"
+			Return platformImageIL
+		Elseif tileCode = "platform_inner_right"
+			Return platformImageIR
+		Elseif tileCode = "platform_outer_right"
+			Return platformImageOR
+		End
+	End
+	
+	Method OffsetForTileCode:Vec2(tileCode:String)
+		Local uplift:Float = -2.0
+		If tileCode = "beul"
+			Return New Vec2(-3.0, uplift)
+		Elseif tileCode = "bmul" Or tileCode = "bmur" Or tileCode = "beur"
+			Return New Vec2(0.0, uplift)
+		Else
+			Return New Vec2()
 		End
 	End
 End

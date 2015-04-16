@@ -6,7 +6,7 @@ Import collisionmap
 Import movingplatform
 Import stopwatch
 Import sat.vec2
-Import mysteryforesttheme
+Import theme.mysteryforesttheme
 
 Class Level
 	Field levelNumber:Int
@@ -24,11 +24,11 @@ Class Level
 	Field tileWidth:Int
 	Field tileHeight:Int
 	
-	Field theme:MysteryForestTheme 'TODO make generic
+	Field theme:Theme
 	
 	Method New(number:Int)
 		Self.levelNumber = number
-		Self.theme = New MysteryForestTheme()
+		Self.theme = New MysteryForestTheme() 'TODO get from level config
 		
 		GetConfig()
 		GetLayout()
@@ -79,7 +79,9 @@ Class Level
 				Local imageOffsetY:Float = -0.09
 				
 				If tile[..1] = "b"
-					Local block:Block = New GroundBlock(rect, theme.ImageForTileCode(tile))
+					Local image:Image = theme.ImageForTileCode(tile)
+					Local offset:Vec2 = theme.OffsetForTileCode(tile)
+					Local block:Block = New GroundBlock(rect, image, offset.x, offset.y)
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "h"
@@ -114,7 +116,7 @@ Class Level
 			Local width:Float = Float(data[4].Trim()) * tileWidth  'TODO implement rather than hard code
 			Local height:Float = Float(data[5].Trim()) * tileHeight 'TODO remove
 			Local speed:Float = Float(data[6].Trim()) * tileWidth
-			Local movingPlatform:MovingPlatform = New MovingPlatform(theme.platformImageOL, theme.platformImageIL, theme.platformImageIR, theme.platformImageOR, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
+			Local movingPlatform:MovingPlatform = New MovingPlatform(theme.ImageForTileCode("platform_outer_left"), theme.ImageForTileCode("platform_inner_left"), theme.ImageForTileCode("platform_inner_right"), theme.ImageForTileCode("platform_outer_right"), New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
 			movingPlatforms.Push(movingPlatform)
 		End
 	End

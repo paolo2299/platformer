@@ -128,7 +128,7 @@ Class PfGame Extends App
 	End
 	
 	Method RenderBackground(cameraTranslation:Vec2)
-		For Local backgroundLayer := Eachin currentLevel.theme.backgroundLayers
+		For Local backgroundLayer := Eachin currentLevel.theme.BackgroundLayers()
 			PushMatrix()
 				Local revTranslation:Vec2 = cameraTranslation.Clone().Scale(-1* backgroundLayer.parallaxFactor)
 				Translate(revTranslation.x, revTranslation.y)
