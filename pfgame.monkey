@@ -106,8 +106,8 @@ Class PfGame Extends App
 				Local translation:Vec2 = camera.Translation()
 				Translate(translation.x, translation.y)
 				RenderBackground(translation)
-				player.Draw()
 				player.grapple.Draw()
+				player.Draw()
 				For Local block := Eachin currentLevel.blocks
 					block.Draw()
 				End

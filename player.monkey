@@ -12,7 +12,7 @@ Class Player
 	Field width:Float
 	Field height:Float
 	Field widthFactor:Float = 1.0
-	Field heightFactor:Float = 1.0
+	Field heightFactor:Float = 1.2
 
 	Field position:Vec2 = New Vec2()
 	Field desiredPosition:Vec2 = New Vec2()	
@@ -64,6 +64,8 @@ Class Player
 	Field grapple:Grapple
 	Field grappleExtendSpeedFactor:Float = 1.0 / 8.0
 	Field grappleExtendSpeed:Float
+	
+	Field image:Image
 
 	Method New(level:Level)
 		Self.level = level
@@ -72,6 +74,8 @@ Class Player
 		position.Set(originalPos.x, originalPos.y)
 		desiredPosition.Set(originalPos.x, originalPos.y)
 		grapple = New Grapple(level)
+		
+		image = LoadImage("images/player.png", 16, 16, 25, Image.MidHandle)
 	End
 	
 	Method SetPlayerConstants()
@@ -103,8 +107,8 @@ Class Player
 	End
     
 	Method Draw()
-		SetColor(0, 255, 0)
-		DrawRect(position.x - width/2, position.y - height/2, width, height)
+		SetColor(255, 255, 255)
+		DrawImage(image, position.x, position.y, 0.0, 3.0, 3.0)
 	End
     
 	Method Update()
