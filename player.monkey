@@ -5,14 +5,15 @@ Import rect
 Import sat.vec2
 Import level
 Import grapple
+Import animation
 
 Class Player
 	Field level:Level
 
 	Field width:Float
 	Field height:Float
-	Field widthFactor:Float = 1.0
-	Field heightFactor:Float = 1.2
+	Field widthFactor:Float = 0.8
+	Field heightFactor:Float = 0.8
 
 	Field position:Vec2 = New Vec2()
 	Field desiredPosition:Vec2 = New Vec2()	
@@ -66,6 +67,11 @@ Class Player
 	Field grappleExtendSpeed:Float
 	
 	Field image:Image
+	Field walkingAnimation:Animation
+	Field standingAnimation:Animation
+	Field jumpUpAnimation:Animation
+	Field jumpAlongAnimation:Animation
+	Field pushAnimation:Animation
 
 	Method New(level:Level)
 		Self.level = level
@@ -76,6 +82,11 @@ Class Player
 		grapple = New Grapple(level)
 		
 		image = LoadImage("images/player.png", 16, 16, 25, Image.MidHandle)
+		standingAnimation = New Animation(0, 4, 5)
+		jumpUpAnimation = New Animation(4, 1, 5)
+		walkingAnimation = New Animation(5, 3, 5)
+		jumpAlongAnimation = New Animation(8, 2, 5)
+		pushAnimation = New Animation(20, 3, 5)
 	End
 	
 	Method SetPlayerConstants()
@@ -108,7 +119,29 @@ Class Player
     
 	Method Draw()
 		SetColor(255, 255, 255)
-		DrawImage(image, position.x, position.y, 0.0, 3.0, 3.0)
+		Local rect:Rect = BoundingBox()
+		DrawRect(rect.topLeft.x, rect.topLeft.y, rect.width, rect.height)
+		Local flip:Float = 1.0
+		If velocity.x < 0
+			flip = -1.0
+		End
+		Local scaleX:Float = (width / 16) * 2
+		Local scaleY:Float = (width / 16) * 2
+		If onGround And Not (huggingLeft Or huggingRight)
+			If velocity.x = 0
+				DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, standingAnimation.GetFrame())
+			Else
+				DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, walkingAnimation.GetFrame())
+			End
+		Elseif huggingLeft
+			DrawImage(image, position.x, position.y, 0.0, -1 * scaleX , scaleY, pushAnimation.GetFrame())
+		Elseif huggingRight
+			DrawImage(image, position.x, position.y, 0.0, scaleX, scaleY, pushAnimation.GetFrame())
+		Elseif velocity.x = 0
+			DrawImage(image, position.x, position.y, 0.0, scaleX, scaleY, jumpUpAnimation.GetFrame())
+		Else
+			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpAlongAnimation.GetFrame())
+		End
 	End
     
 	Method Update()
