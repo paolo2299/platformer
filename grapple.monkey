@@ -143,8 +143,10 @@ Class Grapple
  		SetColor(255, 0, 0)
  		DrawLine(flyingRay.origin.x, flyingRay.origin.y, flyingRay.destination.x, flyingRay.destination.y)
  	End
- 	SetColor(0, 255, 0)
- 	DrawLine(handlePos.x, handlePos.y, hookPos.x, hookPos.y)
+ 	If engaged
+ 		SetColor(0, 255, 0)
+ 		DrawLine(handlePos.x, handlePos.y, hookPos.x, hookPos.y)
+ 	End
  End
 	
 End

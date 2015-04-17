@@ -24,5 +24,6 @@ Class GroundBlock Extends Block
 	Method Draw()
 		mojo.SetColor(255.0, 255.0, 255.0)
 		DrawImage(image, rect.topLeft.x + imageOffsetX, rect.topLeft.y + imageOffsetY, 0.0, imageScaleX, imageScaleY)
+		'DrawRect(rect.topLeft.x, rect.topLeft.y, rect.width, rect.height)
 	End
 End
