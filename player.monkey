@@ -73,6 +73,7 @@ Class Player
 	Field jumpAlongRisingFrame:Int = 8
 	Field jumpAlongFallingFrame:Int = 9
 	Field pushAnimation:Animation
+	Field flip:Float = 1.0
 
 	Method New(level:Level)
 		Self.level = level
@@ -120,10 +121,6 @@ Class Player
 		SetColor(255, 255, 255)
 		'Local rect:Rect = BoundingBox()
 		'DrawRect(rect.topLeft.x, rect.topLeft.y, rect.width, rect.height)
-		Local flip:Float = 1.0
-		If velocity.x < 0
-			flip = -1.0
-		End
 		Local scaleX:Float = (width / 16) * 2
 		Local scaleY:Float = (width / 16) * 1.7
 		Local pushAdjustment:Float = width*0.4
@@ -138,7 +135,7 @@ Class Player
 		Elseif huggingRight
 			DrawImage(image, position.x - pushAdjustment, position.y, 0.0, scaleX, scaleY, pushAnimation.GetFrame())
 		Elseif velocity.x = 0
-			DrawImage(image, position.x, position.y, 0.0, scaleX, scaleY, jumpUpFrame)
+			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpUpFrame)
 		Elseif velocity.y < 0
 			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpAlongRisingFrame)
 		Else
@@ -288,6 +285,13 @@ Class Player
 			If stretched <> 0
 				desiredPosition.Add(grapple.Direction().Scale(stretched))
 			End
+		End
+		
+		'set flip
+		If velocity.x > 0
+			flip = 1.0
+		Elseif velocity.x < 0
+			flip = -1.0
 		End
 		
 		'Print "position: " + position.x + "," + position.y
