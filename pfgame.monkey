@@ -167,7 +167,7 @@ Class PfGame Extends App
 	End
 	
 	Method FirstLevel:Level()
-		Return New Level(1)
+		Return New Level(4)
 	End
 	
 	Method IncrementLevel()

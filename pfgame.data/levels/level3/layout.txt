@@ -1,98 +1,98 @@
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,bwur,bwul, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,bwlr,bwll, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,biul,bmll,bmlr,belr, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul,p, , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bill,bmul,bmur,beur, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,beul,beur, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,bwur,bwul, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bcll,h,h,h,h,h,h,h,h,h,h,h,h, , , , , , , , , ,bwur,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,h,h, , , , , , , , , ,bwlr,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,biul,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,h,h, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwur,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwlr,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , ,h,h,h,h,h,h, , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , ,bell,bmll,bmlr,bmll,bmlr,belr, , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h,h,h,h,h,h,h,h,h,h,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , ,h,h,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,biur,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwll, , , , , , , , , , ,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , ,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , ,h,h,h,h,h,h, , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , ,bell,bmll,bmlr,bmll,bmlr,belr, , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h,h,h,h,h,h,h,h,h,h,h,h,h, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bwul, , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,biul,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,belr, , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,h,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , ,h,h,h,h,h,h,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , ,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , ,bell,bmlr,bmll,bmlr,bmll,bmlr,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , ,bell,bmlr,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , , , ,bell,biur,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , , , , ,bell,biur,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h, , , , , , , , , , , , , , , , , , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h, , , , , , , , , , , , , , , , , , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bcur,bcul,bcur
-bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcul,bcur,bcul,h, , , , , , , , , , , , , , , , , , , , , , , ,g, ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,beul,bmur,bmul,bmur,bmul,bmur,bilr,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,bwur,bwul, , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,bwlr,bwll, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,biul,bmll,bmlr,belr, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul, , , , , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul, , , , , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul, , , , , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bwul,p, , , , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bwll, , , , , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bill,bmul,bmur,beur, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,beul,beur, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , ,bwur,bwul, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bcll,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_left4,h_spikes_right4, , , , , , , , , ,bwur,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,h_spikes_left1,h_spikes_right1, , , , , , , , , ,bwlr,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,biul,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,h_spikes_left2,h_spikes_right2, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,bwur,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,bwlr,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , ,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2, , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , ,bell,bmll,bmlr,bmll,bmlr,belr, , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , ,h_spikes_left1,h_spikes_right1,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_left1,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , ,h_spikes_left2,h_spikes_right2,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,h_spikes_left3,h_spikes_right3,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,biur,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwul, , , , , , , , , , ,h_spikes_left4,h_spikes_right4, , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,bwll, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bwll, , , , , , , , , , ,h_spikes_left2,h_spikes_right2, , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,h_spikes_left3,h_spikes_right3, , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , ,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2, , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , ,bell,bmll,bmlr,bmll,bmlr,belr, , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4, , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,biul,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,h_spikes_right4, , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bwul, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,biul,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,bmlr,bmll,belr, , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right1, , , , , , , , , , , , , , , , ,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_left3,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right2, , , , , , , , , , , , , , , , ,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right3, , , , , , , , , , , , , , , , ,bell,bmlr,bmll,bmlr,bmll,bmlr,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,bell,bmlr,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , , , ,bell,biur,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , , , , ,bell,biur,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , , , , , ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , , , , , ,bwlr,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcul,bcur,bcul,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , , , ,g, ,bwur,bclr,bcll,bclr,bcll,bclr,bcll,bclr
+bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,h_spikes_right4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up1,h_spikes_up2,h_spikes_up3,h_spikes_up4,h_spikes_up2,h_spikes_up3,h_spikes_up4,beul,bmur,bmul,bmur,bmul,bmur,bilr,bcur,bcul,bcur,bcul,bcur,bcul,bcur
 bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
 bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur

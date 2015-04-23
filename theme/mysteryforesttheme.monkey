@@ -3,6 +3,9 @@ Import backgroundlayer
 Import theme
 
 Class MysteryForestTheme Implements Theme
+	Field tileWidth:Float
+	Field tileHeight:Float
+	Field scale:Vec2
 	
 	Field tileImageBMLL:Image
 	Field tileImageBMLR:Image
@@ -30,12 +33,20 @@ Class MysteryForestTheme Implements Theme
 	Field platformImageOR:Image
 	Field platformImageIR:Image
 	
+	Field spikesImage:Image
+	
 	Field farBackgroundImage:Image
 	Field nearBackgroundImage:Image
 	
 	Field backgroundLayers:Stack<BackgroundLayer> = New Stack<BackgroundLayer>()
 	
-	Method New()
+	Method New(tileWidth, tileHeight)
+		Self.tileWidth = tileWidth
+		Self.tileHeight = tileHeight
+		Local imageScaleX:Float = tileWidth / 128.0
+		Local imageScaleY:Float = tileHeight / 128.0
+		scale = New Vec2(imageScaleX, imageScaleY)
+	
 		tileImageBEUL = LoadImage("images/mysteryforest/Walls/wall_1_nw.png")
 		tileImageBEUR = LoadImage("images/mysteryforest/Walls/wall_1_ne.png")
 		tileImageBELR = LoadImage("images/mysteryforest/Walls/wall_1_se.png")
@@ -57,6 +68,8 @@ Class MysteryForestTheme Implements Theme
 		tileImageBILL = LoadImage("images/mysteryforest/Walls/wall_5_ne.png")
 		tileImageBILR = LoadImage("images/mysteryforest/Walls/wall_5_nw.png")
 		
+		spikesImage = LoadImage("images/mysteryforest/Other/stakes.png", 128, 128, 12)
+		
 		platformImageOL = LoadImage("images/mysteryforest/Walkways/walkway_outer_left.png")
 		platformImageIL = LoadImage("images/mysteryforest/Walkways/walkway_inner_left.png")
 		platformImageOR = LoadImage("images/mysteryforest/Walkways/walkway_outer_right.png")
@@ -72,58 +85,6 @@ Class MysteryForestTheme Implements Theme
 		Return backgroundLayers
 	End
 	
-	Method ImageForTileCode:Image(tileCode:String)
-		If tileCode = "bmll"
-			Return tileImageBMLL
-		Elseif tileCode = "bmlr"
-			Return tileImageBMLR
-		Elseif tileCode = "bmul"
-			Return tileImageBMUL
-		Elseif tileCode = "bmur"
-			Return tileImageBMUR
-		Elseif tileCode = "beul"
-			Return tileImageBEUL
-		Elseif tileCode = "beur"
-			Return tileImageBEUR
-		Elseif tileCode = "bell"
-			Return tileImageBELL
-		Elseif tileCode = "belr"
-			Return tileImageBELR
-		Elseif tileCode = "biul"
-			Return tileImageBIUL
-		Elseif tileCode = "biur"
-			Return tileImageBIUR
-		Elseif tileCode = "bill"
-			Return tileImageBILL
-		Elseif tileCode = "bilr"
-			Return tileImageBILR
-		Elseif tileCode = "bwur"
-			Return tileImageBWUR
-		Elseif tileCode = "bwlr"
-			Return tileImageBWLR
-		Elseif tileCode = "bwul"
-			Return tileImageBWUL
-		Elseif tileCode = "bwll"
-			Return tileImageBWLL
-		Elseif tileCode = "bcul"
-			Return tileImageBCUL
-		Elseif tileCode = "bcur"
-			Return tileImageBCUR
-		Elseif tileCode = "bcll"
-			Return tileImageBCLL
-		Elseif tileCode = "bclr"
-			Return tileImageBCLR
-		Elseif tileCode = "platform_outer_left"
-			Return platformImageOL
-		Elseif tileCode = "platform_inner_left"
-			Return platformImageIL
-		Elseif tileCode = "platform_inner_right"
-			Return platformImageIR
-		Elseif tileCode = "platform_outer_right"
-			Return platformImageOR
-		End
-	End
-	
 	Method OffsetForTileCode:Vec2(tileCode:String)
 		Local uplift:Float = -2.0
 		If tileCode = "beul"
@@ -134,4 +95,89 @@ Class MysteryForestTheme Implements Theme
 			Return New Vec2()
 		End
 	End
+	
+	Method TileImageForCode:TileImage(tileCode:String)
+		Local imageOffset:Vec2 = OffsetForTileCode(tileCode)
+		If tileCode = "bmll"
+			Return New TileImage(tileImageBMLL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bmlr"
+			Return New TileImage(tileImageBMLR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bmul"
+			Return New TileImage(tileImageBMUL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bmur"
+			Return New TileImage(tileImageBMUR, scale, imageOffset, 0.0)
+		Elseif tileCode = "beul"
+			Return New TileImage(tileImageBEUL, scale, imageOffset, 0.0)
+		Elseif tileCode = "beur"
+			Return New TileImage(tileImageBEUR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bell"
+			Return New TileImage(tileImageBELL, scale, imageOffset, 0.0)
+		Elseif tileCode = "belr"
+			Return New TileImage(tileImageBELR, scale, imageOffset, 0.0)
+		Elseif tileCode = "biul"
+			Return New TileImage(tileImageBIUL, scale, imageOffset, 0.0)
+		Elseif tileCode = "biur"
+			Return New TileImage(tileImageBIUR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bill"
+			Return New TileImage(tileImageBILL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bilr"
+			Return New TileImage(tileImageBILR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bwur"
+			Return New TileImage(tileImageBWUR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bwlr"
+			Return New TileImage(tileImageBWLR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bwul"
+			Return New TileImage(tileImageBWUL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bwll"
+			Return New TileImage(tileImageBWLL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bcul"
+			Return New TileImage(tileImageBCUL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bcur"
+			Return New TileImage(tileImageBCUR, scale, imageOffset, 0.0)
+		Elseif tileCode = "bcll"
+			Return New TileImage(tileImageBCLL, scale, imageOffset, 0.0)
+		Elseif tileCode = "bclr"
+			Return New TileImage(tileImageBCLR, scale, imageOffset, 0.0)
+		Elseif tileCode = "platform_outer_left"
+			Return New TileImage(platformImageOL, scale, imageOffset, 0.0)
+		Elseif tileCode = "platform_inner_left"
+			Return New TileImage(platformImageIL, scale, imageOffset, 0.0)
+		Elseif tileCode = "platform_inner_right"
+			Return New TileImage(platformImageIR, scale, imageOffset, 0.0)
+		Elseif tileCode = "platform_outer_right"
+			Return New TileImage(platformImageOR, scale, imageOffset, 0.0)
+		Elseif tileCode = "h_spikes_up1"
+			Return New TileImage(spikesImage, scale, imageOffset, 0.0, 0)
+		Elseif tileCode = "h_spikes_up2"
+			Return New TileImage(spikesImage, scale, imageOffset, 0.0, 1)
+		Elseif tileCode = "h_spikes_up3"
+			Return New TileImage(spikesImage, scale, imageOffset, 0.0, 2)
+		Elseif tileCode = "h_spikes_up4"
+			Return New TileImage(spikesImage, scale, imageOffset, 0.0, 3)
+		Elseif tileCode = "h_spikes_left1"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(0.0, tileHeight)), 90.0, 0)
+		Elseif tileCode = "h_spikes_left2"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(0.0, tileHeight)), 90.0, 1)
+		Elseif tileCode = "h_spikes_left3"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(0.0, tileHeight)), 90.0, 2)
+		Elseif tileCode = "h_spikes_left4"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(0.0, tileHeight)), 90.0, 3)
+		Elseif tileCode = "h_spikes_right1"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, 0.0)), 270.0, 0)
+		Elseif tileCode = "h_spikes_right2"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, 0.0)), 270.0, 1)
+		Elseif tileCode = "h_spikes_right3"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, 0.0)), 270.0, 2)
+		Elseif tileCode = "h_spikes_right4"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, 0.0)), 270.0, 3)
+		Elseif tileCode = "h_spikes_down1"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, tileHeight)), 180.0, 0)
+		Elseif tileCode = "h_spikes_down2"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, tileHeight)), 180.0, 1)
+		Elseif tileCode = "h_spikes_down3"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, tileHeight)), 180.0, 2)
+		Elseif tileCode = "h_spikes_down4"
+			Return New TileImage(spikesImage, scale, imageOffset.Clone().Add(New Vec2(tileWidth, tileHeight)), 180.0, 3)
+		End
+	End 
 End

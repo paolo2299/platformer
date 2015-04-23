@@ -1,6 +1,7 @@
 Import collidable
 Import sat.vec
 Import rect
+Import theme
 
 Class MovingPlatform Implements Collidable
 	
@@ -13,10 +14,7 @@ Class MovingPlatform Implements Collidable
 	Field prevTopLeftPos:Vec2
 	Field midpointTopLeftPos:Vec2
 	
-	Field imageOL:Image
-	Field imageIL:Image
-	Field imageIR:Image
-	Field imageOR:Image
+	Field theme:Theme
 	
 	Field imageScaleX:Float
 	Field imageScaleY:Float
@@ -25,12 +23,14 @@ Class MovingPlatform Implements Collidable
 	Field direction:Vec2
 	Field offset:Vec2
 	Field maxDistance:Float
+	
+	Field tileImageOuterLeft:TileImage
+	Field tileImageInnerLeft:TileImage
+	Field tileImageInnerRight:TileImage
+	Field tileImageOuterRight:TileImage
 
-	Method New(imageOL:Image, imageIL:Image, imageIR:Image, imageOR:Image, originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, platformWidthTiles:Float, tileWidth:Float, tileHeight:Float, speed:Float)
-		Self.imageOL = imageOL
-		Self.imageIL = imageIL
-		Self.imageIR = imageIR
-		Self.imageOR = imageOR
+	Method New(theme:Theme, originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, platformWidthTiles:Float, tileWidth:Float, tileHeight:Float, speed:Float)
+		Self.theme = theme
 
 		Self.platformWidthTiles = platformWidthTiles
 		Self.tileWidth = tileWidth
@@ -50,9 +50,10 @@ Class MovingPlatform Implements Collidable
 		'PrintVec("destinationTopLeftPos", destinationTopLeftPos)
 		'PrintVec("midpointTopLeftPos", midpointTopLeftPos)
 		'Print "maxDistance" + maxDistance
-		
-		imageScaleX = tileWidth / imageIL.Width()
-		imageScaleY = tileHeight / imageIL.Height()
+		tileImageOuterLeft = theme.TileImageForCode("platform_outer_left")
+		tileImageOuterRight = theme.TileImageForCode("platform_outer_right")
+		tileImageInnerLeft = theme.TileImageForCode("platform_inner_left")
+		tileImageInnerRight = theme.TileImageForCode("platform_inner_right")
 	End
 	
 	Method IsMoving:Bool()
@@ -108,15 +109,15 @@ Class MovingPlatform Implements Collidable
 		Local drawPos:Vec2 = topLeftPos.Clone()
 		While tileCount < platformWidthTiles
 			If tileCount = 0
-				DrawImage(imageOL, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+				DrawImage(tileImageOuterLeft.image, drawPos.x + tileImageOuterLeft.offset.x, drawPos.y + tileImageOuterLeft.offset.y, tileImageOuterLeft.rotation, tileImageOuterLeft.scale.x, tileImageOuterLeft.scale.y, tileImageOuterLeft.frame)
 			Elseif tileCount = (platformWidthTiles - 1)
-				DrawImage(imageOR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+				DrawImage(tileImageOuterRight.image, drawPos.x + tileImageOuterRight.offset.x, drawPos.y + tileImageOuterRight.offset.y, tileImageOuterRight.rotation, tileImageOuterRight.scale.x, tileImageOuterRight.scale.y, tileImageOuterRight.frame)
 			Else
 				Local parity:Int = tileCount Mod 2
 				If parity = 0
-					DrawImage(imageIR, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+					DrawImage(tileImageInnerRight.image, drawPos.x + tileImageInnerRight.offset.x, drawPos.y + tileImageInnerRight.offset.y, tileImageInnerRight.rotation, tileImageInnerRight.scale.x, tileImageInnerRight.scale.y, tileImageInnerRight.frame)
 				Else
-					DrawImage(imageIL, drawPos.x, drawPos.y, 0.0, imageScaleX, imageScaleY)
+					DrawImage(tileImageInnerLeft.image, drawPos.x + tileImageInnerLeft.offset.x, drawPos.y + tileImageInnerLeft.offset.y, tileImageInnerLeft.rotation, tileImageInnerLeft.scale.x, tileImageInnerLeft.scale.y, tileImageInnerLeft.frame)
 				End
 			End
 			drawPos.Add(New Vec2(tileWidth, 0.0))

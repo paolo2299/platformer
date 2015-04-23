@@ -28,9 +28,10 @@ Class Level
 	
 	Method New(number:Int)
 		Self.levelNumber = number
-		Self.theme = New MysteryForestTheme() 'TODO get from level config
 		
 		GetConfig()
+		Print "instantialting mystery forest"
+		Self.theme = New MysteryForestTheme(tileWidth, tileHeight) 'TODO get from level config
 		GetLayout()
 	End
 	
@@ -78,14 +79,14 @@ Class Level
 				Local imageOffsetX:Float = -0.11
 				Local imageOffsetY:Float = -0.09
 				
-				If tile[..1] = "b"
-					Local image:Image = theme.ImageForTileCode(tile)
-					Local offset:Vec2 = theme.OffsetForTileCode(tile)
-					Local block:Block = New GroundBlock(rect, image, offset.x, offset.y)
+				If tile[..1] = "b" 
+					Local tileImage:TileImage = theme.TileImageForCode(tile)
+					Local block:Block = New GroundBlock(rect, tileImage)
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "h"
-					Local block:Block = New HazardBlock(rect)
+				Elseif tile[..1] = "h"
+					Local tileImage:TileImage = theme.TileImageForCode(tile)
+					Local block:Block = New HazardBlock(rect, tileImage)
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "g"
@@ -116,7 +117,7 @@ Class Level
 			Local width:Float = Float(data[4].Trim()) * tileWidth  'TODO implement rather than hard code
 			Local height:Float = Float(data[5].Trim()) * tileHeight 'TODO remove
 			Local speed:Float = Float(data[6].Trim()) * tileWidth
-			Local movingPlatform:MovingPlatform = New MovingPlatform(theme.ImageForTileCode("platform_outer_left"), theme.ImageForTileCode("platform_inner_left"), theme.ImageForTileCode("platform_inner_right"), theme.ImageForTileCode("platform_outer_right"), New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
+			Local movingPlatform:MovingPlatform = New MovingPlatform(theme, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
 			movingPlatforms.Push(movingPlatform)
 		End
 	End
