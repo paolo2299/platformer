@@ -7,12 +7,15 @@ Import movingplatform
 Import stopwatch
 Import sat.vec2
 Import theme.mysteryforesttheme
+Import collidablehazard
+Import collidablehazard.circularhazard
 
 Class Level
 	Field levelNumber:Int
 
 	Field playerStartingPosition:Vec2 = New Vec2()
 	Field blocks:Stack<Block> = New Stack<Block>()
+	Field collidableHazards:Stack<CollidableHazard> = New Stack<CollidableHazard>()
 	Field movingPlatforms:Stack<MovingPlatform> = New Stack<MovingPlatform>()	
 	Field collisionMap:CollisionMap
 	Field mapWidth:Int
@@ -89,6 +92,13 @@ Class Level
 					Local block:Block = New HazardBlock(rect, tileImage)
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
+				Elseif tile = "chcirc"
+					Local radius = tileWidth 'TODO parse from csv
+					'Local tileImage:TileImage = theme.TileImageForCode(tile) 'TODO add image
+					Local position:Vec2 = New Vec2((colNum + 0.5) * tileWidth, (rowNum + 0.5)*tileHeight) 'TODO allow other positions than centre of tile?
+					Local collidableHazard:CollidableHazard = New CircularHazard(position, radius)
+					
+					collidableHazards.Push(collidableHazard)
 				Elseif tile = "g"
 					Local block:Block = New GoalBlock(rect)
 					blocks.Push(block)

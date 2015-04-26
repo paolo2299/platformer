@@ -1,6 +1,7 @@
 Import mojo
 Import sat.vec2
 Import sat.rectangle
+Import sat.polygon
 
 Class Rect Extends Rectangle
 	Field topLeft:Vec2
@@ -43,4 +44,9 @@ Class Rect Extends Rectangle
 		End
 		Return Null
 	End
+	
+	Method CloneRect:Rect()
+		Return New Rect(topLeft.x, topLeft.y, width, height)
+	End
 End
+

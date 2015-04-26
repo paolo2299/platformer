@@ -12,6 +12,7 @@ Import level
 Import fontmachine
 Import playerrecorder
 Import savedstate
+Import utilities
 
 Const STATE_MENU:Int = 0
 Const STATE_LEVEL_CHOICE = 1
@@ -113,6 +114,10 @@ Class PfGame Extends App
 				End
 				For Local movingPlatform := Eachin currentLevel.movingPlatforms
 					movingPlatform.Draw()
+				End
+				
+				For Local collidableHazard := Eachin currentLevel.collidableHazards
+					collidableHazard.Draw()
 				End
 				
 				If bestPlayerRecorder <> Null
@@ -244,50 +249,9 @@ Class PfGame Extends App
 		End
 	End
 	
-	Method PrintRect(desc:String, r:Rect)
-	    Print desc
-		PrintVec("topLeft", r.topLeft)
-		PrintVec("topRight", r.topRight) 
-		PrintVec("botLeft", r.botLeft) 
-		PrintVec("botRight", r.botRight) 
-	End
-	
-	Method PrintVec(desc: String, v:Vec2)
-		Print desc + ": " + v.x + "," + v.y
-	End
-	
 	Method GetClosestCollision:Collision(p: Player, movementVec: Vec2)
 		Local pRect:Rect = p.BoundingBox()
-		Local rays:Stack<Ray> = New Stack<Ray>()
-		
-		If movementVec.x > 0
-			rays.Push(RayFromOffset(pRect.rightCentre, movementVec))
-			rays.Push(RayFromOffset(pRect.botRight, movementVec))
-			rays.Push(RayFromOffset(pRect.topRight, movementVec))
-		End
-		If movementVec.x < 0
-			rays.Push(RayFromOffset(pRect.leftCentre, movementVec))
-			rays.Push(RayFromOffset(pRect.botLeft, movementVec))
-			rays.Push(RayFromOffset(pRect.topLeft, movementVec))
-		End
-		If movementVec.y > 0
-			rays.Push(RayFromOffset(pRect.botCentre, movementVec))
-			If movementVec.x <= 0
-				rays.Push(RayFromOffset(pRect.botRight, movementVec))
-			End
-			If movementVec.x >= 0
-				rays.Push(RayFromOffset(pRect.botLeft, movementVec))
-			End
-		End
-		If movementVec.y < 0
-			rays.Push(RayFromOffset(pRect.topCentre, movementVec))
-			If movementVec.x <= 0
-				rays.Push(RayFromOffset(pRect.topRight, movementVec))
-			End
-			If movementVec.x >= 0
-				rays.Push(RayFromOffset(pRect.topLeft, movementVec))
-			End
-		End
+		Local rays:Stack<Ray> = RaysForMovement(pRect, movementVec)
 		
 		Return GetClosestCollision(rays)
 	End
@@ -346,11 +310,13 @@ Class PfGame Extends App
 	
 	Method CheckForAndResolveCollisions(p: Player)			
 		Local movementVec:Vec2 = p.MovementVector()
+		Local startRect:Rect = p.BoundingBox().CloneRect()
 		
 		Local closestCollision:Collision = GetClosestCollision(p, movementVec)
 		If closestCollision = Null
 			'no collision
 			p.position.Add(movementVec)
+			CheckForCollisionWithCollidingHazard(p, startRect)
 			Return
 		End
 		
@@ -397,6 +363,22 @@ Class PfGame Extends App
 			p.position.Add(closestCollision.ray.offset)
 		End
 		'PrintVec("final player position", p.position)
+		CheckForCollisionWithCollidingHazard(p, startRect)
+	End
+	
+	Method CheckForCollisionWithCollidingHazard(p:Player, startRect:Rect)
+		'TODO refactor - this should be icorporated into the closest collision logic.
+		'For example it is currently possible to fly though a hazard into the level goal
+		Local endRect:Rect = p.BoundingBox().CloneRect()
+		Local movementRays:Stack<Ray> = RaysForMovement(startRect, endRect)
+		For Local ray := Eachin movementRays
+			For Local collidableHazard := Eachin currentLevel.collidableHazards
+				If collidableHazard.CollidesWithRay(ray)
+					gameState = STATE_DEATH
+					Return
+				End
+			End
+		End
 	End
 	
 	Method UpdateGameStateForCollision:Bool(collision:Collision)
