@@ -12,7 +12,7 @@ Class Enemy
 	Method New(position:Vec2, radius)
 		Self.position = position
 		Self.image = LoadImage("images/mysteryforest/Other/monster/sprite.png", 50, 50, 25, Image.MidHandle)
-		Self.animation = New Animation(0, 2, 2)
+		Self.animation = New Animation(0, 3, 2)
 		scaleX = (25.0 / radius) * 2.3
 		scaleY = (25.0 / radius) * 2.3
 	End
