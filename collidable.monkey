@@ -9,9 +9,9 @@ Interface Collidable
 	
 	Method IsGoal:Bool()
 	
-	Method IsMoving:Bool()
-	
 	Method IsGrappleable:Bool()
+	
+	Method IsMoving:Bool()
 	
 	Method LastMovement:Vec2()
 End

@@ -107,7 +107,9 @@ Class PfGame Extends App
 				Local translation:Vec2 = camera.Translation()
 				Translate(translation.x, translation.y)
 				RenderBackground(translation)
-				player.grapple.Draw()
+				If player.holdsGrapple
+					player.grapple.Draw()
+				End
 				player.Draw()
 				For Local block := Eachin currentLevel.blocks
 					block.Draw()
@@ -118,6 +120,10 @@ Class PfGame Extends App
 				
 				For Local collidableHazard := Eachin currentLevel.collidableHazards
 					collidableHazard.Draw()
+				End
+				
+				For Local collectible := Eachin currentLevel.collectibles
+					collectible.Draw()
 				End
 				
 				If bestPlayerRecorder <> Null
@@ -227,7 +233,9 @@ Class PfGame Extends App
 		CheckForAndResolveCollisions(player)
 		DetectNearbySurfaces(player)
 		
-		UpdateGrapple(player)
+		If player.holdsGrapple
+			UpdateGrapple(player)
+		End
 	End
 	
 	Method UpdateGrapple(player:Player)
@@ -317,6 +325,7 @@ Class PfGame Extends App
 			'no collision
 			p.position.Add(movementVec)
 			CheckForCollisionWithCollidingHazard(p, startRect)
+			CheckForCollisionWithCollectible(p, startRect)
 			Return
 		End
 		
@@ -364,6 +373,7 @@ Class PfGame Extends App
 		End
 		'PrintVec("final player position", p.position)
 		CheckForCollisionWithCollidingHazard(p, startRect)
+		CheckForCollisionWithCollectible(p, startRect)
 	End
 	
 	Method CheckForCollisionWithCollidingHazard(p:Player, startRect:Rect)
@@ -383,10 +393,11 @@ Class PfGame Extends App
 	
 	Method CheckForCollisionWithCollectible(p:Player, startRect:Rect)
 		'TODO is it possible to fly striaght through a collectibe with enough speed and the correct angle? (answer: yes) how to resolve?
+		Local endRect:Rect = p.BoundingBox().CloneRect()
 		Local movementRays:Stack<Ray> = RaysForMovement(startRect, endRect)
 		For Local ray := Eachin movementRays
 			For Local collectible := Eachin currentLevel.collectibles
-				If collectible.CollidesWithRay(ray)
+				If DetectCollision(ray, collectible)
 					p.CollectCollectible(collectible)
 				End
 			End

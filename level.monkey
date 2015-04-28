@@ -106,7 +106,7 @@ Class Level
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "grapple"
-					Local collectible:Collectible = New Collectble(Collectible.TYPE_GRAPPLE)
+					Local collectible:Collectible = New CollectibleGrapple(rect.topLeft, rect.width, rect.height)
 					collectibles.Push(collectible)
 				Elseif tile = "p"
 					Local tileRect:Rect = TileRectFromTileCoord(New Vec2Di(colNum, rowNum))
@@ -150,6 +150,9 @@ Class Level
 	Method Reset()
 		For Local movingPlatform := Eachin movingPlatforms
 			movingPlatform.Reset()
+		End
+		For Local collectible := Eachin collectibles
+			collectible.Reset()
 		End
 		stopWatch.Reset()
 	End

@@ -62,6 +62,7 @@ Class Player
 	
 	Field lastUpdate:Int = Millisecs()
 	
+	Field holdsGrapple:Bool = False
 	Field grapple:Grapple
 	Field grappleExtendSpeedFactor:Float = 1.0 / 8.0
 	Field grappleExtendSpeed:Float
@@ -110,8 +111,20 @@ Class Player
 		grappleExtendSpeed = grappleExtendSpeedFactor * tileWidth
 	End
 
+	Method CollectCollectible(collectible:Collectible)
+		collectible.Collect()
+		If collectible.Type() = COLLECTIBLE_GRAPPLE
+			CollectGrapple()
+		End
+	End
+	
+	Method CollectGrapple()
+		holdsGrapple = True
+	End
+
 	Method Reset()
 		grapple.Undeploy()
+		holdsGrapple = False
 		position.Set(originalPos.x, originalPos.y)
 		desiredPosition.Set(originalPos.x, originalPos.y)
 		velocity.Set(0, 0)
@@ -153,7 +166,7 @@ Class Player
 			velocity.y += gravity
 		End
     	
-		If grapple.engaged
+		If holdsGrapple And grapple.engaged
 			'constrain the velocity to be perpendicular to the grapple direction
 			Local perp:Vec2 = grapple.Direction().Perp()
 			velocity.Project(perp)
@@ -254,7 +267,7 @@ Class Player
 		End
 		
 		'update grapple interaction
-		If KeyHit(KEY_UP) And grapple.Undeployed()
+		If holdsGrapple And KeyHit(KEY_UP) And grapple.Undeployed()
 			grapple.Deploy()
 		End
 		
@@ -280,7 +293,7 @@ Class Player
 		desiredPosition.y = position.y + velocity.y '+ movingPlatformOffset.y
 		
 		'finally constrain by grapple again
-		If grapple.engaged
+		If holdsGrapple And grapple.engaged
 			Local stretched:Float = desiredPosition.Clone().Sub(grapple.hookPos).Length() - grapple.engagedLength
 			If stretched <> 0
 				desiredPosition.Add(grapple.Direction().Scale(stretched))
