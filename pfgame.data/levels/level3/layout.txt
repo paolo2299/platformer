@@ -13,7 +13,7 @@ bcll,bclr,bcll,bclr,bcll,bclr,bcll,bill,bmul,bmur,beur, , , , , , , , , , ,h_spi
 bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left1,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
 bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
 bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr
-bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , , , , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
+bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right4, , , , , , , , , , , ,grapple, , , , , , , , , ,h_spikes_left4,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur,bcul,bcur
 bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right1, , , , , , , , , , ,beul,beur, , , , , , , , , ,h_spikes_left1,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr,bcll,bclr
 bcll,bclr,bcll,bclr,bcll,bclr,bcul,bcur,bcul,bcur,h_spikes_right2, , , , , , , , , , ,bwur,bwul, , , , , , , , , ,h_spikes_left2,bclr,bcll,bclr,bcll,bcur,bcul,bcur,bcul,bcur,bcul,bcur
 bcul,bcur,bcul,bcur,bcul,bcur,bcll,bclr,bcll,bclr,h_spikes_right3, , , , , , , , , , ,h_spikes_left1,h_spikes_right1, , , , , , , , , ,h_spikes_left3,bcur,bcul,bcur,bcul,bclr,bcll,bclr,bcll,bclr,bcll,bclr

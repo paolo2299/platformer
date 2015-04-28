@@ -32,5 +32,5 @@ bwll,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bwlr
 bwul,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bwur
 bwll,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bwlr
 bwul,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bwur
-bwll,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bwlr
+bwll,,,,,,,grapple,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bwlr
 bill,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bmul,bmur,bilr
