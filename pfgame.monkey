@@ -172,7 +172,7 @@ Class PfGame Extends App
 	End
 	
 	Method FirstLevel:Level()
-		Return New Level(4)
+		Return New Level(1)
 	End
 	
 	Method IncrementLevel()
@@ -376,6 +376,18 @@ Class PfGame Extends App
 				If collidableHazard.CollidesWithRay(ray)
 					gameState = STATE_DEATH
 					Return
+				End
+			End
+		End
+	End
+	
+	Method CheckForCollisionWithCollectible(p:Player, startRect:Rect)
+		'TODO is it possible to fly striaght through a collectibe with enough speed and the correct angle? (answer: yes) how to resolve?
+		Local movementRays:Stack<Ray> = RaysForMovement(startRect, endRect)
+		For Local ray := Eachin movementRays
+			For Local collectible := Eachin currentLevel.collectibles
+				If collectible.CollidesWithRay(ray)
+					p.CollectCollectible(collectible)
 				End
 			End
 		End

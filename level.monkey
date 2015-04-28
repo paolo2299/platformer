@@ -9,6 +9,7 @@ Import sat.vec2
 Import theme.mysteryforesttheme
 Import collidablehazard
 Import collidablehazard.circularhazard
+Import collectible
 
 Class Level
 	Field levelNumber:Int
@@ -16,6 +17,7 @@ Class Level
 	Field playerStartingPosition:Vec2 = New Vec2()
 	Field blocks:Stack<Block> = New Stack<Block>()
 	Field collidableHazards:Stack<CollidableHazard> = New Stack<CollidableHazard>()
+	Field collectibles:Stack<Collectible> = New Stack<Collectible>()
 	Field movingPlatforms:Stack<MovingPlatform> = New Stack<MovingPlatform>()	
 	Field collisionMap:CollisionMap
 	Field mapWidth:Int
@@ -103,6 +105,9 @@ Class Level
 					Local block:Block = New GoalBlock(rect)
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
+				Elseif tile = "grapple"
+					Local collectible:Collectible = New Collectble(Collectible.TYPE_GRAPPLE)
+					collectibles.Push(collectible)
 				Elseif tile = "p"
 					Local tileRect:Rect = TileRectFromTileCoord(New Vec2Di(colNum, rowNum))
 					playerStartingPosition.Set(tileRect.centre.x, tileRect.centre.y)
