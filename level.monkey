@@ -11,6 +11,12 @@ Import collidablehazard
 Import collidablehazard.circularhazard
 Import collectible
 
+Class ConfigException Extends Throwable
+End
+
+Class InvalidThemeException Extends ConfigException
+End
+
 Class Level
 	Field levelNumber:Int
 
@@ -36,7 +42,6 @@ Class Level
 		
 		GetConfig()
 		Print "instantialting mystery forest"
-		Self.theme = New MysteryForestTheme(tileWidth, tileHeight) 'TODO get from level config
 		GetLayout()
 	End
 	
@@ -56,6 +61,8 @@ Class Level
 		tileWidth = defaultTileWidth
 		tileHeight = defaultTileHeight
 		
+		'TODO properly validate config
+		
 		Local rows:String[] = mojo.LoadString(filePath).Split("~n")
 		For Local row:String = Eachin rows
 			Local data:String[] = row.Split(",")
@@ -63,6 +70,12 @@ Class Level
 				tileWidth = Int(data[1].Trim())
 			Elseif data[0] = "tileHeight"
 				tileHeight = Int(data[1].Trim())
+			Elseif data[0] = "theme"
+				If data[1].Trim() = "mysteryforest"
+					theme = New MysteryForestTheme(tileWidth, tileHeight)
+				Else
+					Throw New InvalidThemeException
+				End
 			End
 		End
 	End
