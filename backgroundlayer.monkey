@@ -27,4 +27,4 @@ Class BackgroundLayer
 			imageScaleY = desiredHeight/image.Height()
 		End
 	End
-End
+End	

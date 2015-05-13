@@ -18,6 +18,7 @@ Class BlockyTheme Implements Theme
 	
 	Field spikesImage:Image
 	
+	Field midnightBlueImage:Image
 	Field backgroundLayers:Stack<BackgroundLayer> = New Stack<BackgroundLayer>()
 	
 	Method New(tileWidth, tileHeight)
@@ -38,6 +39,10 @@ Class BlockyTheme Implements Theme
 		platformImageIL = LoadImage("images/mysteryforest/Walkways/walkway_inner_left.png")
 		platformImageOR = LoadImage("images/mysteryforest/Walkways/walkway_outer_right.png")
 		platformImageIR = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png")
+		
+		midnightBlueImage = LoadImage("images/midnight_blue.png")
+		Local backgroundSky:BackgroundLayer = New BackgroundLayer(midnightBlueImage, 0.0, 256.0, 256.0)
+		backgroundLayers.Push(backgroundSky)
 	End
 	
 	Method BackgroundLayers:Stack<BackgroundLayer>()
@@ -47,8 +52,8 @@ Class BlockyTheme Implements Theme
 	Method TileImageForCode:TileImage(tileCode:String)
 		Local imageOffset:Vec2 = New Vec2(0.0, 0.0)
 		If tileCode[..1] = "b"
-			Local frameX:Int = 5 + Floor(Rnd() * 4)
-			Local frameY:Int = Floor(Rnd() * 4)
+			Local frameX:Int = 0 + Floor(Rnd() * 4)
+			Local frameY:Int = 8 + Floor(Rnd() * 4)
 			Local frame:Int = frameY * 24 + frameX
 			Return New TileImage(tileImageLargeBlocks, blockScale, imageOffset, 0.0, frame)
 		Elseif tileCode = "platform_outer_left"
