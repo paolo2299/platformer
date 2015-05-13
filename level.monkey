@@ -7,6 +7,7 @@ Import movingplatform
 Import stopwatch
 Import sat.vec2
 Import theme.mysteryforesttheme
+Import theme.blockytheme
 Import collidablehazard
 Import collidablehazard.circularhazard
 Import collectible
@@ -73,6 +74,8 @@ Class Level
 			Elseif data[0] = "theme"
 				If data[1].Trim() = "mysteryforest"
 					theme = New MysteryForestTheme(tileWidth, tileHeight)
+			          Elseif data[1].Trim() = "blocky"
+					theme = New BlockyTheme(tileWidth, tileHeight)
 				Else
 					Throw New InvalidThemeException
 				End
