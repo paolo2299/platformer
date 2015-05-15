@@ -19,6 +19,7 @@ Class BlockyTheme Implements Theme
 	Field spikesImage:Image
 	
 	Field midnightBlueImage:Image
+	Field starsImage:Image
 	Field backgroundLayers:Stack<BackgroundLayer> = New Stack<BackgroundLayer>()
 	
 	Method New(tileWidth, tileHeight)
@@ -41,8 +42,11 @@ Class BlockyTheme Implements Theme
 		platformImageIR = LoadImage("images/mysteryforest/Walkways/walkway_inner_right.png")
 		
 		midnightBlueImage = LoadImage("images/midnight_blue.png")
+		starsImage = LoadImage("images/stars.png")
 		Local backgroundSky:BackgroundLayer = New BackgroundLayer(midnightBlueImage, 0.0, 256.0, 256.0)
+		Local stars:BackgroundLayer = New BackgroundLayer(starsImage, 0.6, 384.0, 384.0)
 		backgroundLayers.Push(backgroundSky)
+		backgroundLayers.Push(stars)
 	End
 	
 	Method BackgroundLayers:Stack<BackgroundLayer>()
