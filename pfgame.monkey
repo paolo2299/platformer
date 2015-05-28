@@ -132,6 +132,9 @@ Class PfGame Extends App
 			PopMatrix()
 			SetColor(255, 255, 255)
 			font.DrawText("" + currentLevel.stopWatch.ElapsedString(), VIRTUAL_WINDOW_WIDTH - 50, 20, eDrawAlign.RIGHT)
+			If currentLevel.stopWatch.TotalElapsed() < 2000
+				font.DrawText("" + currentLevel.name, VIRTUAL_WINDOW_WIDTH / 2, 40)	
+			End
 			Case STATE_LEVEL_COMPLETE
 				font.DrawText("Press Enter to go to the next level", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2 - 40, eDrawAlign.CENTER)
 				font.DrawText("Press R to retry the level and try to get a faster time!", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2, eDrawAlign.CENTER)

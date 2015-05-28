@@ -37,6 +37,8 @@ Class Level
 	Field tileWidth:Int
 	Field tileHeight:Int
 	
+	Field name:String
+	
 	Field theme:Theme
 	
 	Method New(number:Int)
@@ -72,6 +74,8 @@ Class Level
 				tileWidth = Int(data[1].Trim())
 			Elseif data[0] = "tileHeight"
 				tileHeight = Int(data[1].Trim())
+			Elseif data[0] = "name"
+				name = data[1].Trim()
 			Elseif data[0] = "theme"
 				If data[1].Trim() = "mysteryforest"
 					theme = New MysteryForestTheme(tileWidth, tileHeight)
