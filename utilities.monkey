@@ -55,3 +55,12 @@ Function PrintRect(desc:String, r:Rect)
 	PrintVec("botLeft", r.botLeft) 
 	PrintVec("botRight", r.botRight) 
 End
+
+Function FormatMillisecs:String(millisecs:Int)
+	Local wholeSeconds:String = String(millisecs / 1000)
+	Local remainder:String = String((millisecs Mod 1000) / 10)
+	If remainder.Length() < 2
+		remainder = "0" + remainder
+	End
+	Return wholeSeconds + "." + remainder 
+End

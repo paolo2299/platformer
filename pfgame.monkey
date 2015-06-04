@@ -20,6 +20,7 @@ Const STATE_GAME:Int = 2
 Const STATE_LEVEL_COMPLETE = 3
 Const STATE_DEATH:Int = 4
 
+Const FIRST_LEVEL = 1
 
 Class PfGame Extends App
 	
@@ -100,8 +101,8 @@ Class PfGame Extends App
 	    
 	    Select gameState
 	    	Case STATE_MENU
-	    		DrawText("Platform Game!", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 2, 0.5)
-	    		DrawText("Press Enter to Play", VIRTUAL_WINDOW_WIDTH / 2, VIRTUAL_WINDOW_HEIGHT / 1.8, 0.5)
+	    		RenderTextCenter("Platform Game!", 9)
+	    		RenderTextCenter("Press Enter to Play", 11)
 	    	Case STATE_GAME
 			PushMatrix()
 				Local translation:Vec2 = camera.Translation()
@@ -136,10 +137,20 @@ Class PfGame Extends App
 				font.DrawText("" + currentLevel.name, VIRTUAL_WINDOW_WIDTH / 2, 40)	
 			End
 			Case STATE_LEVEL_COMPLETE
-				font.DrawText("Press Enter to go to the next level", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2 - 40, eDrawAlign.CENTER)
-				font.DrawText("Press R to retry the level and try to get a faster time!", VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT/2, eDrawAlign.CENTER)
+				RenderTextCenter("Press Enter to go to the next level", 6)
+				RenderTextCenter("Your time: " + FormatMillisecs(currentLevel.stopWatch.Elapsed()), 7)
+				
+				RenderTextCenter("Fastest time ever: " + FormatMillisecs(savedState.GetLevelTime(currentLevel)), 9)
+				
+				RenderTextCenter("Medal awarded: " + currentLevel.AwardMedal(savedState.GetLevelTime(currentLevel)), 10)
+				
+				RenderTextCenter("Press R to retry the level and try to get a faster time!", 11)
 		End
 	End
+	
+	Method RenderTextCenter(text:String, slot:Int = 10) '20 vertical slots
+		font.DrawText(text, VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT * (slot * 1.0 / 20.0), eDrawAlign.CENTER)
+	End 
 	
 	Method RenderBackground(cameraTranslation:Vec2)
 		For Local backgroundLayer := Eachin currentLevel.theme.BackgroundLayers()
@@ -181,7 +192,7 @@ Class PfGame Extends App
 	End
 	
 	Method FirstLevel:Level()
-		Return New Level(1)
+		Return New Level(FIRST_LEVEL)
 	End
 	
 	Method IncrementLevel()

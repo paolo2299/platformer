@@ -37,6 +37,10 @@ Class Level
 	Field tileWidth:Int
 	Field tileHeight:Int
 	
+	Field goldTime:Int = 0
+	Field silverTime:Int = 0
+	Field bronzeTime:Int = 0
+	
 	Field name:String
 	
 	Field theme:Theme
@@ -66,6 +70,7 @@ Class Level
 		tileHeight = defaultTileHeight
 		
 		'TODO properly validate config
+		'TODO make config parsing a separate class?
 		
 		Local rows:String[] = mojo.LoadString(filePath).Split("~n")
 		For Local row:String = Eachin rows
@@ -76,6 +81,12 @@ Class Level
 				tileHeight = Int(data[1].Trim())
 			Elseif data[0] = "name"
 				name = data[1].Trim()
+			Elseif data[0] = "gold"
+				goldTime = Int(data[1].Trim())
+			Elseif data[0] = "silver"
+				silverTime = Int(data[1].Trim())
+			Elseif data[0] = "bronze"
+				bronzeTime =  Int(data[1].Trim())
 			Elseif data[0] = "theme"
 				If data[1].Trim() = "mysteryforest"
 					theme = New MysteryForestTheme(tileWidth, tileHeight)
@@ -168,6 +179,18 @@ Class Level
 	
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
 		Return New Rect(coord.x * tileWidth, coord.y * tileHeight, tileWidth, tileHeight)
+	End
+	
+	Method AwardMedal:String(time:Int)
+		If time < goldTime
+			Return "gold"
+		Elseif time < silverTime
+			Return "silver"
+		Elseif time < bronzeTime
+			Return "bronze"
+		Else
+			Return "none"
+		End
 	End
 	
 	Method Reset()

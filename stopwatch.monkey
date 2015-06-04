@@ -1,4 +1,5 @@
 Import mojo
+Import utilities
 
 Class StopWatch
 
@@ -34,12 +35,7 @@ Class StopWatch
 	End
 	
 	Method ElapsedString:String()
-	    Local elapsed:Int = Elapsed()
-		Local wholeSeconds:String = String(elapsed / 1000)
-		Local remainder:String = String((elapsed Mod 1000) / 10)
-		If remainder.Length() < 2
-			remainder = "0" + remainder
-		End 
-		Return wholeSeconds + "." + remainder 
+		Local elapsed:Int = Elapsed()
+		Return FormatMillisecs(elapsed)
 	End
 End
