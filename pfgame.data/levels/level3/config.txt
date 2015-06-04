@@ -1,3 +1,7 @@
 tileWidth,30
 tileHeight,30
-theme,mysteryforest
+theme,blocky
+name,the gate
+gold,5000
+silver,6000
+bronze,7500

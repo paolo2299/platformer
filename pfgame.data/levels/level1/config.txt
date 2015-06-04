@@ -2,3 +2,6 @@ tileWidth,30
 tileHeight,30
 theme,blocky
 name,twisted staircase
+gold,4000
+silver,5500
+bronze,8000

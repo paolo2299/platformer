@@ -1,3 +1,7 @@
 tileWidth,30
 tileHeight,30
-theme,mysteryforest
+theme,blocky
+name,climbing the turret
+gold,6200
+silver,7500
+bronze,10000
