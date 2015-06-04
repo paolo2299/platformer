@@ -137,14 +137,19 @@ Class PfGame Extends App
 				font.DrawText("" + currentLevel.name, VIRTUAL_WINDOW_WIDTH / 2, 40)	
 			End
 			Case STATE_LEVEL_COMPLETE
-				RenderTextCenter("Press Enter to go to the next level", 6)
-				RenderTextCenter("Your time: " + FormatMillisecs(currentLevel.stopWatch.Elapsed()), 7)
+				RenderTextCenter("Your time: " + FormatMillisecs(currentLevel.stopWatch.Elapsed()), 3)
 				
-				RenderTextCenter("Fastest time ever: " + FormatMillisecs(savedState.GetLevelTime(currentLevel)), 9)
+				RenderTextCenter("Fastest time ever: " + FormatMillisecs(savedState.GetLevelTime(currentLevel)), 5)
 				
-				RenderTextCenter("Medal awarded: " + currentLevel.AwardMedal(savedState.GetLevelTime(currentLevel)), 10)
+				RenderTextCenter("Medal awarded: " + currentLevel.AwardMedal(savedState.GetLevelTime(currentLevel)), 6)
 				
-				RenderTextCenter("Press R to retry the level and try to get a faster time!", 11)
+				RenderTextCenter("Medal times:", 8)
+				RenderTextCenter("Gold: " + FormatMillisecs(currentLevel.goldTime), 9)
+				RenderTextCenter("Silver: " + FormatMillisecs(currentLevel.silverTime), 10)
+				RenderTextCenter("Bronze: " + FormatMillisecs(currentLevel.bronzeTime), 11)
+				
+				RenderTextCenter("Press Enter to go to the next level", 14)
+				RenderTextCenter("Press R to retry the level and try to get a faster time!", 15)
 		End
 	End
 	

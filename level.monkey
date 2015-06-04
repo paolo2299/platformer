@@ -183,13 +183,13 @@ Class Level
 	
 	Method AwardMedal:String(time:Int)
 		If time < goldTime
-			Return "gold"
+			Return "Gold"
 		Elseif time < silverTime
-			Return "silver"
+			Return "Silver"
 		Elseif time < bronzeTime
-			Return "bronze"
+			Return "Bronze"
 		Else
-			Return "none"
+			Return "No medal"
 		End
 	End
 	
