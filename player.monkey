@@ -26,10 +26,10 @@ Class Player
 	Field wallGravityFactor:Float = 0.01
 	
 	Field accelerationRunningFactor:Float = 0.021875
-	Field maxVelocityXRunningFactor:Float = 0.46875
+	Field maxVelocityXRunningFactor:Float = 0.42875
 	Field accelerationWalkingFactor:Float = 0.010975
 	Field accelerationGrapplingFactor:Float = 0.005975
-	Field maxVelocityXWalkingFactor:Float = 0.2345
+	Field maxVelocityXWalkingFactor:Float = 0.2645
 	Field maxVelocityYFactor:Float = 0.78
 	Field accelerationRunning:Float
 	Field maxVelocityXRunning:Float
