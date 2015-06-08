@@ -244,6 +244,11 @@ Class PfGame Extends App
 	End
 	
 	Method UpdatePlayer(player:Player)
+		If currentLevel.OffscreenPosition(player.position)
+			'TODO - When changing state could throw and catch to avoid doing unecessary/non-sensical logic? 
+			gameState = STATE_DEATH
+			Return
+		End
 		If player.onMovingPlatform <> Null
 			player.UpdateForMovingPlatforms()
 			CheckForAndResolveCollisions(player)

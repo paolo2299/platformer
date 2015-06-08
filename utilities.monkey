@@ -1,6 +1,7 @@
 Import ray
 Import rect
 Import sat.vec2
+Import vec
 
 Function RaysForMovement:Stack<Ray>(rect:Rect, movementVec:Vec2)
 	Local rays:Stack<Ray> = New Stack<Ray>()
@@ -46,6 +47,13 @@ End
 
 Function PrintVec(desc: String, v:Vec2)
 	Print desc + ": " + v.x + "," + v.y
+End
+
+Function TileCoordFromPoint:Vec2Di(point:Vec2, tileWidth:Int, tileHeight:Int)
+	Local tileX:Int = point.x / tileWidth
+	Local tileY:Int = point.y / tileHeight
+		
+	Return New Vec2Di(tileX, tileY)
 End
 
 Function PrintRect(desc:String, r:Rect)

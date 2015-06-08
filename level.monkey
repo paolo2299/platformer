@@ -181,6 +181,14 @@ Class Level
 		Return New Rect(coord.x * tileWidth, coord.y * tileHeight, tileWidth, tileHeight)
 	End
 	
+	Method OffscreenPosition:Bool(position:Vec2)
+		Local coord:Vec2Di = TileCoordFromPoint(position, tileWidth, tileHeight)
+		If coord.x >= mapWidth Or coord.y >= mapHeight Or coord.x < 0 Or coord.y < 0
+			Return True
+		End
+		Return False
+	End
+	
 	Method AwardMedal:String(time:Int)
 		If time < goldTime
 			Return "Gold"
