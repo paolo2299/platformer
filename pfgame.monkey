@@ -18,9 +18,10 @@ Const STATE_MENU:Int = 0
 Const STATE_LEVEL_CHOICE = 1
 Const STATE_GAME:Int = 2
 Const STATE_LEVEL_COMPLETE = 3
+'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 4
 
-Const FIRST_LEVEL = 1
+Const FIRST_LEVEL = 4
 
 Class PfGame Extends App
 	
