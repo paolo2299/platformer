@@ -1,43 +1,44 @@
-Import collidablehazard
 Import sat.vec2
 Import sat
 Import mojo
 Import utilities
-Import animation
 Import enemy
+Import collision
+Import drawable
 
-Class CircularHazard Implements CollidableHazard
+'TODO circular hazard has too many responsibilities - should actaully be circularcollidable and implement the bare minimum for collidable?
+
+Class CircularHazard Implements Collidable, Drawable
 	Field position:Vec2
+	Field originalPos:Vec2
 	Field radius:Float
 	Field circle:Circle
 	Field collisionResponse:Response
-	Field image:Image
-	Field animation:Animation
 	Field enemy:Enemy
 
 	Method New(position:Vec2, radius:Float)
-		Self.enemy = New Enemy(position, radius)
+		enemy = New Enemy(position, radius)
 		Self.position = position
+		originalPos = position.Clone()
 		Self.radius = radius
-		Self.image = image
-		Self.animation = animation
 		circle = New Circle(position.x, position.y, radius)
 		collisionResponse = New Response()
 	End
 	
-	Method CollidesWithRay:Bool(ray:Ray)
+	Method GetCollision:Collision(ray:Ray)
 		'PrintVec("ray origin", ray.origin)
 		'PrintVec("ray destination", ray.destination)
 		'PrintVec("collidable hazard position", position)
 		'Print("collidable hazard radius: " + radius)
 		collisionResponse.Clear()
 		If SAT.TestPolygonCircle(ray.ToPolygon(), circle, collisionResponse)
-			Return True
+			'TODO - do we want to bother actually calculating the collision vector here? We never use it...for now return null
+			Return New Collision(Self, Null)
 		Else
-			Return False
+			Return Null
 		End
 	End
-	
+
 	Method Draw()
 		'SetColor(255.0, 0.0, 0.0)
 		'DrawCircle(position.x, position.y, radius)

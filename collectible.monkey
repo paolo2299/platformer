@@ -1,10 +1,7 @@
 Import collidable
 Import rect
 Import sat.vec2
-
-Interface Drawable
-	Method Draw()
-End
+Import drawable
 
 Interface Collectible Extends Collidable, Drawable
 	Method Type:String()
