@@ -27,6 +27,18 @@ Class Rect Extends Rectangle
 		centre = New Vec2(topLeft.x + width/2, topLeft.y + height/2)
 	End
 	
+	Method IsOnTopOrBottom:Bool(point: Vec2)
+		Return (point.y = topLeft.y) Or (point.y = botLeft.y)
+	End
+	
+	Method IsOnLeftOrRight:Bool(point: Vec2)
+		Return (point.x = topLeft.x) Or (point.x = topRight.x)
+	End
+	
+	Method IsOnCorner:Bool(point: Vec2)
+		Return IsOnTopOrBottom(point) And IsOnLeftOrRight(point)
+	End
+	
 	Method BottomMiddle:Vec2()
 		Return botLeft.Clone().Add(New Vec2(width / 2, 0.0))
 	End

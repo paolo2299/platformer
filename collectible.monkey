@@ -1,10 +1,8 @@
 Import collidable
+Import rectangularcollidable
 Import rect
 Import sat.vec2
-
-Interface Drawable
-	Method Draw()
-End
+Import drawable
 
 Interface Collectible Extends Collidable, Drawable
 	Method Type:String()
@@ -19,6 +17,7 @@ Class CollectibleGrapple Implements Collectible
 	Field width:Float
 	Field height:Float
 	Field collisionRect: Rect
+	Field collidable:RectangularCollidable
 	
 	Field collected:Bool = False
 
@@ -27,6 +26,7 @@ Class CollectibleGrapple Implements Collectible
 		Self.width = width
 		Self.height = height
 		collisionRect = New Rect(position.x, position.y, width, height)
+		collidable = New RectangularCollidable(collisionRect)
 	End
 
 	Method Type:String()
@@ -57,8 +57,8 @@ Class CollectibleGrapple Implements Collectible
 		Return False
 	End
 	
-	Method CollisionRect:Rect()
-		Return collisionRect
+	Method GetCollision:Collision(ray:Ray)
+		Return collidable.GetCollision(ray)
 	End
 	
 	Method LastMovement:Vec2()

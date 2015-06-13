@@ -9,8 +9,7 @@ Import sat.vec2
 Import theme.mysteryforesttheme
 Import theme.blockytheme
 Import theme.darkforesttheme
-Import collidablehazard
-Import collidablehazard.circularhazard
+Import hazard
 Import collectible
 
 Class ConfigException Extends Throwable
@@ -24,7 +23,7 @@ Class Level
 
 	Field playerStartingPosition:Vec2 = New Vec2()
 	Field blocks:Stack<Block> = New Stack<Block>()
-	Field collidableHazards:Stack<CollidableHazard> = New Stack<CollidableHazard>()
+	Field hazards:Stack<Hazard> = New Stack<Hazard>()
 	Field collectibles:Stack<Collectible> = New Stack<Collectible>()
 	Field movingPlatforms:Stack<MovingPlatform> = New Stack<MovingPlatform>()	
 	Field collisionMap:CollisionMap
@@ -132,9 +131,8 @@ Class Level
 					Local radius = tileWidth 'TODO parse from csv
 					'Local tileImage:TileImage = theme.TileImageForCode(tile) 'TODO add image
 					Local position:Vec2 = New Vec2((colNum + 0.5) * tileWidth, (rowNum + 0.5)*tileHeight) 'TODO allow other positions than centre of tile?
-					Local collidableHazard:CollidableHazard = New CircularHazard(position, radius)
-					
-					collidableHazards.Push(collidableHazard)
+					Local hazard:Hazard = GetEater(position, radius)
+					hazards.Push(hazard)
 				Elseif tile = "g"
 					Local block:Block = New GoalBlock(rect)
 					blocks.Push(block)

@@ -278,19 +278,9 @@ Class Player
 			velocity.x = 0
 		End
 		
-		'update!
-		Local movingPlatformOffset:Vec2
-		If onMovingPlatform <> Null
-			'TODO refoactor
-			movingPlatformOffset = onMovingPlatform.offset
-		Else
-			movingPlatformOffset = New Vec2(0.0, 0.0)
-		End
-		
-		'Print "movingPlatformOffset: " + movingPlatformOffset.x + "," + movingPlatformOffset.y
-		
-		desiredPosition.x = position.x + velocity.x '+ movingPlatformOffset.x
-		desiredPosition.y = position.y + velocity.y '+ movingPlatformOffset.y
+		'update!		
+		desiredPosition.x = position.x + velocity.x 
+		desiredPosition.y = position.y + velocity.y
 		
 		'finally constrain by grapple again
 		If holdsGrapple And grapple.engaged

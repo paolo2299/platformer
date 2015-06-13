@@ -1,17 +1,6 @@
-Import rect
-Import sat.vec
+Import collision
+Import ray
 
 Interface Collidable
-
-	Method CollisionRect:Rect()
-		
-	Method IsHazard:Bool()
-	
-	Method IsGoal:Bool()
-	
-	Method IsGrappleable:Bool()
-	
-	Method IsMoving:Bool()
-	
-	Method LastMovement:Vec2()
+	Method GetCollision:Collision(ray:Ray)
 End

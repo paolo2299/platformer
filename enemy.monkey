@@ -1,23 +1,14 @@
 Import sat.vec2
 Import mojo
 Import animation
+Import hazard
 
-Class Enemy
-	Field position:Vec2
-	Field image:Image
-	Field animation:Animation
-	Field scaleX:Float
-	Field scaleY:Float
-	
-	Method New(position:Vec2, radius)
-		Self.position = position
-		Self.image = LoadImage("images/mysteryforest/Other/monster/sprite.png", 50, 50, 25, Image.MidHandle)
-		Self.animation = New Animation(0, 3, 2)
-		scaleX = (25.0 / radius) * 2.3
-		scaleY = (25.0 / radius) * 2.3
-	End
-	
-	Method Draw()
-		DrawImage(image, position.x, position.y, 0.0, scaleX, scaleY, animation.GetFrame())
-	End
+'TODO this seems a bit weird - is there a better pattern?
+Function GetEater:Hazard(position:Vec2, radius:Float)
+	Local collidable:Collidable = New CircularCollidable(position, radius)
+	Local image:Image = LoadImage("images/mysteryforest/Other/monster/sprite.png", 50, 50, 25, Image.MidHandle)
+	Local animation:Animation = New Animation(0, 3, 2)
+	Local scaleX:Float = (25.0 / radius) * 2.3
+	Local scaleY:Float = (25.0 / radius) * 2.3
+	Return New Hazard(position, collidable, image, scaleX, scaleY, animation)
 End
