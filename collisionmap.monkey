@@ -51,7 +51,7 @@ Class CollisionMap
 		Return DetectCollisionBlock(coord.x, coord.y)
 	End
 
-	Method RayCastCollision:Collision(ray:Ray)
+	Method RayCastCollision:BlockyAndCollision(ray:Ray)
 		Local origin:Vec2 = ray.origin
 		Local originCoord:Vec2Di = TileCoordFromPoint(origin)
 		Local destination:Vec2 = ray.destination
@@ -77,9 +77,9 @@ Class CollisionMap
 			While j <> destCoord.y + stepY
 				Local block:Block = DetectCollisionBlock(i, j)
 				If block <> Null
-					Local collision:Collision = DetectCollision(ray, block)
+					collision = block.GetCollision(ray)
 					If collision <> Null
-						Return collision
+						Return New BlockyAndCollision(block, collision)
 					End
 				End
 				j += stepY
@@ -91,5 +91,16 @@ Class CollisionMap
 			j = originCoord.y
 		End
 		Return Null
+	End
+End
+
+Class BlockyAndCollision
+	'TODO - come up with better name or way to return!
+	Field collision:Collision
+	Field blocky:Blocky
+	
+	Method New(blocky:Blocky, collision:Collision)
+		Self.blocky = blocky
+		Self.collision = collision
 	End
 End

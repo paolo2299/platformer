@@ -4,16 +4,20 @@ Import vec
 Import sat.vec2
 Import rect
 Import collidable
-Import collidable/rectangularcollidable
+Import collidable.rectangularcollidable
 Import drawable
 
-Class Block Implements Collidable, Drawable
+Class Block Implements Blocky, Drawable
 	Field rect:Rect
 	Field collidable:Collidable
 	
 	Method New(rect:Rect)
 		Self.rect = rect
 		Self.collidable = New RectangularCollidable(rect)
+	End
+	
+	Method Rect:Rect()
+		Return rect
 	End
 	
 	Method IsHazard:Bool()
@@ -24,7 +28,7 @@ Class Block Implements Collidable, Drawable
 		Return False
 	End
 	
-	Method GetCollision(ray: Ray)
+	Method GetCollision:Collision(ray: Ray)
 		Return collidable.GetCollision(ray)
 	End
 	

@@ -3,7 +3,7 @@ Import sat.vec
 Import rect
 Import theme
 
-Class MovingPlatform Implements Collidable
+Class MovingPlatform Implements Blocky
 	
 	Field platformWidthTiles:Float
 	Field tileWidth:Float
@@ -99,8 +99,13 @@ Class MovingPlatform Implements Collidable
 		Return topLeftPos.Clone().Sub(prevTopLeftPos)
 	End
 	
-	Method CollisionRect:Rect()
+	Method Rect:Rect()
 		Return New Rect(topLeftPos.x, topLeftPos.y, platformWidthTiles * tileWidth, tileHeight)
+	End
+	
+	Method GetCollision:Collision(ray:Ray)
+		Local collidable:RectangularCollidable = New RectangularCollidable(Rect())
+		Return collidable.GetCollision(ray)
 	End
 	
 	Method Draw()

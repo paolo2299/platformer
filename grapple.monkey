@@ -2,6 +2,7 @@ Import config
 Import level
 Import sat.vec2
 Import ray
+Import collisionmap
 
 
 Class Grapple
@@ -27,7 +28,7 @@ Class Grapple
  
  Field flying:Bool = False
  Field engaged:Bool = False
- Field engagedWith:Collidable = Null
+ Field engagedWith:Blocky = Null
  
  Field engagedLength:Float = 0.0
 
@@ -72,13 +73,13 @@ Class Grapple
  	engagedWith = Null
  End
  
- Method Engage(collision:Collision)
- 	hookPos = collision.ray.destination
+ Method Engage(collision:BlockyAndCollision)
+ 	hookPos = collision.collision.ray.destination
  	engagedLength = Length()
  	ClampLength()
  	flying = False
  	engaged = True
- 	engagedWith = collision.collidable
+ 	engagedWith = collision.blocky
  End
  
  Method Extend(amount:Float)
