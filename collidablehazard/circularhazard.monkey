@@ -33,7 +33,7 @@ Class CircularHazard Implements Collidable, Drawable
 		collisionResponse.Clear()
 		If SAT.TestPolygonCircle(ray.ToPolygon(), circle, collisionResponse)
 			'TODO - do we want to bother actually calculating the collision vector here? We never use it...for now return null
-			Return New Collision(Self, Null)
+			Return New Collision(Null)
 		Else
 			Return Null
 		End
