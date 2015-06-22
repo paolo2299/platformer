@@ -10,4 +10,12 @@ Class Collision
 	End
 End
 
+Class BlockyCollision Extends Collision
+	Field blocky:Blocky
+	
+	Method New(ray:Ray, blocky:Blocky)
+		Super.New(ray)
+		Self.blocky = blocky
+	End
+End
 

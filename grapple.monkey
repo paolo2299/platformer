@@ -73,8 +73,8 @@ Class Grapple
  	engagedWith = Null
  End
  
- Method Engage(collision:BlockyAndCollision)
- 	hookPos = collision.collision.ray.destination
+ Method Engage(collision:BlockyCollision)
+ 	hookPos = collision.ray.destination
  	engagedLength = Length()
  	ClampLength()
  	flying = False

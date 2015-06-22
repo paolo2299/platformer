@@ -268,7 +268,7 @@ Class PfGame Extends App
 	    Local grapple:Grapple = player.grapple
 		grapple.Update(player.position)
 		If grapple.flying
-			Local collision:BlockyAndCollision = GetClosestCollision(grapple.FlyingRay())
+			Local collision:BlockyCollision = GetClosestCollision(grapple.FlyingRay())
 			If collision <> Null
 				If collision.blocky.IsGrappleable()
 					grapple.Engage(collision)
@@ -283,20 +283,20 @@ Class PfGame Extends App
 		End
 	End
 	
-	Method GetClosestCollision:BlockyAndCollision(p: Player, movementVec: Vec2)
+	Method GetClosestCollision:BlockyCollision(p: Player, movementVec: Vec2)
 		Local pRect:Rect = p.BoundingBox()
 		Local rays:Stack<Ray> = RaysForMovement(pRect, movementVec)
 		
 		Return GetClosestCollision(rays)
 	End
 	
-	Method GetClosestCollision:BlockyAndCollision(rays: Stack<Ray>)
+	Method GetClosestCollision:BlockyCollision(rays: Stack<Ray>)
 		'Print "In get closest"
 		'PrintVec("playerPosition", player.position)
-		Local closest:BlockyAndCollision = Null
+		Local closest:BlockyCollision = Null
 		'First check collisions with static blocks
 		For Local ray := Eachin rays
-			Local bc:BlockyAndCollision = currentLevel.collisionMap.RayCastCollision(ray)
+			Local bc:BlockyCollision = currentLevel.collisionMap.RayCastCollision(ray)
 			If bc <> Null
 				'PrintRect("collisionRect", bc.blocky.Rect())
 				'PrintVec("ray oriign", ray.origin)
@@ -306,13 +306,13 @@ Class PfGame Extends App
 				If closest = Null
 					closest = bc
 					'Print "shortest by default!"
-				Elseif bc.collision.ray.Length() < closest.collision.ray.Length()
+				Elseif bc.ray.Length() < closest.ray.Length()
 					'Print "shortest!"
 					closest = bc
-				Elseif bc.collision.ray.Length() = closest.collision.ray.Length()
+				Elseif bc.ray.Length() = closest.ray.Length()
 					'PrintRect("testing corner: bc collides with", bc.blocky.Rect())
 					'PrintVec("ray destination", bc.collision.ray.destination)
-					If Not bc.blocky.Rect().IsOnCorner(bc.collision.ray.destination) 'TODO find nicer way!
+					If Not bc.blocky.Rect().IsOnCorner(bc.ray.destination) 'TODO find nicer way!
 						'Print("not on corner")
 						closest = bc
 					Else
@@ -328,11 +328,11 @@ Class PfGame Extends App
 				Local collision:Collision = movingPlatform.GetCollision(ray)
 				If (collision <> Null) 
 					If (closest = Null)
-						closest = New BlockyAndCollision(movingPlatform, collision)
-					Elseif collision.ray.Length() < closest.collision.ray.Length()
-						closest = New BlockyAndCollision(movingPlatform, collision)
-					Elseif collision.ray.Length() = closest.collision.ray.Length()
-						closest = New BlockyAndCollision(movingPlatform, collision)
+						closest = New BlockyCollision(collision.ray, movingPlatform)
+					Elseif collision.ray.Length() < closest.ray.Length()
+						closest = New BlockyCollision(collision.ray, movingPlatform)
+					Elseif collision.ray.Length() = closest.ray.Length()
+						closest = New BlockyCollision(collision.ray, movingPlatform)
 					End
 				End
 			End
@@ -346,7 +346,7 @@ Class PfGame Extends App
 		Return closest
 	End
 	
-	Method GetClosestCollision:BlockyAndCollision(ray: Ray)
+	Method GetClosestCollision:BlockyCollision(ray: Ray)
 		Local rays:Stack<Ray> = New Stack<Ray>()
 		rays.Push(ray)
 		Return GetClosestCollision(rays)
@@ -356,7 +356,7 @@ Class PfGame Extends App
 		Local movementVec:Vec2 = p.MovementVector()
 		Local startRect:Rect = p.BoundingBox().CloneRect()
 		
-		Local closestCollision:BlockyAndCollision = GetClosestCollision(p, movementVec)
+		Local closestCollision:BlockyCollision = GetClosestCollision(p, movementVec)
 		If closestCollision = Null
 			'no collision
 			p.position.Add(movementVec)
@@ -376,25 +376,25 @@ Class PfGame Extends App
 		'PrintVec("ray destination", closestCollision.collision.ray.destination)
 		'PrintVec("player position before first offset", p.position)
 		
-		p.position.Add(closestCollision.collision.ray.offset)
+		p.position.Add(closestCollision.ray.offset)
 		
 		'PrintVec("player position after first offset", p.position)
 		
 		'see if we can maintain momentum
-		If closestCollision.blocky.Rect().IsOnTopOrBottom(closestCollision.collision.ray.destination)
+		If closestCollision.blocky.Rect().IsOnTopOrBottom(closestCollision.ray.destination)
 			'Print("OnTopOrBottom")
 			'PrintVec("movement vec before", movementVec)
 			'PrintVec("ray origin", closestCollision.ray.origin)
 			'PrintVec("ray destination", closestCollision.ray.destination)
 			'PrintVec("ray offset", closestCollision.ray.offset)
 			movementVec.y = 0
-			movementVec.x -= closestCollision.collision.ray.offset.x
+			movementVec.x -= closestCollision.ray.offset.x
 			'PrintVec("movement vec after", movementVec)
 			p.velocity.y = 0
 		Else
 			'Print("Not top or bottom")
 			movementVec.x = 0
-			movementVec.y -= closestCollision.collision.ray.offset.y
+			movementVec.y -= closestCollision.ray.offset.y
 			p.velocity.x = 0
 		End
 		
@@ -409,7 +409,7 @@ Class PfGame Extends App
 			End
 			'Print("second collision!")
 			'PrintVec("ray offset", closestCollision.ray.offset)
-			p.position.Add(closestCollision.collision.ray.offset)
+			p.position.Add(closestCollision.ray.offset)
 		End
 		'PrintVec("final player position", p.position)
 		CheckForCollisionWithCollidingHazard(p, startRect)
@@ -444,7 +444,7 @@ Class PfGame Extends App
 		End
 	End
 	
-	Method UpdateGameStateForCollision:Bool(collision:BlockyAndCollision)
+	Method UpdateGameStateForCollision:Bool(collision:BlockyCollision)
 		If collision.blocky.IsHazard()
 			gameState = STATE_DEATH
 			Return True
@@ -463,7 +463,7 @@ Class PfGame Extends App
 		p.onMovingPlatform = Null	
 	
 		Local downVec:Vec2 = New Vec2(0.0, 0.5)
-		Local collision:BlockyAndCollision = GetClosestCollision(p, downVec)
+		Local collision:BlockyCollision = GetClosestCollision(p, downVec)
 		If collision <> Null
 			p.onGround = True
 		End
