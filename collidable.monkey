@@ -1,6 +1,5 @@
 Import collision
 Import ray
-Import sat.vec
 
 Interface Collidable
 	Method GetCollision:Collision(ray:Ray)

@@ -21,9 +21,10 @@ Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 4
 
-Const FIRST_LEVEL = 4
+Const FIRST_LEVEL = 1
 
 Class PfGame Extends App
+	Field startTime:Int = Millisecs()
 	
 	Field player:Player
 	Field gameState:Int = STATE_MENU
@@ -297,11 +298,11 @@ Class PfGame Extends App
 		For Local ray := Eachin rays
 			Local bc:BlockyAndCollision = currentLevel.collisionMap.RayCastCollision(ray)
 			If bc <> Null
-				'PrintRect("collisionRect", collision.collidable.CollisionRect())
+				'PrintRect("collisionRect", bc.blocky.Rect())
 				'PrintVec("ray oriign", ray.origin)
 				'PrintVec("ray destination", ray.destination)
-				'PrintVec("collision ray origin", collision.ray.origin)
-				'PrintVec("collisionl ray destination", collision.ray.destination)
+				'PrintVec("collision ray origin", bc.collision.ray.origin)
+				'PrintVec("collisionl ray destination", bc.collision.ray.destination)
 				If closest = Null
 					closest = bc
 					'Print "shortest by default!"
@@ -309,8 +310,13 @@ Class PfGame Extends App
 					'Print "shortest!"
 					closest = bc
 				Elseif bc.collision.ray.Length() = closest.collision.ray.Length()
-					If Not closest.blocky.Rect().IsOnCorner(closest.collision.ray.destination) 'TODO find nicer way!
+					'PrintRect("testing corner: bc collides with", bc.blocky.Rect())
+					'PrintVec("ray destination", bc.collision.ray.destination)
+					If Not bc.blocky.Rect().IsOnCorner(bc.collision.ray.destination) 'TODO find nicer way!
+						'Print("not on corner")
 						closest = bc
+					Else
+						'Print("on corner")
 					End
 				End
 			End
@@ -332,6 +338,11 @@ Class PfGame Extends App
 			End
 		End
 		
+		If closest <> Null
+			'Print("Result")
+			'PrintVec("origin", closest.collision.ray.origin)
+			'PrintVec("dest", closest.collision.ray.destination)
+		End
 		Return closest
 	End
 	
@@ -361,6 +372,8 @@ Class PfGame Extends App
 		End
 		
 		'Print("collision!")
+		'PrintRect("collidded with rect:", closestCollision.blocky.Rect())
+		'PrintVec("ray destination", closestCollision.collision.ray.destination)
 		'PrintVec("player position before first offset", p.position)
 		
 		p.position.Add(closestCollision.collision.ray.offset)
@@ -369,6 +382,7 @@ Class PfGame Extends App
 		
 		'see if we can maintain momentum
 		If closestCollision.blocky.Rect().IsOnTopOrBottom(closestCollision.collision.ray.destination)
+			'Print("OnTopOrBottom")
 			'PrintVec("movement vec before", movementVec)
 			'PrintVec("ray origin", closestCollision.ray.origin)
 			'PrintVec("ray destination", closestCollision.ray.destination)
@@ -378,6 +392,7 @@ Class PfGame Extends App
 			'PrintVec("movement vec after", movementVec)
 			p.velocity.y = 0
 		Else
+			'Print("Not top or bottom")
 			movementVec.x = 0
 			movementVec.y -= closestCollision.collision.ray.offset.y
 			p.velocity.x = 0

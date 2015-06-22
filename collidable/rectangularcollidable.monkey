@@ -1,5 +1,3 @@
-Import sat.vec2
-Import sat
 Import mojo
 Import utilities
 Import enemy

@@ -1,5 +1,4 @@
 Import block
-Import sat.vec
 Import sat.response
 Import ray
 

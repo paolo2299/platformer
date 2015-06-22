@@ -1,4 +1,3 @@
-Import sat.vec
 Import sat.polygon
 
 Class Ray

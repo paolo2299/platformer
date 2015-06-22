@@ -1,5 +1,4 @@
 Import collidable
-Import sat.vec
 Import rect
 Import theme
 
