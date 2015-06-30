@@ -3,7 +3,6 @@ Import rect
 Import theme
 
 Class MovingPlatform Implements Blocky
-	
 	Field platformWidthTiles:Float
 	Field tileWidth:Float
 	Field tileHeight:Float
@@ -14,9 +13,6 @@ Class MovingPlatform Implements Blocky
 	Field midpointTopLeftPos:Vec2
 	
 	Field theme:Theme
-	
-	Field imageScaleX:Float
-	Field imageScaleY:Float
 	
 	Field originalDirection:Vec2
 	Field direction:Vec2
@@ -49,7 +45,7 @@ Class MovingPlatform Implements Blocky
 		'PrintVec("destinationTopLeftPos", destinationTopLeftPos)
 		'PrintVec("midpointTopLeftPos", midpointTopLeftPos)
 		'Print "maxDistance" + maxDistance
-		tileImageOuterLeft = theme.TileImageForCode("platform_outer_left")
+		tileImageOuterLeft = theme.TileImageForCode("platform_outer_left") 'TODO pass in the correct scale
 		tileImageOuterRight = theme.TileImageForCode("platform_outer_right")
 		tileImageInnerLeft = theme.TileImageForCode("platform_inner_left")
 		tileImageInnerRight = theme.TileImageForCode("platform_inner_right")
