@@ -306,8 +306,8 @@ Class Player
 	Method UpdateForMovingPlatforms()
 		Local movingPlatformOffset:Vec2
 		If onMovingPlatform <> Null
-			'TODO refoactor
-			movingPlatformOffset = onMovingPlatform.offset
+			'TODO refactor
+			movingPlatformOffset = onMovingPlatform.LastMovement()
 		Else
 			movingPlatformOffset = New Vec2(0.0, 0.0)
 		End
