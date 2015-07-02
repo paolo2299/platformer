@@ -2,7 +2,7 @@ Import mojo
 Import utilities
 Import enemy
 Import collidable
-Import drawable
+Import collidableandmoving
 
 Class CircularCollidable Implements Collidable
 	Field circle:Circle
@@ -21,5 +21,35 @@ Class CircularCollidable Implements Collidable
 		Else
 			Return Null
 		End
+	End
+End
+
+Class MovingCircularCollidable Implements CollidableAndMoving
+	Field movement:Moving
+	Field radius:Float
+	
+	Method New(movement:Moving, radius:Float)
+		Self.movement = movement
+		Self.radius = radius
+	End
+	
+	Method GetCollision:Collision(ray:Ray)
+		Return New CircularCollidable(movement.Position(), radius).GetCollision(ray)
+	End
+	
+	Method Update()
+		Return movement.Update()
+	End
+	
+	Method LastMovement:Vec2()
+		Return movement.LastMovement()
+	End
+	
+	Method Reset()
+		Return movement.Reset()
+	End
+	
+	Method Position:Vec2()
+		Return movement.Position()
 	End
 End

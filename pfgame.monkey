@@ -21,7 +21,7 @@ Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 4
 
-Const FIRST_LEVEL = 1
+Const FIRST_LEVEL = 4
 
 Class PfGame Extends App
 	Field startTime:Int = Millisecs()
@@ -62,6 +62,7 @@ Class PfGame Extends App
 					playerRecorder.Record(player)
 				Else
 					UpdateMovingPlatforms()
+					UpdateHazards()
 					UpdatePlayer(player)
 					playerRecorder.Record(player)
 					camera.Update(player, currentLevel)	
@@ -243,6 +244,12 @@ Class PfGame Extends App
 	Method UpdateMovingPlatforms()
 		For Local movingPlatform := Eachin currentLevel.movingPlatforms
 			movingPlatform.Update()
+		End
+	End
+	
+	Method UpdateHazards()
+		For Local hazard := Eachin currentLevel.hazards
+			hazard.Update()
 		End
 	End
 	
