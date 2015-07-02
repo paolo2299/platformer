@@ -62,6 +62,11 @@ Class Level
 		Return mojo.LoadString(filePath)
 	End
 	
+	Method BackAndForthHazardsFileString:String()
+		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/backandforthhazards.txt"
+		Return mojo.LoadString(filePath)
+	End
+	
 	Method GetConfig()
 		Local filePath:String = "monkey://data/levels/level" + levelNumber + "/config.txt"
 		
@@ -127,12 +132,6 @@ Class Level
 					Local block:Block = New HazardBlock(rect, tileImage)
 					blocks.Push(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
-				Elseif tile = "chcirc"
-					Local radius = tileWidth 'TODO parse from csv
-					'Local tileImage:TileImage = theme.TileImageForCode(tile) 'TODO add image
-					Local position:Vec2 = New Vec2((colNum + 0.5) * tileWidth, (rowNum + 0.5)*tileHeight) 'TODO allow other positions than centre of tile?
-					Local hazard:Hazard = GetEater(position, radius)
-					hazards.Push(hazard)
 				Elseif tile = "g"
 					Local block:Block = New GoalBlock(rect)
 					blocks.Push(block)
@@ -150,7 +149,7 @@ Class Level
 			colNum = 0
 		End
 		
-		'TODO
+		'TODO - make a proper parser for this
 		rows = MovingPlatformsFileString().Split("~n")
 		For Local row:String = Eachin rows
 			If row = ""
@@ -161,11 +160,35 @@ Class Level
 			Local originTopLeftY:Float = Float(data[1].Trim()) * tileHeight
 			Local destinationTopLeftX:Float = Float(data[2].Trim()) * tileWidth
 			Local destinationTopLeftY:Float = Float(data[3].Trim()) * tileHeight
-			Local width:Float = Float(data[4].Trim()) * tileWidth  'TODO implement rather than hard code
-			Local height:Float = Float(data[5].Trim()) * tileHeight 'TODO remove
+			Local width:Float = Float(data[4].Trim()) * tileWidth
+			Local height:Float = Float(data[5].Trim()) * tileHeight
 			Local speed:Float = Float(data[6].Trim()) * tileWidth
 			Local movingPlatform:MovingPlatform = New MovingPlatform(theme, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
 			movingPlatforms.Push(movingPlatform)
+		End
+		
+		'TODO - make a proper parser for this
+		rows = BackAndForthHazardsFileString().Split("~n")
+		For Local row:String = Eachin rows
+			If row = ""
+				Exit
+			End
+			Local data:String[] = row.Split(",")
+			Local originX:Float = Float(data[0].Trim()) * tileWidth
+			Local originY:Float = Float(data[1].Trim()) * tileHeight
+			Local destinationX:Float = Float(data[2].Trim()) * tileWidth
+			Local destinationY:Float = Float(data[3].Trim()) * tileHeight
+			Local positionX:Float = Float(data[4].Trim()) * tileWidth
+			Local positionY:Float = Float(data[5].Trim()) * tileHeight
+			Local speed:Float = Float(data[6].Trim()) * tileWidth
+			Local hazardName := data[7].Trim()
+			Local radius:Float = Float(data[8].Trim()) * tileWidth
+			Local origin := New Vec2(originX, originY)
+			Local destination := New Vec2(destinationX, destinationY)
+			Local position := New Vec2(positionX, positionY)
+			Local movement:Moving = New BackAndForth(origin, destination, position, speed)
+			Local hazard:Hazard = GetEater(movement, radius) 'TODO use hazardName to get the correct ememy type
+			hazards.Push(hazard)
 		End
 	End
 	
