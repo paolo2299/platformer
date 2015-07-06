@@ -6,7 +6,7 @@ Const GOING_BACKWARDS = -1
 
 Class BackAndForth Implements Moving
 	Field position:Vec2
-	Field originalPosition:Vec2
+	Field startingPosition:Vec2
 	Field speed:Float
 	Field previousPosition:Vec2
 	Field direction:Int = GOING_FORWARDS
@@ -18,22 +18,23 @@ Class BackAndForth Implements Moving
 	Field midPoint:Vec2
 	Field maxDistanceFromMidpoint: Float
 	
-	Method New(origin:Vec2, destination:Vec2, originalPosition:Vec2, speed:Float)
+	Method New(origin:Vec2, destination:Vec2, startingProportion:Float, speed:Float)
 		Self.origin = origin
 		Self.destination = destination
 		Local movementVec:Vec2 = destination.Clone().Sub(origin)
 		Local midpointVec:Vec2 = movementVec.Clone().Scale(0.5)
+		Local startingVec:Vec2 = movementVec.Clone().Scale(startingProportion)
 		maxDistanceFromMidpoint = midpointVec.Length()
 		midPoint = origin.Clone().Add(midpointVec)
 		movementNormal = movementVec.Normalize()
 		
-		Self.originalPosition = originalPosition
+		startingPosition = origin.Clone().Add(startingVec)
 		Self.speed = speed
 		Reset()
 	End
 	
 	Method Reset()
-		position = originalPosition.Clone()
+		position = startingPosition.Clone()
 		direction = GOING_FORWARDS
 		previousPosition = position.Clone()
 	End

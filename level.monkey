@@ -178,15 +178,13 @@ Class Level
 			Local originY:Float = Float(data[1].Trim()) * tileHeight
 			Local destinationX:Float = Float(data[2].Trim()) * tileWidth
 			Local destinationY:Float = Float(data[3].Trim()) * tileHeight
-			Local positionX:Float = Float(data[4].Trim()) * tileWidth
-			Local positionY:Float = Float(data[5].Trim()) * tileHeight
-			Local speed:Float = Float(data[6].Trim()) * tileWidth
-			Local hazardName := data[7].Trim()
-			Local radius:Float = Float(data[8].Trim()) * tileWidth
+			Local startProportion:Float = Float(data[4].Trim())
+			Local speed:Float = Float(data[5].Trim()) * tileWidth
+			Local hazardName := data[6].Trim()
+			Local radius:Float = Float(data[7].Trim()) * tileWidth
 			Local origin := New Vec2(originX, originY)
 			Local destination := New Vec2(destinationX, destinationY)
-			Local position := New Vec2(positionX, positionY)
-			Local movement:Moving = New BackAndForth(origin, destination, position, speed)
+			Local movement:Moving = New BackAndForth(origin, destination, startProportion, speed)
 			Local hazard:Hazard = GetEater(movement, radius) 'TODO use hazardName to get the correct ememy type
 			hazards.Push(hazard)
 		End
@@ -225,6 +223,9 @@ Class Level
 	Method Reset()
 		For Local movingPlatform := Eachin movingPlatforms
 			movingPlatform.Reset()
+		End
+		For Local hazard := Eachin hazards
+			hazard.Reset()
 		End
 		For Local collectible := Eachin collectibles
 			collectible.Reset()

@@ -27,7 +27,7 @@ Class MovingPlatform Implements Blocky
 		Self.tileWidth = tileWidth
 		Self.tileHeight = tileHeight
 
-		movement = New BackAndForth(originTopLeftPos, destinationTopLeftPos, originTopLeftPos, speed)
+		movement = New BackAndForth(originTopLeftPos, destinationTopLeftPos, 0.0, speed)
 		tileImageOuterLeft = theme.TileImageForCode("platform_outer_left") 'TODO pass in the correct scale
 		tileImageOuterRight = theme.TileImageForCode("platform_outer_right")
 		tileImageInnerLeft = theme.TileImageForCode("platform_inner_left")
