@@ -1,0 +1,3 @@
+tileWidth,30
+tileHeight,30
+theme,darkforest
