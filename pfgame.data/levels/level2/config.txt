@@ -4,4 +4,4 @@ theme,blocky
 name,climbing the turret
 gold,6200
 silver,7500
-bronze,10000
+bronze,12000

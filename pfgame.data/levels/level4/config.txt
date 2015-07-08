@@ -2,6 +2,6 @@ tileWidth,30
 tileHeight,30
 theme,blocky
 name,the descent
-gold,4000
-silver,5500
-bronze,8000
+gold,5000
+silver,7500
+bronze,10500

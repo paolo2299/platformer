@@ -20,14 +20,14 @@ Class MovingPlatform Implements Blocky
 	
 	Field movement:Moving
 
-	Method New(theme:Theme, originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, platformWidthTiles:Float, tileWidth:Float, tileHeight:Float, speed:Float)
+	Method New(theme:Theme, originTopLeftPos:Vec2, destinationTopLeftPos:Vec2, startProportion:Float, platformWidthTiles:Float, tileWidth:Float, tileHeight:Float, speed:Float)
 		Self.theme = theme
 
 		Self.platformWidthTiles = platformWidthTiles
 		Self.tileWidth = tileWidth
 		Self.tileHeight = tileHeight
 
-		movement = New BackAndForth(originTopLeftPos, destinationTopLeftPos, 0.0, speed)
+		movement = New BackAndForth(originTopLeftPos, destinationTopLeftPos, startProportion, speed)
 		tileImageOuterLeft = theme.TileImageForCode("platform_outer_left") 'TODO pass in the correct scale
 		tileImageOuterRight = theme.TileImageForCode("platform_outer_right")
 		tileImageInnerLeft = theme.TileImageForCode("platform_inner_left")

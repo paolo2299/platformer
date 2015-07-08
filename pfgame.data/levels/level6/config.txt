@@ -2,6 +2,6 @@ tileWidth,30
 tileHeight,30
 theme,blocky
 name,climbing the walls
-gold,4000
-silver,5500
-bronze,8000
+gold,10500
+silver,12500
+bronze,15000

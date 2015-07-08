@@ -160,10 +160,11 @@ Class Level
 			Local originTopLeftY:Float = Float(data[1].Trim()) * tileHeight
 			Local destinationTopLeftX:Float = Float(data[2].Trim()) * tileWidth
 			Local destinationTopLeftY:Float = Float(data[3].Trim()) * tileHeight
-			Local width:Float = Float(data[4].Trim()) * tileWidth
-			Local height:Float = Float(data[5].Trim()) * tileHeight
-			Local speed:Float = Float(data[6].Trim()) * tileWidth
-			Local movingPlatform:MovingPlatform = New MovingPlatform(theme, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), 6, tileWidth, tileHeight, speed)
+			Local startProportion:Float = Float(data[4].Trim())
+			Local width:Float = Float(data[5].Trim()) * tileWidth
+			Local height:Float = Float(data[6].Trim()) * tileHeight
+			Local speed:Float = Float(data[7].Trim()) * tileWidth
+			Local movingPlatform:MovingPlatform = New MovingPlatform(theme, New Vec2(originTopLeftX, originTopLeftY), New Vec2(destinationTopLeftX, destinationTopLeftY), startProportion, 6, tileWidth, tileHeight, speed)
 			movingPlatforms.Push(movingPlatform)
 		End
 		
