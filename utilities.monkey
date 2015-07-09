@@ -36,6 +36,21 @@ Function RaysForMovement:Stack<Ray>(rect:Rect, movementVec:Vec2)
 	Return rays
 End
 
+Method SurroundingCoordsForCoord:Vec2Di[](coord:Vec2D)
+	Local coordArray:Vec2Di[8]
+	
+	coordArray[0] = New Vec2Di(coord.x, coord.y + 1)  'coord below
+	coordArray[1] = New Vec2Di(coord.x, coord.y - 1)  'coord above
+	coordArray[2] = New Vec2Di(coord.x - 1, coord.y)  'coord left
+	coordArray[3] = New Vec2Di(coord.x + 1, coord.y)  'coord right
+	coordArray[4] = New Vec2Di(coord.x - 1, coord.y - 1)  'coord up left
+	coordArray[5] = New Vec2Di(coord.x + 1, coord.y - 1)  'coord up right
+	coordArray[6] = New Vec2Di(coord.x - 1, coord.y + 1)  'coord down left
+	coordArray[7] = New Vec2Di(coord.x + 1, coord.y + 1)  'coord down right
+		
+	Return coordArray
+End
+
 'Implicity assumes startRect and endRect are the same dimensions
 Function RaysForMovement:Stack<Ray>(startRect:Rect, endRect:Rect)
 	Local movementVec:Vec2 = endRect.topLeft.Clone().Sub(startRect.topLeft)

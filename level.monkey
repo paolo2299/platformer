@@ -22,7 +22,6 @@ Class Level
 	Field levelNumber:Int
 
 	Field playerStartingPosition:Vec2 = New Vec2()
-	Field blocks:Stack<Block> = New Stack<Block>()
 	Field hazards:Stack<Hazard> = New Stack<Hazard>()
 	Field collectibles:Stack<Collectible> = New Stack<Collectible>()
 	Field movingPlatforms:Stack<MovingPlatform> = New Stack<MovingPlatform>()	
@@ -125,16 +124,16 @@ Class Level
 				If tile[..1] = "b" 
 					Local tileImage:TileImage = theme.TileImageForCode(tile)
 					Local block:Block = New GroundBlock(rect, tileImage)
-					blocks.Push(block)
+					renderMap.AddBlock(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile[..1] = "h"
 					Local tileImage:TileImage = theme.TileImageForCode(tile)
 					Local block:Block = New HazardBlock(rect, tileImage)
-					blocks.Push(block)
+					renderMap.AddBlock(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "g"
 					Local block:Block = New GoalBlock(rect)
-					blocks.Push(block)
+					renderMap.AddBlock(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile = "grapple"
 					Local collectible:Collectible = New CollectibleGrapple(rect.topLeft, rect.width, rect.height)
