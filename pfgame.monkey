@@ -116,7 +116,9 @@ Class PfGame Extends App
 				End
 				player.Draw()
 				
-				For Local block := Eachin currentLevel.blocks
+				Local bs := currentLevel.Blocks(camera.position)
+				'Print bs.Length()
+				For Local block := Eachin bs
 					block.Draw()
 				End
 				For Local movingPlatform := Eachin currentLevel.movingPlatforms
@@ -221,24 +223,6 @@ Class PfGame Extends App
 	
 	Method TileRectFromTileCoord:Rect(coord:Vec2Di)
 		Return New Rect(coord.x * currentLevel.tileWidth, coord.y * currentLevel.tileHeight, currentLevel.tileWidth, currentLevel.tileHeight)
-	End
-	
-	Method SurroundingTilesAtPosition:Vec2Di[](position:Vec2)
-		Local positionTileCoord:Vec2Di = TileCoordFromPoint(position)
-		Local tileCoordArray:Vec2Di[8]
-		
-		'to use this for player collisions currently assumes player is <= (2 x 2) tile size 
-		'TODO make this more versatile?
-		tileCoordArray[0] = New Vec2Di(positionTileCoord.x, positionTileCoord.y + 1)  'tile below position
-		tileCoordArray[1] = New Vec2Di(positionTileCoord.x, positionTileCoord.y - 1)  'tile above position
-		tileCoordArray[2] = New Vec2Di(positionTileCoord.x - 1, positionTileCoord.y)  'tile left of position
-		tileCoordArray[3] = New Vec2Di(positionTileCoord.x + 1, positionTileCoord.y)  'tile right of position
-		tileCoordArray[4] = New Vec2Di(positionTileCoord.x - 1, positionTileCoord.y - 1)  'tile up left of position
-		tileCoordArray[5] = New Vec2Di(positionTileCoord.x + 1, positionTileCoord.y - 1)  'tile up right of position
-		tileCoordArray[6] = New Vec2Di(positionTileCoord.x - 1, positionTileCoord.y + 1)  'tile down left of position
-		tileCoordArray[7] = New Vec2Di(positionTileCoord.x + 1, positionTileCoord.y + 1)  'tile down right of position
-		
-		Return tileCoordArray
 	End
 	
 	Method UpdateMovingPlatforms()
