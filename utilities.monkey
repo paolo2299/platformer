@@ -36,7 +36,7 @@ Function RaysForMovement:Stack<Ray>(rect:Rect, movementVec:Vec2)
 	Return rays
 End
 
-Method SurroundingCoordsForCoord:Vec2Di[](coord:Vec2D)
+Function SurroundingCoordsForCoord:Vec2Di[](coord:Vec2Di)
 	Local coordArray:Vec2Di[8]
 	
 	coordArray[0] = New Vec2Di(coord.x, coord.y + 1)  'coord below

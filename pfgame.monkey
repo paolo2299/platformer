@@ -21,7 +21,7 @@ Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 4
 
-Const FIRST_LEVEL = 6
+Const FIRST_LEVEL = 1
 
 Class PfGame Extends App
 	Field startTime:Int = Millisecs()
@@ -116,7 +116,9 @@ Class PfGame Extends App
 				End
 				player.Draw()
 				
-				For Local block := Eachin currentLevel.blocks
+				Local bs := currentLevel.Blocks(camera.position)
+				'Print bs.Length()
+				For Local block := Eachin bs
 					block.Draw()
 				End
 				For Local movingPlatform := Eachin currentLevel.movingPlatforms

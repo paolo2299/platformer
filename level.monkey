@@ -3,6 +3,7 @@ Import block.groundblock
 Import block.hazardblock
 Import block.goalblock
 Import collisionmap
+Import rendermap
 Import movingplatform
 Import stopwatch
 Import sat.vec2
@@ -26,6 +27,7 @@ Class Level
 	Field collectibles:Stack<Collectible> = New Stack<Collectible>()
 	Field movingPlatforms:Stack<MovingPlatform> = New Stack<MovingPlatform>()	
 	Field collisionMap:CollisionMap
+	Field renderMap:RenderMap
 	Field mapWidth:Int
 	Field mapHeight:Int
 	Field stopWatch:StopWatch = New StopWatch()
@@ -47,7 +49,7 @@ Class Level
 		Self.levelNumber = number
 		
 		GetConfig()
-		Print "instantialting mystery forest"
+		Print "Here1"
 		GetLayout()
 	End
 	
@@ -107,6 +109,7 @@ Class Level
 	Method GetLayout()
 		SetMapWidthAndMapHeight()
 		collisionMap = New CollisionMap(Self)
+		renderMap = New RenderMap(Self)
 		
 		Local rows:String[] = LayoutFileString().Split("~n")
 		Local rowNum:Int = 0
@@ -206,6 +209,10 @@ Class Level
 			Return True
 		End
 		Return False
+	End
+	
+	Method Blocks:Stack<Block>(position:Vec2)
+		Return renderMap.BlocksFromPosition(position)
 	End
 	
 	Method AwardMedal:String(time:Int)
