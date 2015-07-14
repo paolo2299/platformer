@@ -6,21 +6,32 @@ Import drawable
 
 Class RectangularCollidable Implements Collidable
 	Field collisionRect:Rect
+	Field collisionPolygon:Polygon
+	Field response:Response = New Response()
 
 	Method New(rect:Rect)
 		collisionRect = rect
+		collisionPolygon = rect.ToPolygon()
+	End
+	
+	Method GetCollision:Collision(rect:Rect)
+		response.Clear()
+		If SAT.TestPolygonPolygon(rect.ToPolygon(), collisionPolygon, response)
+			'TODO - do we want to bother actually calculating the collision vector here? We never use it...for now return null
+			Return New Collision(Null)
+		Else
+			Return Null
+		End
 	End
 	
 	Method GetCollision:Collision(ray:Ray)
-		If ray.Length() = 0
-			Return Null
-		End
+		Local rayPoly:Polygon = ray.ToPolygon()
+		response.Clear()
 
-		Local response:Response = New Response()
 		Local origin:Vec2 = ray.origin
 		Local destination:Vec2 = ray.destination
-		Local rayPoly:Polygon = ray.ToPolygon()
-		If SAT.TestPolygonPolygon(rayPoly, collisionRect.ToPolygon(), response)
+		response.Clear()
+		If SAT.TestPolygonPolygon(rayPoly, collisionPolygon, response)
 			If destination.x = origin.x
 				'If tangential then it doesn't count
 				If (destination.x = collisionRect.topLeft.x Or destination.x = collisionRect.topRight.x) 

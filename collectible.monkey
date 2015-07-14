@@ -61,6 +61,10 @@ Class CollectibleGrapple Implements Collectible
 		Return collidable.GetCollision(ray)
 	End
 	
+	Method GetCollision:Collision(rect:Rect)
+		Return collidable.GetCollision(rect)
+	End
+	
 	Method LastMovement:Vec2()
 		Return Null
 	End

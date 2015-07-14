@@ -22,6 +22,16 @@ Class CircularCollidable Implements Collidable
 			Return Null
 		End
 	End
+	
+	Method GetCollision:Collision(rect:Rect)
+		collisionResponse.Clear()
+		If SAT.TestPolygonCircle(rect.ToPolygon(), circle, collisionResponse)
+			'TODO - do we want to bother actually calculating the collision vector here? We never use it...for now return null
+			Return New Collision(Null)
+		Else
+			Return Null
+		End
+	End
 End
 
 Class MovingCircularCollidable Implements CollidableAndMoving
@@ -35,6 +45,10 @@ Class MovingCircularCollidable Implements CollidableAndMoving
 	
 	Method GetCollision:Collision(ray:Ray)
 		Return New CircularCollidable(movement.Position(), radius).GetCollision(ray)
+	End
+	
+	Method GetCollision:Collision(rect:Rect)
+		Return New CircularCollidable(movement.Position(), radius).GetCollision(rect)
 	End
 	
 	Method Update()

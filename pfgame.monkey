@@ -413,8 +413,12 @@ Class PfGame Extends App
 		'For example it is currently possible to fly though a hazard into the level goal
 		Local endRect:Rect = p.BoundingBox().CloneRect()
 		Local movementRays:Stack<Ray> = RaysForMovement(startRect, endRect)
-		For Local ray := Eachin movementRays
-			For Local hazard := Eachin currentLevel.hazards
+		For Local hazard := Eachin currentLevel.hazards
+			If hazard.GetCollision(endRect)
+				gameState = STATE_DEATH
+				Return
+			End
+			For Local ray := Eachin movementRays
 				If hazard.GetCollision(ray)
 					gameState = STATE_DEATH
 					Return

@@ -29,6 +29,10 @@ Class Hazard Implements Collidable, Drawable
 		Return collidable.GetCollision(ray)
 	End
 	
+	Method GetCollision:Collision(rect:Rect)
+		Return collidable.GetCollision(rect)
+	End
+	
 	'TODO implement Updateable Interface
 	Method Update()
 		collidable.Update()
