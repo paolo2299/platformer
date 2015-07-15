@@ -67,14 +67,7 @@ Class Player
 	Field grappleExtendSpeedFactor:Float = 1.0 / 8.0
 	Field grappleExtendSpeed:Float
 	
-	Field image:Image
-	Field walkingAnimation:Animation
-	Field standingAnimation:Animation
-	Field jumpUpFrame:Int = 4
-	Field jumpAlongRisingFrame:Int = 8
-	Field jumpAlongFallingFrame:Int = 9
-	Field pushAnimation:Animation
-	Field flip:Float = 1.0
+	Field playerSprite:PlayerSprite
 
 	Method New(level:Level)
 		Self.level = level
@@ -84,10 +77,7 @@ Class Player
 		desiredPosition.Set(originalPos.x, originalPos.y)
 		grapple = New Grapple(level)
 		
-		image = LoadImage("images/player.png", 16, 16, 25, Image.MidHandle)
-		standingAnimation = New Animation(0, 4, 3)
-		walkingAnimation = New Animation(5, 3, 5)
-		pushAnimation = New Animation(20, 3, 5)
+		playerSprite = New PlayerSprite(width, height)
 	End
 	
 	Method SetPlayerConstants()
@@ -130,34 +120,9 @@ Class Player
 		velocity.Set(0, 0)
 	End
     
-	Method Draw()
-		SetColor(255, 255, 255)
-		'Local rect:Rect = BoundingBox()
-		'DrawRect(rect.topLeft.x, rect.topLeft.y, rect.width, rect.height)
-		Local scaleX:Float = (width / 16) * 2
-		Local scaleY:Float = (width / 16) * 1.7
-		Local pushAdjustment:Float = width*0.4
-		If onGround And Not (huggingLeft Or huggingRight)
-			If velocity.x = 0
-				DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, standingAnimation.GetFrame())
-			Else
-				DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, walkingAnimation.GetFrame())
-			End
-		Elseif huggingLeft
-			DrawImage(image, position.x + pushAdjustment, position.y, 0.0, -1 * scaleX , scaleY, pushAnimation.GetFrame())
-		Elseif huggingRight
-			DrawImage(image, position.x - pushAdjustment, position.y, 0.0, scaleX, scaleY, pushAnimation.GetFrame())
-		Elseif velocity.x = 0
-			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpUpFrame)
-		Elseif velocity.y < 0
-			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpAlongRisingFrame)
-		Else
-			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpAlongFallingFrame)
-		End
-	End
-    
 	Method Update()
 		'Print "in player update"
+		
 		desiredPosition.Set(position.x, position.y)
 		'gravity
 		If huggingLeft Or huggingRight
@@ -179,13 +144,9 @@ Class Player
 			
 			'moving left/right    			
 			If KeyDown(KEY_RIGHT)
-				'If velocity.x > 0 Or huggingLeft
-					velocity.x += accelerationGrappling
-				'End
+				velocity.x += accelerationGrappling
 			Elseif KeyDown(KEY_LEFT)
-				'If velocity.x < 0 Or huggingRight
-					velocity.x -= accelerationGrappling
-				'End
+				velocity.x -= accelerationGrappling
 			End
 		
 			'extend/shorten the grapple
@@ -290,13 +251,6 @@ Class Player
 			End
 		End
 		
-		'set flip
-		If velocity.x > 0
-			flip = 1.0
-		Elseif velocity.x < 0
-			flip = -1.0
-		End
-		
 		'Print "position: " + position.x + "," + position.y
 		'Print "desiredPosition: " + desiredPosition.x + "," + desiredPosition.y
 		
@@ -330,4 +284,58 @@ Class Player
     	Method DetectionBox:Rect()
     		Return New Rect(position.x - width/2 - 1, position.y - height/2 - 1, width + 2, height + 2)
     	End
+    	
+    	Method Draw()
+    		SetColor(255, 255, 255)
+    		playerSprite.Draw(position, velocity, onGround, huggingLeft, huggingRight)
+    	End
+End
+
+Class PlayerSprite
+	Field width:Float
+	Field height:Float
+	Field image:Image
+	Field walkingAnimation:Animation
+	Field standingAnimation:Animation
+	Field jumpUpFrame:Int = 4
+	Field jumpAlongRisingFrame:Int = 8
+	Field jumpAlongFallingFrame:Int = 9
+	Field pushAnimation:Animation
+    
+    	Method New(width:Float, height:Float)
+    		Self.width = width
+    		Self.height = height
+    		image = LoadImage("images/player.png", 16, 16, 25, Image.MidHandle)
+		standingAnimation = New Animation(0, 4, 3)
+		walkingAnimation = New Animation(5, 3, 5)
+		pushAnimation = New Animation(20, 3, 5)
+	End
+    
+	Method Draw(position:Vec2, velocity:Vec2, onGround:Bool, huggingLeft:Bool, huggingRight:Bool)		
+		Local flip := 1.0
+		If velocity.x < 0
+			flip = -1.0
+		End
+		Local scaleX:Float = (width / 16) * 2
+		Local scaleY:Float = (height / 16) * 1.1
+		Local pushAdjustment:Float = width*0.4
+		
+		If onGround And Not (huggingLeft Or huggingRight)
+			If velocity.x = 0
+				DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, standingAnimation.GetFrame())
+			Else
+				DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, walkingAnimation.GetFrame())
+			End
+		Elseif huggingLeft
+			DrawImage(image, position.x + pushAdjustment, position.y, 0.0, -1 * scaleX , scaleY, pushAnimation.GetFrame())
+		Elseif huggingRight
+			DrawImage(image, position.x - pushAdjustment, position.y, 0.0, scaleX, scaleY, pushAnimation.GetFrame())
+		Elseif velocity.x = 0
+			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpUpFrame)
+		Elseif velocity.y < 0
+			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpAlongRisingFrame)
+		Else
+			DrawImage(image, position.x, position.y, 0.0, flip * scaleX, scaleY, jumpAlongFallingFrame)
+		End
+	End 
 End
