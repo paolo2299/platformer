@@ -1,0 +1,7 @@
+tileWidth,20
+tileHeight,20
+theme,blocky
+name,haunted platform
+gold,21000
+silver,23000
+bronze,25000

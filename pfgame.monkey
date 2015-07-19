@@ -21,7 +21,7 @@ Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 4
 
-Const FIRST_LEVEL = 1
+Const FIRST_LEVEL = 4
 
 Class PfGame Extends App
 	Field startTime:Int = Millisecs()
@@ -29,6 +29,7 @@ Class PfGame Extends App
 	Field player:Player
 	Field gameState:Int = STATE_MENU
 	Field currentLevel:Level
+	Field menuLevel:Level
 
 	Field camera:Camera = New Camera()
 	Field collisionResponse:Response = New Response()
@@ -40,17 +41,25 @@ Class PfGame Extends App
 	
 	Field savedState:SavedState
 	
+	'TODO ensure menu player recording can be garbage collected when not on menu
+	Field menuPlayerRecorder:PlayerRecorder
+	
 	Method OnCreate()
     		SetUpdateRate 60
     		
     		font = New BitmapFont("fonts/CleanWhite/CleanWhite.txt", False)
     		savedState = LoadSavedState()
+    		menuLevel = MenuLevel()
+    		player = New Player(menuLevel)
+    		menuPlayerRecorder = New PlayerRecorder(player)
+    		menuPlayerRecorder.LoadFromFile("menu.txt")
     		'savedState.Clear()
 	End
 	
 	Method OnUpdate()
 		Select gameState
 			Case STATE_MENU
+				menuPlayerRecorder.UpdateForPlayback(True)
 				If KeyHit(KEY_ENTER)
 					currentLevel = FirstLevel()
 					StartLevel()
@@ -104,8 +113,10 @@ Class PfGame Extends App
 	    
 	    Select gameState
 	    	Case STATE_MENU
-	    		RenderTextCenter("Platform Game!", 9)
-	    		RenderTextCenter("Press Enter to Play", 11)
+	    		RenderMenuLevel()
+	    		menuPlayerRecorder.PlayBack(False)
+	    		SetColor(255,255,255)
+	    		RenderTextCenter("Press Enter to Play", 13)
 	    	Case STATE_GAME
 			PushMatrix()
 				Local translation:Vec2 = camera.Translation()
@@ -117,7 +128,6 @@ Class PfGame Extends App
 				player.Draw()
 				
 				Local bs := currentLevel.Blocks(camera.position)
-				'Print bs.Length()
 				For Local block := Eachin bs
 					block.Draw()
 				End
@@ -161,7 +171,18 @@ Class PfGame Extends App
 	
 	Method RenderTextCenter(text:String, slot:Int = 10) '20 vertical slots
 		font.DrawText(text, VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT * (slot * 1.0 / 20.0), eDrawAlign.CENTER)
-	End 
+	End
+	
+	Method RenderMenuLevel()
+		Local bs := menuLevel.Blocks(New Vec2(0.0, 0.0))
+		For Local block := Eachin bs
+			block.Draw()
+		End
+	End
+	
+	Method MenuLevel:Level()
+		Return New Level(100)
+	End
 	
 	Method RenderBackground(cameraTranslation:Vec2)
 		For Local backgroundLayer := Eachin currentLevel.theme.BackgroundLayers()

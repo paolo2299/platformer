@@ -54,9 +54,6 @@ End
 'Implicity assumes startRect and endRect are the same dimensions
 Function RaysForMovement:Stack<Ray>(startRect:Rect, endRect:Rect)
 	Local movementVec:Vec2 = endRect.topLeft.Clone().Sub(startRect.topLeft)
-	'PrintRect("startRect", startRect)
-	'PrintRect("endRect", endRect)
-	'PrintVec("movementVec", movementVec)
 	Return RaysForMovement(startRect, movementVec)
 End
 
@@ -86,4 +83,23 @@ Function FormatMillisecs:String(millisecs:Int)
 		remainder = "0" + remainder
 	End
 	Return wholeSeconds + "." + remainder 
+End
+
+Function ParseVec2:Vec2(s:String)
+	Local trimmed := s.Trim()
+	If trimmed = "null"
+		Return Null
+	End
+	Local data:String[] = s.Split(",")
+	Local x:Float = Float(data[0].Trim())
+	Local y:Float = Float(data[1].Trim())
+	Return New Vec2(x, y)
+End
+
+Function ParseBool:Bool(s:String)
+	Local trimmed := s.Trim()
+	If trimmed = "true"
+		Return True
+	End
+	Return False
 End
