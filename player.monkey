@@ -68,6 +68,8 @@ Class Player
 	Field grappleExtendSpeed:Float
 	
 	Field playerSprite:PlayerSprite
+	
+	Field debug:Bool = False 'For debugging
 
 	Method New(level:Level)
 		Self.level = level
@@ -122,6 +124,7 @@ Class Player
     
 	Method Update()
 		'Print "in player update"
+		debug = False
 		
 		desiredPosition.Set(position.x, position.y)
 		'gravity
@@ -181,6 +184,7 @@ Class Player
 
 			'jumping
 			If KeyHit(KEY_SPACE)
+				'debug = True
 				If onGround
 					velocity.y = -jumpForce
 				Elseif huggingLeft

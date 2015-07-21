@@ -305,17 +305,19 @@ Class PfGame Extends App
 	
 	Method GetClosestCollision:BlockyCollision(rays: Stack<Ray>)
 		'Print "In get closest"
-		'PrintVec("playerPosition", player.position)
 		Local closest:BlockyCollision = Null
 		'First check collisions with static blocks
 		For Local ray := Eachin rays
 			Local bc:BlockyCollision = currentLevel.collisionMap.RayCastCollision(ray)
 			If bc <> Null
-				'PrintRect("collisionRect", bc.blocky.Rect())
-				'PrintVec("ray oriign", ray.origin)
-				'PrintVec("ray destination", ray.destination)
-				'PrintVec("collision ray origin", bc.collision.ray.origin)
-				'PrintVec("collisionl ray destination", bc.collision.ray.destination)
+				If player.debug
+					PrintVec("playerPosition", player.position)
+					PrintRect("collisionRect", bc.blocky.Rect())
+					PrintVec("ray oriign", ray.origin)
+					PrintVec("ray destination", ray.destination)
+					PrintVec("collision ray origin", bc.ray.origin)
+					PrintVec("collisionl ray destination", bc.ray.destination)
+				End
 				If closest = Null
 					closest = bc
 					'Print "shortest by default!"

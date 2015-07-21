@@ -71,7 +71,12 @@ Class RectangularCollidable Implements Collidable
 				Local clamped:Float = Clamp(crossPosition, collisionRect.topLeft.y, collisionRect.botLeft.y)
 				If clamped = crossPosition
 					Local collisionPoint:Vec2 = New Vec2(verticalX, crossPosition)
-					Return  New Collision(New Ray(origin, collisionPoint))
+					Local collisionRay:Ray = New Ray(origin, collisionPoint)
+					If collisionRay.Length() > 0 And collisionRay.Length() < 0.001
+						'Fix floating point error
+						collisionRay = New Ray(origin, origin)
+					End
+					Return  New Collision(collisionRay)
 				End 
 				'Check top/bottom of tile
 				'Which side of the tile do we need to check?
@@ -85,7 +90,12 @@ Class RectangularCollidable Implements Collidable
 				clamped = Clamp(crossPosition, collisionRect.topLeft.x, collisionRect.topRight.x)
 				If clamped = crossPosition
 					Local collisionPoint:Vec2 = New Vec2(crossPosition, horizontalY)
-					Return  New Collision(New Ray(origin, collisionPoint))
+					Local collisionRay:Ray = New Ray(origin, collisionPoint)
+					If collisionRay.Length() > 0 And collisionRay.Length() < 0.001
+						'Fix floating point error
+						collisionRay = New Ray(origin, origin)
+					End
+					Return  New Collision(collisionRay)
 				End
 			End
 		End
