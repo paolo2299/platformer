@@ -43,7 +43,7 @@ Class BlockyTheme Implements Theme
 		
 		midnightBlueImage = LoadImage("images/midnight_blue.png")
 		starsImage = LoadImage("images/stars.png")
-		Local backgroundSky:BackgroundLayer = New BackgroundLayer(midnightBlueImage, 0.0, 256.0, 256.0)
+		Local backgroundSky:BackgroundLayer = New BackgroundLayer(midnightBlueImage, 0.0, 780.0, 780.0)
 		Local stars:BackgroundLayer = New BackgroundLayer(starsImage, 0.6, 384.0, 384.0)
 		backgroundLayers.Push(backgroundSky)
 		backgroundLayers.Push(stars)

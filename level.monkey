@@ -195,7 +195,12 @@ Class Level
 	
 	Method SetMapWidthAndMapHeight()
 		Local rows:String[] = LayoutFileString().Split("~n")
-		mapHeight = rows.Length()
+		Local numRows := rows.Length()
+		If rows[numRows - 1] = ""
+			mapHeight = numRows - 1
+		Else
+			mapHeight = numRows
+		End
 		mapWidth = rows[0].Split(",").Length()
 	End
 	

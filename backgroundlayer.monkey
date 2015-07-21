@@ -7,10 +7,12 @@ Class BackgroundLayer
 	Field imageHeight:Float
 	Field imageScaleX:Float
 	Field imageScaleY:Float
+	Field onlyAlongBottom:Bool
 
-	Method New(image:Image, parallaxFactor:Float = 0.0, desiredWidth:Float = -1.0, desiredHeight:Float = -1.0)
+	Method New(image:Image, parallaxFactor:Float = 0.0, desiredWidth:Float = -1.0, desiredHeight:Float = -1.0, onlyAlongBottom:Bool=False)
 		Self.image = image
 		Self.parallaxFactor = parallaxFactor
+		Self.onlyAlongBottom = onlyAlongBottom
 		If desiredWidth = -1.0
 			imageWidth = image.Width()
 			imageScaleX = 1.0

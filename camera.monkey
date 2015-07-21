@@ -10,7 +10,7 @@ Class Camera
 	Method Update(player:Player, level:Level)
 		position.Copy(player.position)
 		position.x = Clamp(position.x, VIRTUAL_WINDOW_WIDTH / 2.0, level.tileWidth * level.mapWidth - (VIRTUAL_WINDOW_WIDTH / 2.0))
-		position.y = Clamp(position.y, VIRTUAL_WINDOW_HEIGHT / 2.0, level.tileHeight * (level.mapHeight - 1) - (VIRTUAL_WINDOW_HEIGHT / 2.0))
+		position.y = Clamp(position.y, VIRTUAL_WINDOW_HEIGHT / 2.0, level.tileHeight * level.mapHeight - (VIRTUAL_WINDOW_HEIGHT / 2.0))
 	End
 	
 	Method Translation:Vec2()

@@ -191,11 +191,14 @@ Class PfGame Extends App
 				Translate(revTranslation.x, revTranslation.y)
 				Local countX:Int = 0
 				Local countY:Int = 0
+				Local levelHeight := currentLevel.mapHeight * currentLevel.tileHeight
 				Local tilesX:Int = ((currentLevel.mapWidth * currentLevel.tileWidth) / backgroundLayer.imageWidth) + 1
-				Local tilesY:Int = ((currentLevel.mapHeight * currentLevel.tileHeight) / backgroundLayer.imageHeight) + 1
+				Local tilesY:Int = (levelHeight / backgroundLayer.imageHeight) + 1
 				While countX < tilesX
 					While countY < tilesY
-						DrawImage(backgroundLayer.image, countX * backgroundLayer.imageWidth, countY * backgroundLayer.imageHeight, 0.0,  backgroundLayer.imageScaleX,  backgroundLayer.imageScaleY)
+						If (countY = 0) Or Not backgroundLayer.onlyAlongBottom
+							DrawImage(backgroundLayer.image, countX * backgroundLayer.imageWidth, levelHeight - (countY + 1) * backgroundLayer.imageHeight, 0.0,  backgroundLayer.imageScaleX,  backgroundLayer.imageScaleY)
+						End
 						countY += 1
 					End
 					countY = 0
