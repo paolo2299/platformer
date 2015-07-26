@@ -19,9 +19,9 @@ Const STATE_LEVEL_CHOICE = 1
 Const STATE_GAME:Int = 2
 Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
-Const STATE_DEATH:Int = 4
+Const STATE_DEATH:Int = 5
 
-Const FIRST_LEVEL = 4
+Const FIRST_LEVEL = 7
 
 Class PfGame Extends App
 	Field startTime:Int = Millisecs()
@@ -185,10 +185,16 @@ Class PfGame Extends App
 	End
 	
 	Method RenderBackground(cameraTranslation:Vec2)
+		'SetColor(255.0, 255.0, 255.0)
 		For Local backgroundLayer := Eachin currentLevel.theme.BackgroundLayers()
 			PushMatrix()
 				Local revTranslation:Vec2 = cameraTranslation.Clone().Scale(-1* backgroundLayer.parallaxFactor)
-				Translate(revTranslation.x, revTranslation.y)
+				If backgroundLayer.onlyAlongBottom
+					'SetColor(122.0, 122.0, 122.0)
+					Translate(revTranslation.x, 0.0)
+				Else
+					Translate(revTranslation.x, revTranslation.y)
+				End
 				Local countX:Int = 0
 				Local countY:Int = 0
 				Local levelHeight := currentLevel.mapHeight * currentLevel.tileHeight

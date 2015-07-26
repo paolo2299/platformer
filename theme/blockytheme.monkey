@@ -20,6 +20,7 @@ Class BlockyTheme Implements Theme
 	
 	Field midnightBlueImage:Image
 	Field starsImage:Image
+	Field castleWallsImage:Image
 	Field backgroundLayers:Stack<BackgroundLayer> = New Stack<BackgroundLayer>()
 	
 	Method New(tileWidth, tileHeight)
@@ -43,10 +44,13 @@ Class BlockyTheme Implements Theme
 		
 		midnightBlueImage = LoadImage("images/midnight_blue.png")
 		starsImage = LoadImage("images/stars.png")
+		castleWallsImage = LoadImage("images/castle_walls.png")
 		Local backgroundSky:BackgroundLayer = New BackgroundLayer(midnightBlueImage, 0.0, 780.0, 780.0)
-		Local stars:BackgroundLayer = New BackgroundLayer(starsImage, 0.6, 384.0, 384.0)
+		Local stars:BackgroundLayer = New BackgroundLayer(starsImage, 0.3, 384.0, 384.0)
+		Local castleWalls:BackgroundLayer = New BackgroundLayer(castleWallsImage, 0.15, 1280.0, 520.0, True)
 		backgroundLayers.Push(backgroundSky)
 		backgroundLayers.Push(stars)
+		backgroundLayers.Push(castleWalls)
 	End
 	
 	Method BackgroundLayers:Stack<BackgroundLayer>()
