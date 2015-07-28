@@ -21,7 +21,7 @@ Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 5
 
-Const FIRST_LEVEL = 7
+Const FIRST_LEVEL = 1
 
 Class PfGame Extends App
 	Field startTime:Int = Millisecs()

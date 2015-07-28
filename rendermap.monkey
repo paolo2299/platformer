@@ -13,7 +13,6 @@ Class RenderMap
 		Local tilesY:Int = ((level.mapHeight * level.tileHeight) / VIRTUAL_WINDOW_HEIGHT) + 1
 		For Local tileX := 0 To tilesX + 1
 			For Local tileY := 0 To tilesY + 1
-				Print tileX + "," + tileY
 				Local coord:Vec2Di = New Vec2Di(tileX - 1, tileY - 1) 'Index from 0
 				coordToBlocks.Add(CoordToString(coord), New Stack<Block>())
 			End

@@ -49,7 +49,6 @@ Class Level
 		Self.levelNumber = number
 		
 		GetConfig()
-		Print "Here1"
 		GetLayout()
 	End
 	
@@ -106,6 +105,13 @@ Class Level
 		End
 	End
 	
+	Method CheckTileImage(tileImage:TileImage, tile:String)
+		If tileImage = Null
+			Print "No tileImage found for tile " + tile
+			Throw New Throwable
+		End
+	End
+	
 	Method GetLayout()
 		SetMapWidthAndMapHeight()
 		collisionMap = New CollisionMap(Self)
@@ -126,11 +132,13 @@ Class Level
 				
 				If tile[..1] = "b" 
 					Local tileImage:TileImage = theme.TileImageForCode(tile)
+					CheckTileImage(tileImage, tile)
 					Local block:Block = New GroundBlock(rect, tileImage)
 					renderMap.AddBlock(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
 				Elseif tile[..1] = "h"
 					Local tileImage:TileImage = theme.TileImageForCode(tile)
+					CheckTileImage(tileImage, tile)
 					Local block:Block = New HazardBlock(rect, tileImage)
 					renderMap.AddBlock(block)
 					collisionMap.AddBlock(block, New Vec2Di(colNum, rowNum))
