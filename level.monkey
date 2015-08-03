@@ -12,6 +12,7 @@ Import theme.blockytheme
 Import theme.darkforesttheme
 Import hazard
 Import collectible
+Import staticforeground
 
 Class ConfigException Extends Throwable
 End
@@ -44,12 +45,14 @@ Class Level
 	Field name:String
 	
 	Field theme:Theme
+	Field staticForeground:StaticForeground
 	
 	Method New(number:Int)
 		Self.levelNumber = number
 		
 		GetConfig()
 		GetLayout()
+		staticForeground = New StaticForeground(number, tileWidth)
 	End
 	
 	Method LayoutFileString:String()

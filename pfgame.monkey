@@ -52,7 +52,9 @@ Class PfGame Extends App
     		menuLevel = MenuLevel()
     		player = New Player(menuLevel)
     		menuPlayerRecorder = New PlayerRecorder(player)
+    		Print "Here1"
     		menuPlayerRecorder.LoadFromFile("menu.txt")
+    		Print "Here2"
     		'savedState.Clear()
 	End
 	
@@ -127,10 +129,7 @@ Class PfGame Extends App
 				End
 				player.Draw()
 				
-				Local bs := currentLevel.Blocks(camera.position)
-				For Local block := Eachin bs
-					block.Draw()
-				End
+				currentLevel.staticForeground.Draw()
 				For Local movingPlatform := Eachin currentLevel.movingPlatforms
 					movingPlatform.Draw()
 				End
@@ -174,10 +173,7 @@ Class PfGame Extends App
 	End
 	
 	Method RenderMenuLevel()
-		Local bs := menuLevel.Blocks(New Vec2(0.0, 0.0))
-		For Local block := Eachin bs
-			block.Draw()
-		End
+		menuLevel.staticForeground.Draw()
 	End
 	
 	Method MenuLevel:Level()
