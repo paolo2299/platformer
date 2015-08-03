@@ -27,9 +27,14 @@ spikes_right = spikes_up.rotate_clockwise
 spikes_down = spikes_right.rotate_clockwise
 spikes_left = spikes_up.rotate_counter_clockwise
 
-levels = Dir.glob(File.join("pfgame.data", "levels", "level*", "layout.txt")).map do |path|
-  Integer(path.match(/level(\d+)\/layout\.txt$/)[1])
-end.reject{|level| SKIP_LEVELS.include?(level)}.sort
+levels = if ARGV[0]
+  [Integer(ARGV[0])]
+else
+  Dir.glob(File.join("pfgame.data", "levels", "level*", "layout.txt")).map do |path|
+    Integer(path.match(/level(\d+)\/layout\.txt$/)[1])
+  end.reject{|level| SKIP_LEVELS.include?(level)}.sort
+end
+
 
 levels.each do |level_number|
   puts "Contructing static foreground png for level #{level_number}"
