@@ -1,0 +1,7 @@
+tileWidth,30
+tileHeight,30
+theme,blocky
+name,king of the swingers
+gold,4000
+silver,4500
+bronze,6000
