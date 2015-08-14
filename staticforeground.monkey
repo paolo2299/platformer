@@ -1,4 +1,5 @@
 Import mojo
+Import config
 
 Class StaticForeground
 	Field image: Image
@@ -14,5 +15,14 @@ Class StaticForeground
 	
 	Method Draw()
 		DrawImage(image, 0.0, 0.0, 0.0, scale, scale)
+	End
+	
+	Method Draw(posY:Int, maxWidth:Float, maxHeight:Float)
+		scale = maxWidth * 1.0 / image.Width()
+		If image.Height() * scale > maxHeight
+			scale = maxHeight * 1.0 / image.Height()
+		End
+		Local posX:Float = (VIRTUAL_WINDOW_WIDTH - scale * image.Width()) / 2
+		DrawImage(image, posX, posY, 0.0, scale, scale)
 	End
 End

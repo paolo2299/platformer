@@ -9,6 +9,7 @@ Import collisionmap
 Import collision
 Import camera
 Import level
+Import levelselect
 Import fontmachine
 Import playerrecorder
 Import savedstate
@@ -20,6 +21,7 @@ Const STATE_GAME:Int = 2
 Const STATE_LEVEL_COMPLETE = 3
 'TODO have a separate state for completing the level than displaying the level complete menu
 Const STATE_DEATH:Int = 5
+Const STATE_LEVEL_SELECT:Int = 6
 
 Const FIRST_LEVEL = 1
 
@@ -30,6 +32,7 @@ Class PfGame Extends App
 	Field gameState:Int = STATE_MENU
 	Field currentLevel:Level
 	Field menuLevel:Level
+	Field levelSelect:LevelSelect = New LevelSelect()
 
 	Field camera:Camera = New Camera()
 	Field collisionResponse:Response = New Response()
@@ -52,9 +55,7 @@ Class PfGame Extends App
     		menuLevel = MenuLevel()
     		player = New Player(menuLevel)
     		menuPlayerRecorder = New PlayerRecorder(player)
-    		Print "Here1"
     		menuPlayerRecorder.LoadFromFile("menu.txt")
-    		Print "Here2"
     		'savedState.Clear()
 	End
 	
@@ -63,7 +64,17 @@ Class PfGame Extends App
 			Case STATE_MENU
 				menuPlayerRecorder.UpdateForPlayback(True)
 				If KeyHit(KEY_ENTER)
-					currentLevel = FirstLevel()
+					currentLevel = New Level(levelSelect.level)
+					gameState = STATE_LEVEL_SELECT
+				End
+			Case STATE_LEVEL_SELECT
+				If KeyHit(KEY_RIGHT)
+					levelSelect.IncrementLevel()
+					currentLevel = New Level(levelSelect.level)
+				Elseif KeyHit(KEY_LEFT)
+					levelSelect.DecrementLevel()
+					currentLevel = New Level(levelSelect.level)
+				Elseif KeyHit(KEY_ENTER)
 					StartLevel()
 					playerRecorder.Record(player)
 				End
@@ -119,6 +130,10 @@ Class PfGame Extends App
 	    		menuPlayerRecorder.PlayBack(False)
 	    		SetColor(255,255,255)
 	    		RenderTextCenter("Press Enter to Play", 13)
+	    	Case STATE_LEVEL_SELECT
+	    		SetColor(255,255,255)
+	    		RenderTextCenter("" + currentLevel.levelNumber + ". " + currentLevel.name, 4)
+	    		currentLevel.staticForeground.Draw(VIRTUAL_WINDOW_HEIGHT * 0.3,400, 400)
 	    	Case STATE_GAME
 			PushMatrix()
 				Local translation:Vec2 = camera.Translation()
@@ -169,7 +184,11 @@ Class PfGame Extends App
 	End
 	
 	Method RenderTextCenter(text:String, slot:Int = 10) '20 vertical slots
-		font.DrawText(text, VIRTUAL_WINDOW_WIDTH/2, VIRTUAL_WINDOW_HEIGHT * (slot * 1.0 / 20.0), eDrawAlign.CENTER)
+		RenderText(text, slot)
+	End
+	
+	Method RenderText(text:String, ySlot:Int = 10, xSlot:Int = 15) '30 horizontal slots, 20 vertial slots
+		font.DrawText(text, VIRTUAL_WINDOW_WIDTH * (xSlot * 1.0 / 30.0), VIRTUAL_WINDOW_HEIGHT * (ySlot * 1.0 / 20.0), eDrawAlign.CENTER)
 	End
 	
 	Method RenderMenuLevel()
