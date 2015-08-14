@@ -18,7 +18,7 @@ Class StaticForeground
 	End
 	
 	Method Draw(posY:Int, maxWidth:Float, maxHeight:Float)
-		scale = maxWidth * 1.0 / image.Width()
+		Local scale := maxWidth * 1.0 / image.Width()
 		If image.Height() * scale > maxHeight
 			scale = maxHeight * 1.0 / image.Height()
 		End
